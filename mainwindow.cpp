@@ -21,6 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->fileSize->setText(QString::number(eorkonf_data_size) + QString("B"));
 
+    ui->generalTempSensorTypeCmb->addItem("TH");
+    ui->generalTempSensorTypeCmb->addItem("CAN");
+    ui->generalTempSensorTypeCmb->addItem("Modbus");
+
+    ui->generalFallSensorTypeCmb->addItem("IO");
+    ui->generalFallSensorTypeCmb->addItem("CAN");
+    ui->generalFallSensorTypeCmb->addItem("Modbus");
+
 //    ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->ioModulesTable);
 //    ui->ioModulesTable->setItemDelegate(cbid);
 }
@@ -82,12 +90,13 @@ void MainWindow::on_actionOtw_rz_triggered()
                 QMessageBox::critical(this, "Błąd", "Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
             }
 
-            ui->fileSize->setText(QString::number(eorkonf_hdr.file_len) + sizeof(eorkonf_hdr_t));
+            ui->fileSize->setText(QString::number(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t)));
             ui->fileVer->setText(QString("%1.%2").arg(eorkonf_hdr.ver).arg(eorkonf_hdr.rev));
             setGeneralCfg();
             setIOModuleCfg();
             setJsn2Cfg();
             setMeterCfg();
+            setGeneralWeatherMeasure();
         }
         else
         {
@@ -153,6 +162,8 @@ void MainWindow::on_actionZapisz_triggered()
                 return;
             }
             fileBuf.append((char*)meter_cfg, sizeof(meter_cfg_t) * METER_COUNT);
+            if(updateGeneralWeatherMeasure() == false)
+                return;
             fileBuf.append((char*)&general_weather_measure_cfg, sizeof(general_weather_measure_cfg_t));
             fileBuf.append((char*)weather_autom_cfg, sizeof(weather_autom_cfg_t) * WEATHER_AUTOM_COUNT);
             fileBuf.append((char*)&lock_autom_cfg, sizeof(lock_autom_cfg_t));
@@ -411,6 +422,96 @@ bool MainWindow::setMeterCfg(void)
     return true;
 }
 
+bool MainWindow::updateGeneralWeatherMeasure(void)
+{
+    QComboBox *cb;
+    bool ret = true;
+    uint8_t addr = ui->generalTempSensorAddr->value();
+    uint16_t reg_no = ui->generalTempSensorRegNo->value();
+    uint8_t bit_no;
+
+    general_weather_measure_cfg.temperature_sensor.type = ui->generalTempSensorTypeCmb->currentIndex();
+    general_weather_measure_cfg.temperature_sensor.addr = addr;
+    general_weather_measure_cfg.temperature_sensor.reg_no = reg_no;
+
+    switch(general_weather_measure_cfg.temperature_sensor.type)
+    {
+    case 0:     //TH
+        if(addr >= ui->ioModulesTable->rowCount())
+        {
+            QMessageBox::critical(this, "Błąd", "Ogólne pomiary pogody - czujnik temperatury otoczenia\nNie ma modułu IO o podanym numerze.");
+            ret = false;
+        }
+        else
+        {
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr, 0);
+            if(cb->currentIndex() != 1)
+            {
+                QMessageBox::critical(this, "Błąd", "Ogólne pomiary pogody - czujnik temperatury otoczenia\nModuł o podanym numerze nie jest modułem TH.");
+                ret = false;
+            }
+        }
+        break;
+    case 1:     //CAN
+        break;
+    case 2:     //Modbus
+        break;
+    }
+
+    general_weather_measure_cfg.snow_fall_sensor.type = ui->generalFallSensorTypeCmb->currentIndex();
+    addr = ui->generalFallSensorAddr->value();
+    reg_no = ui->generalFallSensorRegNo->value();
+    bit_no = ui->generalFallSensorBitNo->value();
+
+    switch(general_weather_measure_cfg.snow_fall_sensor.type)
+    {
+    case 0:     //io
+        if(addr >= ui->ioModulesTable->rowCount())
+        {
+            QMessageBox::critical(this, "Błąd", "Ogólne pomiary pogody - czujnik opadu\nNie ma modułu IO o podanym numerze.");
+            ret = false;
+        }
+        else
+        {
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr, 0);
+            if((cb->currentIndex() != 0) &&         /* io10/5 */
+                    (cb->currentIndex() != 1) &&    /* th     */
+                    (cb->currentIndex() != 2) &&    /* i12    */
+                    (cb->currentIndex() != 3) &&    /* i20    */
+                    (cb->currentIndex() != 7) &&    /* io4/7  */
+                    (cb->currentIndex() != 9))      /* gmr io */
+            {
+                QMessageBox::critical(this, "Błąd", "Ogólne pomiary pogody - czujnik opadu\nModuł o podanym numerze nie ma wejść cyfrowych.");
+                ret = false;
+            }
+        }
+        break;
+    case 1:     //can
+        break;
+    case 2:     //modbus
+        break;
+    }
+    general_weather_measure_cfg.snow_fall_sensor.addr = addr;
+    general_weather_measure_cfg.snow_fall_sensor.reg_no = reg_no;
+    general_weather_measure_cfg.snow_fall_sensor.bit_no = bit_no;
+
+    return ret;
+}
+
+bool MainWindow::setGeneralWeatherMeasure(void)
+{
+    ui->generalTempSensorTypeCmb->setCurrentIndex(general_weather_measure_cfg.temperature_sensor.type);
+    ui->generalTempSensorAddr->setValue(general_weather_measure_cfg.temperature_sensor.addr);
+    ui->generalTempSensorRegNo->setValue(general_weather_measure_cfg.temperature_sensor.reg_no);
+
+    ui->generalFallSensorTypeCmb->setCurrentIndex(general_weather_measure_cfg.snow_fall_sensor.type);
+    ui->generalFallSensorAddr->setValue(general_weather_measure_cfg.snow_fall_sensor.addr);
+    ui->generalFallSensorBitNo->setValue(general_weather_measure_cfg.snow_fall_sensor.bit_no);
+    ui->generalFallSensorRegNo->setValue(general_weather_measure_cfg.snow_fall_sensor.reg_no);
+
+    return true;
+}
+
 void MainWindow::on_addIoModuleBtn_clicked()
 {
     QComboBox* cb;
@@ -463,10 +564,16 @@ void MainWindow::on_delIoModuleBtn_clicked()
 
 void MainWindow::on_addJsn2Btn_clicked()
 {
+    QTableWidgetItem *prev_item;
     int rows = ui->jsn2ModulesTable->rowCount();
     if(rows < JSN2_MODULE_COUNT)
     {
         ui->jsn2ModulesTable->insertRow(rows);
+        if(rows > 0)
+        {
+            prev_item = ui->jsn2ModulesTable->item(rows - 1, 0);
+            ui->jsn2ModulesTable->item(rows, 0)->setText(QString::number(prev_item->text().toInt(NULL, 0) + 1));
+        }
     }
 }
 
@@ -498,5 +605,79 @@ void MainWindow::on_delMeterBtn_clicked()
     {
         row = ui->energyMetersTab->currentRow();
         ui->energyMetersTab->removeRow(row);
+    }
+}
+
+void MainWindow::on_generalTempSensorTypeCmb_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:     //TH
+        ui->generalTempSensorAddrLbl->setText("Nr modułu TH");
+        ui->generalTempSensorAddr->setMinimum(1);
+        ui->generalTempSensorAddr->setMaximum(IO_MODULE_COUNT);
+        ui->generalTempSensorRegNoLbl->setText("Nr kanału TH");
+        ui->generalTempSensorRegNo->setMinimum(1);
+        ui->generalTempSensorRegNo->setMaximum(4);
+        break;
+    case 1:     //CAN
+        ui->generalTempSensorAddrLbl->setText("Adres CAN");
+        ui->generalTempSensorAddr->setMinimum(1);
+        ui->generalTempSensorAddr->setMaximum(255);
+        ui->generalTempSensorRegNoLbl->setText("Nr meldunku");
+        ui->generalTempSensorRegNo->setMinimum(0);
+        ui->generalTempSensorRegNo->setMaximum(127);
+        break;
+    case 2:     //Modbus
+        ui->generalTempSensorAddrLbl->setText("Adres Modbus");
+        ui->generalTempSensorAddr->setMinimum(1);
+        ui->generalTempSensorAddr->setMaximum(255);
+        ui->generalTempSensorRegNoLbl->setText("Nr rejestru");
+        ui->generalTempSensorRegNo->setMinimum(0);
+        ui->generalTempSensorRegNo->setMaximum(65535);
+        break;
+    }
+}
+
+void MainWindow::on_generalFallSensorTypeCmb_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:     //IO
+        ui->generalFallSensorAddrLbl->setText("Nr modułu IO");
+        ui->generalFallSensorAddr->setMinimum(1);
+        ui->generalFallSensorAddr->setMaximum(IO_MODULE_COUNT);
+        ui->generalFallSensorBitNoLbl->setText("Nr wejścia");
+        ui->generalFallSensorBitNo->setMinimum(1);
+        ui->generalFallSensorBitNo->setMaximum(20);
+        ui->generalFallSensorRegNoLbl->setVisible(false);
+        ui->generalFallSensorRegNo->setVisible(false);
+        break;
+    case 1:     //CAN
+        ui->generalFallSensorAddrLbl->setText("Adres CAN");
+        ui->generalFallSensorAddr->setMinimum(1);
+        ui->generalFallSensorAddr->setMaximum(255);
+        ui->generalFallSensorBitNoLbl->setText("Nr bitu");
+        ui->generalFallSensorBitNo->setMinimum(1);
+        ui->generalFallSensorBitNo->setMaximum(16);
+        ui->generalFallSensorRegNoLbl->setVisible(true);
+        ui->generalFallSensorRegNoLbl->setText("Nr meldunku");
+        ui->generalFallSensorRegNo->setMinimum(0);
+        ui->generalFallSensorRegNo->setMaximum(127);
+        ui->generalFallSensorRegNo->setVisible(true);
+        break;
+    case 2:     //Modbus
+        ui->generalFallSensorAddrLbl->setText("Adres Modbus");
+        ui->generalFallSensorAddr->setMinimum(1);
+        ui->generalFallSensorAddr->setMaximum(255);
+        ui->generalFallSensorBitNoLbl->setText("Nr bitu");
+        ui->generalFallSensorBitNo->setMinimum(1);
+        ui->generalFallSensorBitNo->setMaximum(16);
+        ui->generalFallSensorRegNoLbl->setVisible(true);
+        ui->generalFallSensorRegNoLbl->setText("Nr rejestru");
+        ui->generalFallSensorRegNo->setMinimum(0);
+        ui->generalFallSensorRegNo->setMaximum(65535);
+        ui->generalFallSensorRegNo->setVisible(true);
+        break;
     }
 }

@@ -18,12 +18,14 @@ public:
     bool updateIOModuleCfg(void);
     bool updateJsn2Cfg(void);
     bool updateMeterCfg(void);
+    bool updateGeneralWeatherMeasure(void);
 
     void setCfgStructs(char* buf);
     bool setGeneralCfg(void);
     bool setIOModuleCfg(void);
     bool setJsn2Cfg(void);
     bool setMeterCfg(void);
+    bool setGeneralWeatherMeasure(void);
 
 private slots:
     void on_actionOtw_rz_triggered();
@@ -35,6 +37,10 @@ private slots:
     void on_delJsn2Btn_clicked();
     void on_addMeterBtn_clicked();
     void on_delMeterBtn_clicked();
+
+    void on_generalTempSensorTypeCmb_currentIndexChanged(int index);
+
+    void on_generalFallSensorTypeCmb_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
