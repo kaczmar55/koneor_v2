@@ -13,8 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    eor_cfg.cpp \
+    comboboxitemdelegate.cpp \
+    crc16.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    eor_cfg.h \
+    comboboxitemdelegate.h \
+    crc16.h
 
 FORMS    += mainwindow.ui
