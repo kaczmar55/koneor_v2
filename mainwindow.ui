@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -853,6 +853,370 @@
        <attribute name="title">
         <string>Automaty pogodowe</string>
        </attribute>
+       <widget class="QFrame" name="frame_3">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>40</y>
+          <width>220</width>
+          <height>106</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_20">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>15</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Typ:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="generalTempSensorTypeCmb_2">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorAddr_2">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>255</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorRegNo_2">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65536</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorAddrLbl_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>45</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu TH:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorRegNoLbl_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>75</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr kanału TH:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>317</x>
+          <y>20</y>
+          <width>230</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Czujnik temperatury szyny zimnej</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>315</x>
+          <y>160</y>
+          <width>234</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Czujnik temperatury szyny gorącej</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_4">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>180</y>
+          <width>220</width>
+          <height>106</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>15</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Typ:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="generalTempSensorTypeCmb_3">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorAddr_3">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>255</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorRegNo_3">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65536</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorAddrLbl_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>45</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu TH:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorRegNoLbl_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>75</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr kanału TH:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_5">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>40</y>
+          <width>231</width>
+          <height>106</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>15</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Typ:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="generalTempSensorTypeCmb_4">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorAddr_4">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>255</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="generalTempSensorRegNo_4">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>90</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65536</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorAddrLbl_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>45</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu TH:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="generalTempSensorRegNoLbl_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>75</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr kanału TH:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>600</x>
+          <y>20</y>
+          <width>180</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Czujnik śniegu nawianego</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="weatherAutomList">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>211</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="viewMode">
+         <enum>QListView::ListMode</enum>
+        </property>
+        <property name="modelColumn">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="editWeatherAutomBtn">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>190</y>
+          <width>210</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Zmień ustawienia</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">

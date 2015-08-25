@@ -42,6 +42,12 @@ private slots:
 
     void on_generalFallSensorTypeCmb_currentIndexChanged(int index);
 
+    void on_weatherAutomList_currentRowChanged(int currentRow);
+
+    void on_editWeatherAutomBtn_clicked();
+
+    void on_weatherAutomCount_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 };

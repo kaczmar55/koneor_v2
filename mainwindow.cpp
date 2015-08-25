@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->generalFallSensorTypeCmb->addItem("CAN");
     ui->generalFallSensorTypeCmb->addItem("Modbus");
 
+    ui->weatherAutomList->addItem("Automat pogodowy 1");
+    ui->weatherAutomList->setCurrentRow(0);
 //    ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->ioModulesTable);
 //    ui->ioModulesTable->setItemDelegate(cbid);
 }
@@ -572,6 +574,7 @@ void MainWindow::on_addJsn2Btn_clicked()
         if(rows > 0)
         {
             prev_item = ui->jsn2ModulesTable->item(rows - 1, 0);
+            ui->jsn2ModulesTable->setItem(rows, 0, new QTableWidgetItem());
             ui->jsn2ModulesTable->item(rows, 0)->setText(QString::number(prev_item->text().toInt(NULL, 0) + 1));
         }
     }
@@ -680,4 +683,28 @@ void MainWindow::on_generalFallSensorTypeCmb_currentIndexChanged(int index)
         ui->generalFallSensorRegNo->setVisible(true);
         break;
     }
+}
+
+void MainWindow::on_weatherAutomList_currentRowChanged(int currentRow)
+{
+
+}
+
+void MainWindow::on_editWeatherAutomBtn_clicked()
+{
+    if(ui->editWeatherAutomBtn->text() == "Zmień ustawienia")
+    {
+        ui->editWeatherAutomBtn->setText("Zapisz zmiany");
+        ui->weatherAutomList->setEnabled(false);
+    }
+    else
+    {
+        ui->editWeatherAutomBtn->setText("Zmień ustawienia");
+        ui->weatherAutomList->setEnabled(true);
+    }
+}
+
+void MainWindow::on_weatherAutomCount_valueChanged(int arg1)
+{
+
 }
