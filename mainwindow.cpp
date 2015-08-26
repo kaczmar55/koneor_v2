@@ -72,6 +72,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->circuitList->addItem("Obwód1");
     ui->circuitList->setCurrentRow(0);
 
+    ui->cirNameEdit->setEnabled(false);
+    ui->cirActiveChk->setEnabled(false);
+    ui->cirReferenceChk->setEnabled(false);
+    ui->cirTypeCmb->setEnabled(false);
+    ui->cirGroupNo->setEnabled(false);
+    ui->cirWeatherAutomNo->setEnabled(false);
+    ui->l1Frame->setEnabled(false);
+    ui->l2Frame->setEnabled(false);
+    ui->l3Frame->setEnabled(false);
+    ui->cirRelayFrame->setEnabled(false);
+    ui->cirRelayConfFrame->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -635,8 +646,8 @@ bool MainWindow::setCircuitCfg(int id)
     ui->l1CvmId->setValue(circuit_cfg[id].phase_cfg[0].cvm_id);
     ui->l1CvmCh->setValue(circuit_cfg[id].phase_cfg[0].cvm_ch_id);
 
-    ui->p1Nominal->setValue(circuit_cfg[id].phase_cfg[0].p_nom);
-    ui->p1Tol->setValue(circuit_cfg[id].phase_cfg[0].p_tol);
+    ui->p1Nominal->setValue(circuit_cfg[id].phase_cfg[0].p_nom / 10.0);
+    ui->p1Tol->setValue(circuit_cfg[id].phase_cfg[0].p_tol / 10.0);
 
     if(circuit_cfg[id].phase_cfg[1].active == 0)
         ui->l2ActiveChk->setChecked(false);
@@ -652,8 +663,8 @@ bool MainWindow::setCircuitCfg(int id)
     ui->l2CvmId->setValue(circuit_cfg[id].phase_cfg[1].cvm_id);
     ui->l2CvmCh->setValue(circuit_cfg[id].phase_cfg[1].cvm_ch_id);
 
-    ui->p2Nominal->setValue(circuit_cfg[id].phase_cfg[1].p_nom);
-    ui->p2Tol->setValue(circuit_cfg[id].phase_cfg[1].p_tol);
+    ui->p2Nominal->setValue(circuit_cfg[id].phase_cfg[1].p_nom / 10.0);
+    ui->p2Tol->setValue(circuit_cfg[id].phase_cfg[1].p_tol / 10.0);
 
     if(circuit_cfg[id].phase_cfg[2].active == 0)
         ui->l3ActiveChk->setChecked(false);
@@ -669,8 +680,8 @@ bool MainWindow::setCircuitCfg(int id)
     ui->l3CvmId->setValue(circuit_cfg[id].phase_cfg[2].cvm_id);
     ui->l3CvmCh->setValue(circuit_cfg[id].phase_cfg[2].cvm_ch_id);
 
-    ui->p3Nominal->setValue(circuit_cfg[id].phase_cfg[2].p_nom);
-    ui->p3Tol->setValue(circuit_cfg[id].phase_cfg[2].p_tol);
+    ui->p3Nominal->setValue(circuit_cfg[id].phase_cfg[2].p_nom / 10.0);
+    ui->p3Tol->setValue(circuit_cfg[id].phase_cfg[2].p_tol / 10.0);
 
     ui->cirRelIOMod->setValue(circuit_cfg[id].relay.module_id);
     ui->cirRelBitNo->setValue(circuit_cfg[id].relay.bit_no);
@@ -1200,8 +1211,8 @@ void MainWindow::on_editCircuitList_clicked()
         circuit_cfg[currentRow].phase_cfg[0].cvm_id = ui->l1CvmId->value();
         circuit_cfg[currentRow].phase_cfg[0].cvm_ch_id = ui->l1CvmCh->value();
 
-        circuit_cfg[currentRow].phase_cfg[0].p_nom = ui->p1Nominal->value();
-        circuit_cfg[currentRow].phase_cfg[0].p_tol = ui->p1Tol->value();
+        circuit_cfg[currentRow].phase_cfg[0].p_nom = ui->p1Nominal->value() * 10;
+        circuit_cfg[currentRow].phase_cfg[0].p_tol = ui->p1Tol->value() * 10;
 
         circuit_cfg[currentRow].phase_cfg[1].active = ui->l2ActiveChk->isChecked();
         circuit_cfg[currentRow].phase_cfg[1].conf_input.active = ui->l2ConfActiveChk->isChecked();
@@ -1211,8 +1222,8 @@ void MainWindow::on_editCircuitList_clicked()
         circuit_cfg[currentRow].phase_cfg[1].cvm_id = ui->l2CvmId->value();
         circuit_cfg[currentRow].phase_cfg[1].cvm_ch_id = ui->l2CvmCh->value();
 
-        circuit_cfg[currentRow].phase_cfg[1].p_nom = ui->p2Nominal->value();
-        circuit_cfg[currentRow].phase_cfg[1].p_tol = ui->p2Tol->value();
+        circuit_cfg[currentRow].phase_cfg[1].p_nom = ui->p2Nominal->value() * 10;
+        circuit_cfg[currentRow].phase_cfg[1].p_tol = ui->p2Tol->value() * 10;
 
         circuit_cfg[currentRow].phase_cfg[2].active = ui->l3ActiveChk->isChecked();
         circuit_cfg[currentRow].phase_cfg[2].conf_input.active = ui->l3ConfActiveChk->isChecked();
@@ -1222,8 +1233,8 @@ void MainWindow::on_editCircuitList_clicked()
         circuit_cfg[currentRow].phase_cfg[2].cvm_id = ui->l3CvmId->value();
         circuit_cfg[currentRow].phase_cfg[2].cvm_ch_id = ui->l3CvmCh->value();
 
-        circuit_cfg[currentRow].phase_cfg[2].p_nom = ui->p3Nominal->value();
-        circuit_cfg[currentRow].phase_cfg[2].p_tol = ui->p3Tol->value();
+        circuit_cfg[currentRow].phase_cfg[2].p_nom = ui->p3Nominal->value() * 10;
+        circuit_cfg[currentRow].phase_cfg[2].p_tol = ui->p3Tol->value() * 10;
 
         circuit_cfg[currentRow].relay.active = 1;
         circuit_cfg[currentRow].relay.module_id = ui->cirRelIOMod->value();

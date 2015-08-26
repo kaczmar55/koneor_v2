@@ -1783,6 +1783,12 @@
            <height>27</height>
           </rect>
          </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>3</number>
+         </property>
         </widget>
         <widget class="QLabel" name="label_57">
          <property name="geometry">
@@ -1805,6 +1811,12 @@
            <width>50</width>
            <height>27</height>
           </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
          </property>
         </widget>
         <widget class="QLabel" name="label_56">
@@ -2002,6 +2014,12 @@
            <height>27</height>
           </rect>
          </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>3</number>
+         </property>
         </widget>
         <widget class="QSpinBox" name="l2CvmId">
          <property name="geometry">
@@ -2011,6 +2029,12 @@
            <width>50</width>
            <height>27</height>
           </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
          </property>
         </widget>
         <widget class="QLabel" name="label_55">
@@ -2234,6 +2258,12 @@
            <height>27</height>
           </rect>
          </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
         </widget>
         <widget class="QLabel" name="label_53">
          <property name="geometry">
@@ -2256,6 +2286,12 @@
            <width>40</width>
            <height>27</height>
           </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>3</number>
          </property>
         </widget>
        </widget>
