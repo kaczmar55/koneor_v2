@@ -1602,7 +1602,7 @@
          </property>
         </item>
        </widget>
-       <widget class="QFrame" name="phaseL2Frame">
+       <widget class="QFrame" name="l1Frame">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -1821,7 +1821,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QFrame" name="phaseL2Frame_2">
+       <widget class="QFrame" name="l2Frame">
         <property name="geometry">
          <rect>
           <x>380</x>
@@ -2040,7 +2040,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QFrame" name="phaseL2Frame_3">
+       <widget class="QFrame" name="l3Frame">
         <property name="geometry">
          <rect>
           <x>610</x>
@@ -2259,7 +2259,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QFrame" name="frame_4">
+       <widget class="QFrame" name="cirRelayFrame">
         <property name="geometry">
          <rect>
           <x>380</x>
@@ -2346,7 +2346,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QFrame" name="frame_5">
+       <widget class="QFrame" name="cirRelayConfFrame">
         <property name="geometry">
          <rect>
           <x>610</x>

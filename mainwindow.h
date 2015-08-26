@@ -59,6 +59,8 @@ private slots:
 
     void on_cirCount_valueChanged(int arg1);
 
+    void on_editCircuitList_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
