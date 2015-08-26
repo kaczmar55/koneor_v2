@@ -1085,3 +1085,88 @@ void MainWindow::on_cirCount_valueChanged(int arg1)
         }
     }
 }
+
+void MainWindow::on_editCircuitList_clicked()
+{
+    int currentRow = ui->circuitList->currentRow();
+
+    if(ui->editCircuitList->text() == "Zmień ustawienia")
+    {
+        ui->editCircuitList->setText("Zapisz zmiany");
+        ui->cirNameEdit->setEnabled(true);
+        ui->cirActiveChk->setEnabled(true);
+        ui->cirReferenceChk->setEnabled(true);
+        ui->cirTypeCmb->setEnabled(true);
+        ui->cirGroupNo->setEnabled(true);
+        ui->cirWeatherAutomNo->setEnabled(true);
+        ui->l1Frame->setEnabled(true);
+        ui->l2Frame->setEnabled(true);
+        ui->l3Frame->setEnabled(true);
+        ui->cirRelayFrame->setEnabled(true);
+        ui->cirRelayConfFrame->setEnabled(true);
+    }
+    else
+    {
+        strcpy(circuit_cfg[currentRow].name, ui->cirNameEdit->text().toUtf8().data());
+        ui->circuitList->item(currentRow)->setText(ui->cirNameEdit->text());
+        circuit_cfg[currentRow].active = ui->cirActiveChk->isChecked();
+        circuit_cfg[currentRow].reference = ui->cirReferenceChk->isChecked();
+        circuit_cfg[currentRow].type = ui->cirTypeCmb->currentIndex();
+        circuit_cfg[currentRow].group_id = ui->cirGroupNo->value();
+        circuit_cfg[currentRow].weather_autom_id = ui->cirWeatherAutomNo->value();
+
+        circuit_cfg[currentRow].l1_active = ui->l1ActiveChk->isChecked();
+        circuit_cfg[currentRow].l1_conf.active = ui->l1ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].l1_conf.module_id = ui->l1ConfIOMod->value();
+        circuit_cfg[currentRow].l1_conf.bit_no = ui->l1ConfBitNo->value();
+        //todo sprawdzić nr modułu
+        circuit_cfg[currentRow].l1_cvm_id = ui->l1CvmId->value();
+        circuit_cfg[currentRow].l2_cvm_ch_id = ui->l1CvmCh->value();
+        //todo sprawdzić nr modułu cvm
+        circuit_cfg[currentRow].p1_nom = ui->p1Nominal->value();
+        circuit_cfg[currentRow].p1_tol = ui->p1Tol->value();
+
+        circuit_cfg[currentRow].l2_active = ui->l2ActiveChk->isChecked();
+        circuit_cfg[currentRow].l2_conf.active = ui->l2ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].l2_conf.module_id = ui->l2ConfIOMod->value();
+        circuit_cfg[currentRow].l2_conf.bit_no = ui->l2ConfBitNo->value();
+        //todo sprawdzić nr modułu
+        circuit_cfg[currentRow].l2_cvm_id = ui->l2CvmId->value();
+        circuit_cfg[currentRow].l2_cvm_ch_id = ui->l2CvmCh->value();
+        //todo sprawdzić nr modułu cvm
+        circuit_cfg[currentRow].p2_nom = ui->p2Nominal->value();
+        circuit_cfg[currentRow].p2_tol = ui->p2Tol->value();
+
+        circuit_cfg[currentRow].l3_active = ui->l3ActiveChk->isChecked();
+        circuit_cfg[currentRow].l3_conf.active = ui->l3ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].l3_conf.module_id = ui->l3ConfIOMod->value();
+        circuit_cfg[currentRow].l3_conf.bit_no = ui->l3ConfBitNo->value();
+        //todo sprawdzić nr modułu
+        circuit_cfg[currentRow].l3_cvm_id = ui->l3CvmId->value();
+        circuit_cfg[currentRow].l3_cvm_ch_id = ui->l3CvmCh->value();
+        //todo sprawdzić nr modułu cvm
+        circuit_cfg[currentRow].p3_nom = ui->p3Nominal->value();
+        circuit_cfg[currentRow].p3_tol = ui->p3Tol->value();
+
+        circuit_cfg[currentRow].relay.active = 1;
+        circuit_cfg[currentRow].relay.module_id = ui->cirRelIOMod->value();
+        circuit_cfg[currentRow].relay.bit_no = ui->cirRelBitNo->value();
+        circuit_cfg[currentRow].rel_conf.active = 1;
+        circuit_cfg[currentRow].rel_conf.module_id = ui->cirRelConfIOMod->value();
+        circuit_cfg[currentRow].rel_conf.bit_no = ui->cirRelConfBitNo->value();
+        //todo sprawdzić jeszcze numery modułów dla stycznika
+
+        ui->editCircuitList->setText("Zmień ustawienia");
+        ui->cirNameEdit->setEnabled(false);
+        ui->cirActiveChk->setEnabled(false);
+        ui->cirReferenceChk->setEnabled(false);
+        ui->cirTypeCmb->setEnabled(false);
+        ui->cirGroupNo->setEnabled(false);
+        ui->cirWeatherAutomNo->setEnabled(false);
+        ui->l1Frame->setEnabled(false);
+        ui->l2Frame->setEnabled(false);
+        ui->l3Frame->setEnabled(false);
+        ui->cirRelayFrame->setEnabled(false);
+        ui->cirRelayConfFrame->setEnabled(false);
+    }
+}

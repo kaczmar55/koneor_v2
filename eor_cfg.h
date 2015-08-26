@@ -130,7 +130,8 @@ typedef struct __attribute((packed)){
     binary_io_t l3_conf;		//potwierdzenie zabezpieczenia fazy L3
     binary_io_t rel_conf;		//potwierdzenie stycznika
     uint8_t cvm_id;			//wejście pomiarowe z CVM'a: nr modułu
-    uint8_t res2[3];
+    uint8_t cvm_ch_id;      //nr kanału w cvm
+    uint8_t res2[2];
     //wyjścia:
     binary_io_t relay;		//sterowanie stycznikem: nr modułu, nr wyjścia
     uint8_t res3[8];
