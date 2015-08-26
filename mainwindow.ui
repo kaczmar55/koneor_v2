@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -853,11 +853,11 @@
        <attribute name="title">
         <string>Automaty pogodowe</string>
        </attribute>
-       <widget class="QFrame" name="frame_3">
+       <widget class="QFrame" name="sensorColdFrame">
         <property name="geometry">
          <rect>
-          <x>320</x>
-          <y>40</y>
+          <x>270</x>
+          <y>30</y>
           <width>220</width>
           <height>106</height>
          </rect>
@@ -881,7 +881,7 @@
           <string>Typ:</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="generalTempSensorTypeCmb_2">
+        <widget class="QComboBox" name="sensorColdTypeCmb">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -891,7 +891,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QSpinBox" name="generalTempSensorAddr_2">
+        <widget class="QSpinBox" name="sensorColdAddr">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -907,7 +907,7 @@
           <number>255</number>
          </property>
         </widget>
-        <widget class="QSpinBox" name="generalTempSensorRegNo_2">
+        <widget class="QSpinBox" name="sensorColdRegNo">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -923,7 +923,7 @@
           <number>65536</number>
          </property>
         </widget>
-        <widget class="QLabel" name="generalTempSensorAddrLbl_2">
+        <widget class="QLabel" name="sensorColdAddrLbl">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -936,7 +936,7 @@
           <string>Nr modułu TH:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="generalTempSensorRegNoLbl_2">
+        <widget class="QLabel" name="sensorColdRegNoLbl">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -953,8 +953,8 @@
        <widget class="QLabel" name="label_21">
         <property name="geometry">
          <rect>
-          <x>317</x>
-          <y>20</y>
+          <x>267</x>
+          <y>10</y>
           <width>230</width>
           <height>17</height>
          </rect>
@@ -966,8 +966,8 @@
        <widget class="QLabel" name="label_22">
         <property name="geometry">
          <rect>
-          <x>315</x>
-          <y>160</y>
+          <x>515</x>
+          <y>10</y>
           <width>234</width>
           <height>17</height>
          </rect>
@@ -976,11 +976,11 @@
          <string>Czujnik temperatury szyny gorącej</string>
         </property>
        </widget>
-       <widget class="QFrame" name="frame_4">
+       <widget class="QFrame" name="sensorHotFrame">
         <property name="geometry">
          <rect>
-          <x>320</x>
-          <y>180</y>
+          <x>520</x>
+          <y>30</y>
           <width>220</width>
           <height>106</height>
          </rect>
@@ -1004,7 +1004,7 @@
           <string>Typ:</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="generalTempSensorTypeCmb_3">
+        <widget class="QComboBox" name="sensorHotTypeCmb">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -1014,7 +1014,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QSpinBox" name="generalTempSensorAddr_3">
+        <widget class="QSpinBox" name="sensorHotAddr">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -1030,7 +1030,7 @@
           <number>255</number>
          </property>
         </widget>
-        <widget class="QSpinBox" name="generalTempSensorRegNo_3">
+        <widget class="QSpinBox" name="sensorHotRegNo">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -1046,7 +1046,7 @@
           <number>65536</number>
          </property>
         </widget>
-        <widget class="QLabel" name="generalTempSensorAddrLbl_3">
+        <widget class="QLabel" name="sensorHotAddrLbl">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -1059,7 +1059,7 @@
           <string>Nr modułu TH:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="generalTempSensorRegNoLbl_3">
+        <widget class="QLabel" name="sensorHotRegNoLbl">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -1072,129 +1072,27 @@
           <string>Nr kanału TH:</string>
          </property>
         </widget>
-       </widget>
-       <widget class="QFrame" name="frame_5">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>40</y>
-          <width>231</width>
-          <height>106</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <widget class="QLabel" name="label_24">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>15</y>
-           <width>40</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Typ:</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="generalTempSensorTypeCmb_4">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>10</y>
-           <width>90</width>
-           <height>27</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QSpinBox" name="generalTempSensorAddr_4">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>40</y>
-           <width>90</width>
-           <height>27</height>
-          </rect>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-        <widget class="QSpinBox" name="generalTempSensorRegNo_4">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>70</y>
-           <width>90</width>
-           <height>27</height>
-          </rect>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>65536</number>
-         </property>
-        </widget>
-        <widget class="QLabel" name="generalTempSensorAddrLbl_4">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>45</y>
-           <width>110</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Nr modułu TH:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="generalTempSensorRegNoLbl_4">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>75</y>
-           <width>110</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Nr kanału TH:</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QLabel" name="label_25">
-        <property name="geometry">
-         <rect>
-          <x>600</x>
-          <y>20</y>
-          <width>180</width>
-          <height>17</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Czujnik śniegu nawianego</string>
-        </property>
+        <zorder>label_23</zorder>
+        <zorder>sensorHotTypeCmb</zorder>
+        <zorder>sensorHotAddr</zorder>
+        <zorder>sensorHotRegNo</zorder>
+        <zorder>sensorHotAddrLbl</zorder>
+        <zorder>sensorHotRegNoLbl</zorder>
+        <zorder>frame_7</zorder>
+        <zorder>frame_6</zorder>
        </widget>
        <widget class="QListWidget" name="weatherAutomList">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>30</y>
+          <y>10</y>
           <width>211</width>
-          <height>151</height>
+          <height>130</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>14</pointsize>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="viewMode">
@@ -1208,7 +1106,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>190</y>
+          <y>145</y>
           <width>210</width>
           <height>27</height>
          </rect>
@@ -1216,6 +1114,377 @@
         <property name="text">
          <string>Zmień ustawienia</string>
         </property>
+       </widget>
+       <widget class="QFrame" name="blowSensorFRame">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>220</width>
+          <height>137</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>15</y>
+           <width>67</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Typ:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="blowSensTypeCmb">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>85</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="blowSensorAddrLbl">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>45</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="blowSensorBitNoLbl">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>75</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wejścia:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="blowSensorAddr">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>85</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="blowSensorBitNo">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>85</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="blowSensorRegNoLbl">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>105</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr rejestru:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="blowSensorRegNo">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>100</y>
+           <width>85</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>190</y>
+          <width>180</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Czujnik śniegu nawianego:</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frostTempFrame">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>260</y>
+          <width>280</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_35">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>5</y>
+           <width>260</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Temperatury określające &quot;Duży mróz&quot;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_36">
+         <property name="geometry">
+          <rect>
+           <x>14</x>
+           <y>30</y>
+           <width>60</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>wejście:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_37">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>30</y>
+           <width>60</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>wyjście:</string>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="frostTempIn">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>25</y>
+           <width>69</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-50.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="frostTempOut">
+         <property name="geometry">
+          <rect>
+           <x>205</x>
+           <y>25</y>
+           <width>69</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-50.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QTableWidget" name="weatherAutomTempTable">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>150</y>
+          <width>475</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>180</number>
+        </attribute>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>50</number>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>25</number>
+        </attribute>
+        <row>
+         <property name="text">
+          <string>Duży mróz</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>Deszcz marznący</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>Śnieg</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>Temp. załączenia grzania</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Temp. wyłączenia grzania</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QFrame" name="frame_3">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>260</y>
+          <width>271</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_26">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>170</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Ustawienia dla zamknięć:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_27">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>25</y>
+           <width>180</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Temp. załączenia grzania:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_28">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>55</y>
+           <width>180</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Temp. wyłączenia grzania:</string>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="tLocksOn">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>20</y>
+           <width>69</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-50.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="tLocksOff">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>50</y>
+           <width>69</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-50.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_5">

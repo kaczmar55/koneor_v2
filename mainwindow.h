@@ -19,6 +19,7 @@ public:
     bool updateJsn2Cfg(void);
     bool updateMeterCfg(void);
     bool updateGeneralWeatherMeasure(void);
+    bool updateLockAutomCfg(void);
 
     void setCfgStructs(char* buf);
     bool setGeneralCfg(void);
@@ -26,6 +27,8 @@ public:
     bool setJsn2Cfg(void);
     bool setMeterCfg(void);
     bool setGeneralWeatherMeasure(void);
+    bool setWeatherAutomCfg(int id);
+    bool setLockAutomCfg(void);
 
 private slots:
     void on_actionOtw_rz_triggered();
@@ -47,6 +50,12 @@ private slots:
     void on_editWeatherAutomBtn_clicked();
 
     void on_weatherAutomCount_valueChanged(int arg1);
+
+    void on_sensorColdTypeCmb_currentIndexChanged(int index);
+
+    void on_sensorHotTypeCmb_currentIndexChanged(int index);
+
+    void on_blowSensTypeCmb_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

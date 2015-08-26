@@ -92,20 +92,20 @@ typedef struct __attribute((packed)){
     analog_sensor_cfg_t t_cold;
     analog_sensor_cfg_t t_hot;
     binary_sensor_cfg_t snow_blow_sensor;
-    uint16_t t_r_on_fr;		//Załączenie/wyłączenie grzania dla Duży mróz
-    uint16_t t_r_off_fr;
-    uint16_t t_r_on_wet;		//Załączenie/wyłączenie grzania dla Deszcz marznący
-    uint16_t t_r_off_wet;
-    uint16_t t_r_on_sn;		//Załączenie/wyłączenie grzania dla Śnieg
-    uint16_t t_r_off_sn;
-    uint16_t t_frost_on_r;		//Temperatura wejścia/wyjścia do dużego mrozu
-    uint16_t t_frost_off_r;
+    int16_t t_r_on_fr;		//Załączenie/wyłączenie grzania dla Duży mróz
+    int16_t t_r_off_fr;
+    int16_t t_r_on_wet;		//Załączenie/wyłączenie grzania dla Deszcz marznący
+    int16_t t_r_off_wet;
+    int16_t t_r_on_sn;		//Załączenie/wyłączenie grzania dla Śnieg
+    int16_t t_r_off_sn;
+    int16_t t_frost_on_r;		//Temperatura wejścia/wyjścia do dużego mrozu
+    int16_t t_frost_off_r;
     uint16_t res[16];
 } weather_autom_cfg_t;
 
 typedef struct __attribute((packed)){
-    uint16_t t_frost_on_l;		//progowa temperatura „dużego mrozu” dla zamknięć
-    uint16_t t_frost_off_l;		//progowa temperatura wyjścia z „dużego mrozu” dla zamknięć
+    int16_t t_frost_on_l;		//progowa temperatura „dużego mrozu” dla zamknięć
+    int16_t t_frost_off_l;		//progowa temperatura wyjścia z „dużego mrozu” dla zamknięć
     uint16_t res[16];
 } lock_autom_cfg_t;
 

@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    int row, col, i, j;
+    QDoubleSpinBox *spin;
+
     ui->setupUi(this);
 
     ui->actionOtw_rz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
@@ -29,10 +32,41 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->generalFallSensorTypeCmb->addItem("CAN");
     ui->generalFallSensorTypeCmb->addItem("Modbus");
 
+    ui->sensorColdFrame->setEnabled(false);
+    ui->sensorHotFrame->setEnabled(false);
+    ui->blowSensorFRame->setEnabled(false);
+    ui->weatherAutomTempTable->setEnabled(false);
+    ui->frostTempFrame->setEnabled(false);
+
+    ui->sensorColdTypeCmb->addItem("TH");
+    ui->sensorColdTypeCmb->addItem("CAN");
+    ui->sensorColdTypeCmb->addItem("Modbus");
+
+    ui->sensorHotTypeCmb->addItem("TH");
+    ui->sensorHotTypeCmb->addItem("CAN");
+    ui->sensorHotTypeCmb->addItem("Modbus");
+
+    ui->blowSensTypeCmb->addItem("IO");
+    ui->blowSensTypeCmb->addItem("CAN");
+    ui->blowSensTypeCmb->addItem("Modbus");
+
+    row = ui->weatherAutomTempTable->rowCount();
+    col = ui->weatherAutomTempTable->columnCount();
+
+    for(i = 0; i < row; i++)
+    {
+        for(j = 0; j < col; j++)
+        {
+            spin = new QDoubleSpinBox();
+            spin->setMinimum(-50.0);
+            spin->setMaximum(100.0);
+            spin->setDecimals(1);
+            ui->weatherAutomTempTable->setCellWidget(i, j, spin);
+        }
+    }
+
     ui->weatherAutomList->addItem("Automat pogodowy 1");
     ui->weatherAutomList->setCurrentRow(0);
-//    ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->ioModulesTable);
-//    ui->ioModulesTable->setItemDelegate(cbid);
 }
 
 MainWindow::~MainWindow()
@@ -47,7 +81,13 @@ void MainWindow::on_actionOtw_rz_triggered()
     QByteArray fileBuf;
     uint16_t crc16;
 
-    fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", NULL, "koneor.bin");
+    if(ui->editWeatherAutomBtn->text() == "Zapisz zmiany")
+    {
+        QMessageBox::critical(this, "Błąd", "Zapisz zmiany w automatach pogodowych");
+        return;
+    }
+
+    fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", "koneor.bin", "koneor.bin");
 
     if(fileNameToOpen == "")
     {
@@ -99,6 +139,8 @@ void MainWindow::on_actionOtw_rz_triggered()
             setJsn2Cfg();
             setMeterCfg();
             setGeneralWeatherMeasure();
+            setWeatherAutomCfg(0);
+            setLockAutomCfg();
         }
         else
         {
@@ -121,7 +163,13 @@ void MainWindow::on_actionZapisz_triggered()
     char* cBuf;
     eorkonf_hdr_t *tmp_eorkonf_hdr;
 
-    fileNameToSave = QFileDialog::getSaveFileName(this, "Zapisz plik konfiguracji", NULL, "koneor.bin");
+    if(ui->editWeatherAutomBtn->text() == "Zapisz zmiany")
+    {
+        QMessageBox::critical(this, "Błąd", "Zapisz zmiany w automatach pogodowych");
+        return;
+    }
+
+    fileNameToSave = QFileDialog::getSaveFileName(this, "Zapisz plik konfiguracji", "koneor.bin", "koneor.bin");
 
     if(fileNameToSave == "")
     {
@@ -168,6 +216,8 @@ void MainWindow::on_actionZapisz_triggered()
                 return;
             fileBuf.append((char*)&general_weather_measure_cfg, sizeof(general_weather_measure_cfg_t));
             fileBuf.append((char*)weather_autom_cfg, sizeof(weather_autom_cfg_t) * WEATHER_AUTOM_COUNT);
+            if(updateLockAutomCfg() == false)
+                return;
             fileBuf.append((char*)&lock_autom_cfg, sizeof(lock_autom_cfg_t));
             fileBuf.append((char*)circuit_cfg, sizeof(circuit_cfg_t) * CIRCUIT_COUNT);
             fileBuf.append((char*)&group_cfg, sizeof(group_cfg_t));
@@ -446,7 +496,7 @@ bool MainWindow::updateGeneralWeatherMeasure(void)
         }
         else
         {
-            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr, 0);
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr - 1, 0);
             if(cb->currentIndex() != 1)
             {
                 QMessageBox::critical(this, "Błąd", "Ogólne pomiary pogody - czujnik temperatury otoczenia\nModuł o podanym numerze nie jest modułem TH.");
@@ -475,7 +525,7 @@ bool MainWindow::updateGeneralWeatherMeasure(void)
         }
         else
         {
-            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr, 0);
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(addr - 1, 0);
             if((cb->currentIndex() != 0) &&         /* io10/5 */
                     (cb->currentIndex() != 1) &&    /* th     */
                     (cb->currentIndex() != 2) &&    /* i12    */
@@ -511,6 +561,56 @@ bool MainWindow::setGeneralWeatherMeasure(void)
     ui->generalFallSensorBitNo->setValue(general_weather_measure_cfg.snow_fall_sensor.bit_no);
     ui->generalFallSensorRegNo->setValue(general_weather_measure_cfg.snow_fall_sensor.reg_no);
 
+    return true;
+}
+
+bool MainWindow::setWeatherAutomCfg(int id)
+{
+    QDoubleSpinBox *spin;
+
+    ui->sensorColdTypeCmb->setCurrentIndex(weather_autom_cfg[id].t_cold.type);
+    ui->sensorColdAddr->setValue(weather_autom_cfg[id].t_cold.addr);
+    ui->sensorColdRegNo->setValue(weather_autom_cfg[id].t_cold.reg_no);
+
+    ui->sensorHotTypeCmb->setCurrentIndex(weather_autom_cfg[id].t_hot.type);
+    ui->sensorHotAddr->setValue(weather_autom_cfg[id].t_hot.addr);
+    ui->sensorHotRegNo->setValue(weather_autom_cfg[id].t_hot.reg_no);
+
+    ui->blowSensTypeCmb->setCurrentIndex(weather_autom_cfg[id].snow_blow_sensor.type);
+    ui->blowSensorAddr->setValue(weather_autom_cfg[id].snow_blow_sensor.addr);
+    ui->blowSensorRegNo->setValue(weather_autom_cfg[id].snow_blow_sensor.reg_no);
+    ui->blowSensorBitNo->setValue(weather_autom_cfg[id].snow_blow_sensor.bit_no);
+
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(0, 0);
+    spin->setValue(weather_autom_cfg[id].t_r_on_fr / 10.0);
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(0, 1);
+    spin->setValue(weather_autom_cfg[id].t_r_off_fr / 10.0);
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(1, 0);
+    spin->setValue(weather_autom_cfg[id].t_r_on_wet / 10.0);
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(1, 1);
+    spin->setValue(weather_autom_cfg[id].t_r_off_wet / 10.0);
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(2, 0);
+    spin->setValue(weather_autom_cfg[id].t_r_on_sn / 10.0);
+    spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(2, 1);
+    spin->setValue(weather_autom_cfg[id].t_r_off_sn / 10.0);
+
+    ui->frostTempIn->setValue(weather_autom_cfg[id].t_frost_on_r / 10.0);
+    ui->frostTempOut->setValue(weather_autom_cfg[id].t_frost_off_r / 10.0);
+
+    return true;
+}
+
+bool MainWindow::updateLockAutomCfg(void)
+{
+    lock_autom_cfg.t_frost_on_l = ui->tLocksOn->value() * 10;
+    lock_autom_cfg.t_frost_off_l = ui->tLocksOff->value() * 10;
+    return true;
+}
+
+bool MainWindow::setLockAutomCfg(void)
+{
+    ui->tLocksOn->setValue(lock_autom_cfg.t_frost_on_l / 10.0);
+    ui->tLocksOff->setValue(lock_autom_cfg.t_frost_off_l / 10.0);
     return true;
 }
 
@@ -687,24 +787,265 @@ void MainWindow::on_generalFallSensorTypeCmb_currentIndexChanged(int index)
 
 void MainWindow::on_weatherAutomList_currentRowChanged(int currentRow)
 {
-
+    setWeatherAutomCfg(currentRow);
 }
 
 void MainWindow::on_editWeatherAutomBtn_clicked()
 {
+    int currentRow = ui->weatherAutomList->currentRow();
+    QDoubleSpinBox *spin;
+    QComboBox *cb;
+
     if(ui->editWeatherAutomBtn->text() == "Zmień ustawienia")
     {
         ui->editWeatherAutomBtn->setText("Zapisz zmiany");
         ui->weatherAutomList->setEnabled(false);
+        ui->sensorColdFrame->setEnabled(true);
+        ui->sensorHotFrame->setEnabled(true);
+        ui->blowSensorFRame->setEnabled(true);
+        ui->weatherAutomTempTable->setEnabled(true);
+        ui->frostTempFrame->setEnabled(true);
     }
     else
     {
+        weather_autom_cfg[currentRow].t_cold.type = ui->sensorColdTypeCmb->currentIndex();
+        weather_autom_cfg[currentRow].t_cold.addr = ui->sensorColdAddr->value();
+        weather_autom_cfg[currentRow].t_cold.reg_no = ui->sensorColdRegNo->value();
+
+        weather_autom_cfg[currentRow].t_hot.type = ui->sensorHotTypeCmb->currentIndex();
+        weather_autom_cfg[currentRow].t_hot.addr = ui->sensorHotAddr->value();
+        weather_autom_cfg[currentRow].t_hot.reg_no = ui->sensorHotRegNo->value();
+
+        weather_autom_cfg[currentRow].snow_blow_sensor.type = ui->blowSensTypeCmb->currentIndex();
+        weather_autom_cfg[currentRow].snow_blow_sensor.addr = ui->blowSensorAddr->value();
+        weather_autom_cfg[currentRow].snow_blow_sensor.reg_no = ui->blowSensorRegNo->value();
+        weather_autom_cfg[currentRow].snow_blow_sensor.bit_no = ui->blowSensorBitNo->value();
+
+        switch(weather_autom_cfg[currentRow].snow_blow_sensor.type)
+        {
+        case 0:     //io
+            if(weather_autom_cfg[currentRow].snow_blow_sensor.addr >= ui->ioModulesTable->rowCount())
+            {
+                QMessageBox::critical(this, "Błąd", "Czujnik śniegu nawianego\nNie ma modułu IO o podanym numerze.");
+                return;
+            }
+            else
+            {
+                cb = (QComboBox*)ui->ioModulesTable->cellWidget(weather_autom_cfg[currentRow].snow_blow_sensor.addr - 1, 0);
+                if((cb->currentIndex() != 0) &&         /* io10/5 */
+                        (cb->currentIndex() != 1) &&    /* th     */
+                        (cb->currentIndex() != 2) &&    /* i12    */
+                        (cb->currentIndex() != 3) &&    /* i20    */
+                        (cb->currentIndex() != 7) &&    /* io4/7  */
+                        (cb->currentIndex() != 9))      /* gmr io */
+                {
+                    QMessageBox::critical(this, "Błąd", "Czujnik śniegu nawianego\nModuł o podanym numerze nie ma wejść cyfrowych.");
+                    return;
+                }
+            }
+            break;
+        case 1:     //can
+            break;
+        case 2:     //modbus
+            break;
+        }
+
+        switch(weather_autom_cfg[currentRow].t_hot.type)
+        {
+        case 0:     //TH
+            if(weather_autom_cfg[currentRow].t_hot.addr >= ui->ioModulesTable->rowCount())
+            {
+                QMessageBox::critical(this, "Błąd", "Czujnik temperatury szyny grzanej\nNie ma modułu IO o podanym numerze.");
+                return;
+            }
+            else
+            {
+                cb = (QComboBox*)ui->ioModulesTable->cellWidget(weather_autom_cfg[currentRow].t_hot.addr - 1, 0);
+                if(cb->currentIndex() != 1)
+                {
+                    QMessageBox::critical(this, "Błąd", "Czujnik temperatury szyny grzanej\nModuł o podanym numerze nie jest modułem TH.");
+                    return;
+                }
+            }
+            break;
+        case 1:     //CAN
+            break;
+        case 2:     //Modbus
+            break;
+        }
+
+        switch(weather_autom_cfg[currentRow].t_cold.type)
+        {
+        case 0:     //TH
+            if(weather_autom_cfg[currentRow].t_cold.addr >= ui->ioModulesTable->rowCount())
+            {
+                QMessageBox::critical(this, "Błąd", "Czujnik temperatury szyny zimnej\nNie ma modułu IO o podanym numerze.");
+                return;
+            }
+            else
+            {
+                cb = (QComboBox*)ui->ioModulesTable->cellWidget(weather_autom_cfg[currentRow].t_cold.addr - 1, 0);
+                if(cb->currentIndex() != 1)
+                {
+                    QMessageBox::critical(this, "Błąd", "Czujnik temperatury szyny zimnej\nModuł o podanym numerze nie jest modułem TH.");
+                    return;
+                }
+            }
+            break;
+        case 1:     //CAN
+            break;
+        case 2:     //Modbus
+            break;
+        }
+
         ui->editWeatherAutomBtn->setText("Zmień ustawienia");
         ui->weatherAutomList->setEnabled(true);
+        ui->sensorColdFrame->setEnabled(false);
+        ui->sensorHotFrame->setEnabled(false);
+        ui->blowSensorFRame->setEnabled(false);
+        ui->weatherAutomTempTable->setEnabled(false);
+        ui->frostTempFrame->setEnabled(false);
+
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(0, 0);
+        weather_autom_cfg[currentRow].t_r_on_fr = spin->value() * 10;
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(0, 1);
+        weather_autom_cfg[currentRow].t_r_off_fr = spin->value() * 10;
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(1, 0);
+        weather_autom_cfg[currentRow].t_r_on_wet = spin->value() * 10;;
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(1, 1);
+        weather_autom_cfg[currentRow].t_r_off_wet = spin->value() * 10;
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(2, 0);
+        weather_autom_cfg[currentRow].t_r_on_sn = spin->value() * 10;
+        spin = (QDoubleSpinBox*)ui->weatherAutomTempTable->cellWidget(2, 1);
+        weather_autom_cfg[currentRow].t_r_off_sn = spin->value() * 10;
+
+        weather_autom_cfg[currentRow].t_frost_on_r = ui->frostTempIn->value() * 10;
+        weather_autom_cfg[currentRow].t_frost_off_r = ui->frostTempOut->value() * 10;
     }
 }
 
 void MainWindow::on_weatherAutomCount_valueChanged(int arg1)
 {
+    int rows = ui->weatherAutomList->count();
+    int i;
+    QListWidgetItem *itm;
 
+    if((arg1 > rows) && (arg1 <= WEATHER_AUTOM_COUNT))
+    {
+        for(i = rows; i < arg1; i++)
+            ui->weatherAutomList->addItem(QString("Automat pogodowy %1").arg(i + 1));
+    }
+    else if(arg1 < rows)
+    {
+        for(i = (rows - 1); i >= arg1; i--)
+        {
+            itm = ui->weatherAutomList->takeItem(i);
+            delete itm;
+        }
+    }
+}
+
+void MainWindow::on_sensorColdTypeCmb_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:     //TH
+        ui->sensorColdAddrLbl->setText("Nr modułu TH");
+        ui->sensorColdAddr->setMinimum(1);
+        ui->sensorColdAddr->setMaximum(IO_MODULE_COUNT);
+        ui->sensorColdRegNoLbl->setText("Nr kanału TH");
+        ui->sensorColdRegNo->setMinimum(1);
+        ui->sensorColdRegNo->setMaximum(4);
+        break;
+    case 1:     //CAN
+        ui->sensorColdAddrLbl->setText("Adres CAN");
+        ui->sensorColdAddr->setMinimum(1);
+        ui->sensorColdAddr->setMaximum(255);
+        ui->sensorColdRegNoLbl->setText("Nr meldunku");
+        ui->sensorColdRegNo->setMinimum(0);
+        ui->sensorColdRegNo->setMaximum(127);
+        break;
+    case 2:     //Modbus
+        ui->sensorColdAddrLbl->setText("Adres Modbus");
+        ui->sensorColdAddr->setMinimum(1);
+        ui->sensorColdAddr->setMaximum(255);
+        ui->sensorColdRegNoLbl->setText("Nr rejestru");
+        ui->sensorColdRegNo->setMinimum(0);
+        ui->sensorColdRegNo->setMaximum(65535);
+        break;
+    }
+}
+
+void MainWindow::on_sensorHotTypeCmb_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:     //TH
+        ui->sensorHotAddrLbl->setText("Nr modułu TH");
+        ui->sensorHotAddr->setMinimum(1);
+        ui->sensorHotAddr->setMaximum(IO_MODULE_COUNT);
+        ui->sensorHotRegNoLbl->setText("Nr kanału TH");
+        ui->sensorHotRegNo->setMinimum(1);
+        ui->sensorHotRegNo->setMaximum(4);
+        break;
+    case 1:     //CAN
+        ui->sensorHotAddrLbl->setText("Adres CAN");
+        ui->sensorHotAddr->setMinimum(1);
+        ui->sensorHotAddr->setMaximum(255);
+        ui->sensorHotRegNoLbl->setText("Nr meldunku");
+        ui->sensorHotRegNo->setMinimum(0);
+        ui->sensorHotRegNo->setMaximum(127);
+        break;
+    case 2:     //Modbus
+        ui->sensorHotAddrLbl->setText("Adres Modbus");
+        ui->sensorHotAddr->setMinimum(1);
+        ui->sensorHotAddr->setMaximum(255);
+        ui->sensorHotRegNoLbl->setText("Nr rejestru");
+        ui->sensorHotRegNo->setMinimum(0);
+        ui->sensorHotRegNo->setMaximum(65535);
+        break;
+    }
+}
+
+void MainWindow::on_blowSensTypeCmb_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:     //IO
+        ui->blowSensorAddrLbl->setText("Nr modułu IO");
+        ui->blowSensorAddr->setMinimum(1);
+        ui->blowSensorAddr->setMaximum(IO_MODULE_COUNT);
+        ui->blowSensorBitNoLbl->setText("Nr wejścia");
+        ui->blowSensorBitNo->setMinimum(1);
+        ui->blowSensorBitNo->setMaximum(20);
+        ui->blowSensorRegNoLbl->setVisible(false);
+        ui->blowSensorRegNo->setVisible(false);
+        break;
+    case 1:     //CAN
+        ui->blowSensorAddrLbl->setText("Adres CAN");
+        ui->blowSensorAddr->setMinimum(1);
+        ui->blowSensorAddr->setMaximum(255);
+        ui->blowSensorBitNoLbl->setText("Nr bitu");
+        ui->blowSensorBitNo->setMinimum(1);
+        ui->blowSensorBitNo->setMaximum(16);
+        ui->blowSensorRegNoLbl->setVisible(true);
+        ui->blowSensorRegNoLbl->setText("Nr meldunku");
+        ui->blowSensorRegNo->setMinimum(0);
+        ui->blowSensorRegNo->setMaximum(127);
+        ui->blowSensorRegNo->setVisible(true);
+        break;
+    case 2:     //Modbus
+        ui->blowSensorAddrLbl->setText("Adres Modbus");
+        ui->blowSensorAddr->setMinimum(1);
+        ui->blowSensorAddr->setMaximum(255);
+        ui->blowSensorBitNoLbl->setText("Nr bitu");
+        ui->blowSensorBitNo->setMinimum(1);
+        ui->blowSensorBitNo->setMaximum(16);
+        ui->blowSensorRegNoLbl->setVisible(true);
+        ui->blowSensorRegNoLbl->setText("Nr rejestru");
+        ui->blowSensorRegNo->setMinimum(0);
+        ui->blowSensorRegNo->setMaximum(65535);
+        ui->blowSensorRegNo->setVisible(true);
+        break;
+    }
 }
