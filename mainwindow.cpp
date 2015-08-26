@@ -67,6 +67,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->weatherAutomList->addItem("Automat pogodowy 1");
     ui->weatherAutomList->setCurrentRow(0);
+
+    strcpy(circuit_cfg[0].name, "Obwód 1");
+    ui->circuitList->addItem("Obwód 1");
+    ui->circuitList->setCurrentRow(0);
+
 }
 
 MainWindow::~MainWindow()
@@ -386,7 +391,7 @@ bool MainWindow::setIOModuleCfg(void)
             cb->addItem(QString("I12"), 4);
             cb->addItem(QString("I20"), 5);
             cb->addItem(QString("O10"), 6);
-            cb->addItem(QString("CVM"), 7);
+            cb->addItem(QString("CVM"), 13);
             cb->addItem(QString("ISC3"), 10);
             cb->addItem(QString("IO4/7"), 11);
             cb->addItem(QString("O8"), 12);
@@ -1047,5 +1052,36 @@ void MainWindow::on_blowSensTypeCmb_currentIndexChanged(int index)
         ui->blowSensorRegNo->setMaximum(65535);
         ui->blowSensorRegNo->setVisible(true);
         break;
+    }
+}
+
+void MainWindow::on_cirCount_valueChanged(int arg1)
+{
+    int rows = ui->circuitList->count();
+    int i;
+    QListWidgetItem *itm;
+
+    if((arg1 > rows) && (arg1 <= CIRCUIT_COUNT))
+    {
+        for(i = rows; i < arg1; i++)
+        {
+            if(circuit_cfg[i].name[0] == '\0')
+            {
+                ui->circuitList->addItem(QString("Obwód %1").arg(i + 1));
+                strcpy(circuit_cfg[i].name, QString("Obwód %1").arg(i + 1).toUtf8().data());
+            }
+            else
+            {
+                ui->circuitList->addItem(circuit_cfg[i].name);
+            }
+        }
+    }
+    else if(arg1 < rows)
+    {
+        for(i = (rows - 1); i >= arg1; i--)
+        {
+            itm = ui->circuitList->takeItem(i);
+            delete itm;
+        }
     }
 }

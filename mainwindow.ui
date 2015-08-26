@@ -23,8 +23,23 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>false</bool>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1072,14 +1087,6 @@
           <string>Nr kanału TH:</string>
          </property>
         </widget>
-        <zorder>label_23</zorder>
-        <zorder>sensorHotTypeCmb</zorder>
-        <zorder>sensorHotAddr</zorder>
-        <zorder>sensorHotRegNo</zorder>
-        <zorder>sensorHotAddrLbl</zorder>
-        <zorder>sensorHotRegNoLbl</zorder>
-        <zorder>frame_7</zorder>
-        <zorder>frame_6</zorder>
        </widget>
        <widget class="QListWidget" name="weatherAutomList">
         <property name="geometry">
@@ -1491,6 +1498,1012 @@
        <attribute name="title">
         <string>Obwody sterowania</string>
        </attribute>
+       <widget class="QListWidget" name="circuitList">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>130</width>
+          <height>310</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="editCircuitList">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>325</y>
+          <width>130</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Zmień ustawienia</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_29">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>15</y>
+          <width>50</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nazwa:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cirNameEdit">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>10</y>
+          <width>100</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="maxLength">
+         <number>6</number>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="cirActiveChk">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>12</y>
+          <width>90</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Aktywny</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_30">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>15</y>
+          <width>90</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Typ obwodu:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cirTypeCmb">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>10</y>
+          <width>180</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="editable">
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Ogrzewanie rozjazdów</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ogrzewanie zamknięć</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QFrame" name="phaseL2Frame">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>145</y>
+          <width>215</width>
+          <height>205</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QCheckBox" name="l1ActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>80</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Faza L1</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="l1ConfActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>30</y>
+           <width>170</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Potw. zabezpieczenia</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_31">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>55</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l1ConfIOMod">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>50</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l1ConfBitNo">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>80</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>20</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_32">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>85</y>
+           <width>80</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wejścia:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_33">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>145</y>
+           <width>130</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>P1 nominalna [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_34">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>175</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tolerancja [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p1Nominal">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>140</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p1Tol">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l1CvmCh">
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>110</y>
+           <width>40</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_57">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>115</y>
+           <width>60</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr CVM:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l1CvmId">
+         <property name="geometry">
+          <rect>
+           <x>67</x>
+           <y>110</y>
+           <width>50</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_56">
+         <property name="geometry">
+          <rect>
+           <x>127</x>
+           <y>115</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Kanał:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="phaseL2Frame_2">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>145</y>
+          <width>215</width>
+          <height>205</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QCheckBox" name="l2ActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>80</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Faza L2</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="l2ConfActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>30</y>
+           <width>170</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Potw. zabezpieczenia</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_38">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>55</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l2ConfIOMod">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>50</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l2ConfBitNo">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>80</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>20</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_39">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>85</y>
+           <width>80</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wejścia:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_40">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>145</y>
+           <width>130</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>P2 nominalna [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_41">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>175</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tolerancja [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p2Nominal">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>140</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p2Tol">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l2CvmCh">
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>110</y>
+           <width>40</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l2CvmId">
+         <property name="geometry">
+          <rect>
+           <x>67</x>
+           <y>110</y>
+           <width>50</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_55">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>115</y>
+           <width>60</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr CVM:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_54">
+         <property name="geometry">
+          <rect>
+           <x>127</x>
+           <y>115</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Kanał:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="phaseL2Frame_3">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>145</y>
+          <width>215</width>
+          <height>205</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QCheckBox" name="l3ActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>80</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Faza L3</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="l3ConfActiveChk">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>30</y>
+           <width>170</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Potw. zabezpieczenia</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_42">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>55</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l3ConfIOMod">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>50</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l2ConfBitNo_2">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>80</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>20</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_43">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>85</y>
+           <width>80</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wejścia:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_44">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>145</y>
+           <width>130</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>P3 nominalna [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_45">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>175</y>
+           <width>110</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tolerancja [kW]:</string>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p3Nominal">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>140</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+        <widget class="QDoubleSpinBox" name="p3Tol">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_52">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>115</y>
+           <width>60</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr CVM:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l3CvmId">
+         <property name="geometry">
+          <rect>
+           <x>67</x>
+           <y>110</y>
+           <width>50</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_53">
+         <property name="geometry">
+          <rect>
+           <x>127</x>
+           <y>115</y>
+           <width>40</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Kanał:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="l3CvmCh">
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>110</y>
+           <width>40</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_4">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>50</y>
+          <width>215</width>
+          <height>90</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_46">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>170</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Sterowanie stycznikem:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_47">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>30</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_48">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>60</y>
+           <width>80</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wyjścia:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="cirRelIOMod">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>25</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="cirRelBitNo">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>55</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>10</number>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_5">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>50</y>
+          <width>215</width>
+          <height>90</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_49">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>5</y>
+           <width>170</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Potwierdzenie stycznika:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_50">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>30</y>
+           <width>100</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr modułu IO:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_51">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>60</y>
+           <width>80</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nr wejścia:</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="cirRelConfIOMod">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>25</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>24</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="cirRelConfBitNo">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>55</y>
+           <width>60</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>20</number>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QCheckBox" name="cirReferenceChk">
+        <property name="geometry">
+         <rect>
+          <x>425</x>
+          <y>12</y>
+          <width>100</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Wzorcowy</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_58">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>55</y>
+          <width>67</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nr grupy:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_59">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>85</y>
+          <width>130</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nr autom. pogod.:</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="cirGroupNo">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>50</y>
+          <width>60</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>6</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="cirWeatherAutomNo">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>80</y>
+          <width>60</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>6</number>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">

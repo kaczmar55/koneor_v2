@@ -57,6 +57,8 @@ private slots:
 
     void on_blowSensTypeCmb_currentIndexChanged(int index);
 
+    void on_cirCount_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 };
