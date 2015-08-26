@@ -29,6 +29,7 @@ public:
     bool setGeneralWeatherMeasure(void);
     bool setWeatherAutomCfg(int id);
     bool setLockAutomCfg(void);
+    bool setCircuitCfg(int id);
 
 private slots:
     void on_actionOtw_rz_triggered();
@@ -60,6 +61,8 @@ private slots:
     void on_cirCount_valueChanged(int arg1);
 
     void on_editCircuitList_clicked();
+
+    void on_circuitList_currentRowChanged(int currentRow);
 
 private:
     Ui::MainWindow *ui;

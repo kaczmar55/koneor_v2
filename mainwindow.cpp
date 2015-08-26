@@ -68,8 +68,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->weatherAutomList->addItem("Automat pogodowy 1");
     ui->weatherAutomList->setCurrentRow(0);
 
-    strcpy(circuit_cfg[0].name, "Obwód 1");
-    ui->circuitList->addItem("Obwód 1");
+    strcpy(circuit_cfg[0].name, "Obwód1");
+    ui->circuitList->addItem("Obwód1");
     ui->circuitList->setCurrentRow(0);
 
 }
@@ -146,6 +146,7 @@ void MainWindow::on_actionOtw_rz_triggered()
             setGeneralWeatherMeasure();
             setWeatherAutomCfg(0);
             setLockAutomCfg();
+            setCircuitCfg(0);
         }
         else
         {
@@ -601,6 +602,80 @@ bool MainWindow::setWeatherAutomCfg(int id)
 
     ui->frostTempIn->setValue(weather_autom_cfg[id].t_frost_on_r / 10.0);
     ui->frostTempOut->setValue(weather_autom_cfg[id].t_frost_off_r / 10.0);
+
+    return true;
+}
+
+bool MainWindow::setCircuitCfg(int id)
+{
+    ui->cirNameEdit->setText(circuit_cfg[id].name);
+    if(circuit_cfg[id].active == 0)
+        ui->cirActiveChk->setChecked(false);
+    else
+        ui->cirActiveChk->setChecked(true);
+    if(circuit_cfg[id].reference == 0)
+        ui->cirReferenceChk->setChecked(false);
+    else
+        ui->cirReferenceChk->setChecked(true);
+    ui->cirTypeCmb->setCurrentIndex(circuit_cfg[id].type);
+    ui->cirGroupNo->setValue(circuit_cfg[id].group_id);
+    ui->cirWeatherAutomNo->setValue(circuit_cfg[id].weather_autom_id);
+
+    if(circuit_cfg[id].phase_cfg[0].active == 0)
+        ui->l1ActiveChk->setChecked(false);
+    else
+        ui->l1ActiveChk->setChecked(true);
+    if(circuit_cfg[id].phase_cfg[0].conf_input.active ==0)
+        ui->l1ConfActiveChk->setChecked(false);
+    else
+        ui->l1ConfActiveChk->setChecked(true);
+    ui->l1ConfIOMod->setValue(circuit_cfg[id].phase_cfg[0].conf_input.module_id);
+    ui->l1ConfBitNo->setValue(circuit_cfg[id].phase_cfg[0].conf_input.bit_no);
+
+    ui->l1CvmId->setValue(circuit_cfg[id].phase_cfg[0].cvm_id);
+    ui->l1CvmCh->setValue(circuit_cfg[id].phase_cfg[0].cvm_ch_id);
+
+    ui->p1Nominal->setValue(circuit_cfg[id].phase_cfg[0].p_nom);
+    ui->p1Tol->setValue(circuit_cfg[id].phase_cfg[0].p_tol);
+
+    if(circuit_cfg[id].phase_cfg[1].active == 0)
+        ui->l2ActiveChk->setChecked(false);
+    else
+        ui->l2ActiveChk->setChecked(true);
+    if(circuit_cfg[id].phase_cfg[1].conf_input.active ==0)
+        ui->l2ConfActiveChk->setChecked(false);
+    else
+        ui->l2ConfActiveChk->setChecked(true);
+    ui->l2ConfIOMod->setValue(circuit_cfg[id].phase_cfg[1].conf_input.module_id);
+    ui->l2ConfBitNo->setValue(circuit_cfg[id].phase_cfg[1].conf_input.bit_no);
+
+    ui->l2CvmId->setValue(circuit_cfg[id].phase_cfg[1].cvm_id);
+    ui->l2CvmCh->setValue(circuit_cfg[id].phase_cfg[1].cvm_ch_id);
+
+    ui->p2Nominal->setValue(circuit_cfg[id].phase_cfg[1].p_nom);
+    ui->p2Tol->setValue(circuit_cfg[id].phase_cfg[1].p_tol);
+
+    if(circuit_cfg[id].phase_cfg[2].active == 0)
+        ui->l3ActiveChk->setChecked(false);
+    else
+        ui->l3ActiveChk->setChecked(true);
+    if(circuit_cfg[id].phase_cfg[2].conf_input.active ==0)
+        ui->l3ConfActiveChk->setChecked(false);
+    else
+        ui->l3ConfActiveChk->setChecked(true);
+    ui->l3ConfIOMod->setValue(circuit_cfg[id].phase_cfg[2].conf_input.module_id);
+    ui->l3ConfBitNo->setValue(circuit_cfg[id].phase_cfg[2].conf_input.bit_no);
+
+    ui->l3CvmId->setValue(circuit_cfg[id].phase_cfg[2].cvm_id);
+    ui->l3CvmCh->setValue(circuit_cfg[id].phase_cfg[2].cvm_ch_id);
+
+    ui->p3Nominal->setValue(circuit_cfg[id].phase_cfg[2].p_nom);
+    ui->p3Tol->setValue(circuit_cfg[id].phase_cfg[2].p_tol);
+
+    ui->cirRelIOMod->setValue(circuit_cfg[id].relay.module_id);
+    ui->cirRelBitNo->setValue(circuit_cfg[id].relay.bit_no);
+    ui->cirRelConfIOMod->setValue(circuit_cfg[id].rel_conf.module_id);
+    ui->cirRelConfBitNo->setValue(circuit_cfg[id].rel_conf.bit_no);
 
     return true;
 }
@@ -1067,8 +1142,8 @@ void MainWindow::on_cirCount_valueChanged(int arg1)
         {
             if(circuit_cfg[i].name[0] == '\0')
             {
-                ui->circuitList->addItem(QString("Obwód %1").arg(i + 1));
-                strcpy(circuit_cfg[i].name, QString("Obwód %1").arg(i + 1).toUtf8().data());
+                ui->circuitList->addItem(QString("Obwód%1").arg(i + 1));
+                strcpy(circuit_cfg[i].name, QString("Obwód%1").arg(i + 1).toUtf8().data());
             }
             else
             {
@@ -1089,6 +1164,8 @@ void MainWindow::on_cirCount_valueChanged(int arg1)
 void MainWindow::on_editCircuitList_clicked()
 {
     int currentRow = ui->circuitList->currentRow();
+    int i;
+    QComboBox *cb;
 
     if(ui->editCircuitList->text() == "Zmień ustawienia")
     {
@@ -1115,38 +1192,38 @@ void MainWindow::on_editCircuitList_clicked()
         circuit_cfg[currentRow].group_id = ui->cirGroupNo->value();
         circuit_cfg[currentRow].weather_autom_id = ui->cirWeatherAutomNo->value();
 
-        circuit_cfg[currentRow].l1_active = ui->l1ActiveChk->isChecked();
-        circuit_cfg[currentRow].l1_conf.active = ui->l1ConfActiveChk->isChecked();
-        circuit_cfg[currentRow].l1_conf.module_id = ui->l1ConfIOMod->value();
-        circuit_cfg[currentRow].l1_conf.bit_no = ui->l1ConfBitNo->value();
-        //todo sprawdzić nr modułu
-        circuit_cfg[currentRow].l1_cvm_id = ui->l1CvmId->value();
-        circuit_cfg[currentRow].l2_cvm_ch_id = ui->l1CvmCh->value();
-        //todo sprawdzić nr modułu cvm
-        circuit_cfg[currentRow].p1_nom = ui->p1Nominal->value();
-        circuit_cfg[currentRow].p1_tol = ui->p1Tol->value();
+        circuit_cfg[currentRow].phase_cfg[0].active = ui->l1ActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[0].conf_input.active = ui->l1ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[0].conf_input.module_id = ui->l1ConfIOMod->value();
+        circuit_cfg[currentRow].phase_cfg[0].conf_input.bit_no = ui->l1ConfBitNo->value();
 
-        circuit_cfg[currentRow].l2_active = ui->l2ActiveChk->isChecked();
-        circuit_cfg[currentRow].l2_conf.active = ui->l2ConfActiveChk->isChecked();
-        circuit_cfg[currentRow].l2_conf.module_id = ui->l2ConfIOMod->value();
-        circuit_cfg[currentRow].l2_conf.bit_no = ui->l2ConfBitNo->value();
-        //todo sprawdzić nr modułu
-        circuit_cfg[currentRow].l2_cvm_id = ui->l2CvmId->value();
-        circuit_cfg[currentRow].l2_cvm_ch_id = ui->l2CvmCh->value();
-        //todo sprawdzić nr modułu cvm
-        circuit_cfg[currentRow].p2_nom = ui->p2Nominal->value();
-        circuit_cfg[currentRow].p2_tol = ui->p2Tol->value();
+        circuit_cfg[currentRow].phase_cfg[0].cvm_id = ui->l1CvmId->value();
+        circuit_cfg[currentRow].phase_cfg[0].cvm_ch_id = ui->l1CvmCh->value();
 
-        circuit_cfg[currentRow].l3_active = ui->l3ActiveChk->isChecked();
-        circuit_cfg[currentRow].l3_conf.active = ui->l3ConfActiveChk->isChecked();
-        circuit_cfg[currentRow].l3_conf.module_id = ui->l3ConfIOMod->value();
-        circuit_cfg[currentRow].l3_conf.bit_no = ui->l3ConfBitNo->value();
-        //todo sprawdzić nr modułu
-        circuit_cfg[currentRow].l3_cvm_id = ui->l3CvmId->value();
-        circuit_cfg[currentRow].l3_cvm_ch_id = ui->l3CvmCh->value();
-        //todo sprawdzić nr modułu cvm
-        circuit_cfg[currentRow].p3_nom = ui->p3Nominal->value();
-        circuit_cfg[currentRow].p3_tol = ui->p3Tol->value();
+        circuit_cfg[currentRow].phase_cfg[0].p_nom = ui->p1Nominal->value();
+        circuit_cfg[currentRow].phase_cfg[0].p_tol = ui->p1Tol->value();
+
+        circuit_cfg[currentRow].phase_cfg[1].active = ui->l2ActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[1].conf_input.active = ui->l2ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[1].conf_input.module_id = ui->l2ConfIOMod->value();
+        circuit_cfg[currentRow].phase_cfg[1].conf_input.bit_no = ui->l2ConfBitNo->value();
+
+        circuit_cfg[currentRow].phase_cfg[1].cvm_id = ui->l2CvmId->value();
+        circuit_cfg[currentRow].phase_cfg[1].cvm_ch_id = ui->l2CvmCh->value();
+
+        circuit_cfg[currentRow].phase_cfg[1].p_nom = ui->p2Nominal->value();
+        circuit_cfg[currentRow].phase_cfg[1].p_tol = ui->p2Tol->value();
+
+        circuit_cfg[currentRow].phase_cfg[2].active = ui->l3ActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[2].conf_input.active = ui->l3ConfActiveChk->isChecked();
+        circuit_cfg[currentRow].phase_cfg[2].conf_input.module_id = ui->l3ConfIOMod->value();
+        circuit_cfg[currentRow].phase_cfg[2].conf_input.bit_no = ui->l3ConfBitNo->value();
+
+        circuit_cfg[currentRow].phase_cfg[2].cvm_id = ui->l3CvmId->value();
+        circuit_cfg[currentRow].phase_cfg[2].cvm_ch_id = ui->l3CvmCh->value();
+
+        circuit_cfg[currentRow].phase_cfg[2].p_nom = ui->p3Nominal->value();
+        circuit_cfg[currentRow].phase_cfg[2].p_tol = ui->p3Tol->value();
 
         circuit_cfg[currentRow].relay.active = 1;
         circuit_cfg[currentRow].relay.module_id = ui->cirRelIOMod->value();
@@ -1154,7 +1231,93 @@ void MainWindow::on_editCircuitList_clicked()
         circuit_cfg[currentRow].rel_conf.active = 1;
         circuit_cfg[currentRow].rel_conf.module_id = ui->cirRelConfIOMod->value();
         circuit_cfg[currentRow].rel_conf.bit_no = ui->cirRelConfBitNo->value();
-        //todo sprawdzić jeszcze numery modułów dla stycznika
+
+        if(circuit_cfg[currentRow].rel_conf.module_id >= ui->ioModulesTable->rowCount())
+        {
+            QMessageBox::critical(this, "Błąd",
+                  QString("Potwierdzenie stycznika\nNie ma modułu IO o podanym numerze."));
+            return;
+        }
+        else
+        {
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(circuit_cfg[currentRow].rel_conf.module_id - 1, 0);
+            if((cb->currentIndex() != 0) &&         /* io10/5 */
+                    (cb->currentIndex() != 1) &&    /* th     */
+                    (cb->currentIndex() != 2) &&    /* i12    */
+                    (cb->currentIndex() != 3) &&    /* i20    */
+                    (cb->currentIndex() != 7) &&    /* io4/7  */
+                    (cb->currentIndex() != 9))      /* gmr io */
+            {
+                QMessageBox::critical(this, "Błąd",
+                      QString("Potwierdzenie stycznika\nModuł o podanym numerze nie ma wejść cyfrowych."));
+                return;
+            }
+        }
+        if(circuit_cfg[currentRow].relay.module_id >= ui->ioModulesTable->rowCount())
+        {
+            QMessageBox::critical(this, "Błąd",
+                  QString("Sterowanie stycznikiem\nNie ma modułu IO o podanym numerze."));
+            return;
+        }
+        else
+        {
+            cb = (QComboBox*)ui->ioModulesTable->cellWidget(circuit_cfg[currentRow].relay.module_id - 1, 0);
+            if((cb->currentIndex() != 0) &&         /* io10/5 */
+                    (cb->currentIndex() != 4) &&    /* o10    */
+                    (cb->currentIndex() != 7) &&    /* io4/7  */
+                    (cb->currentIndex() != 9))      /* gmr io */
+            {
+                QMessageBox::critical(this, "Błąd",
+                      QString("Sterowanie stycznikem\nModuł o podanym numerze nie ma wyjść cyfrowych."));
+                return;
+            }
+        }
+
+        for(i = 0; i < 3; i++)
+        {
+            if((circuit_cfg[currentRow].phase_cfg[i].active != 0) &&
+                    (circuit_cfg[currentRow].phase_cfg[i].conf_input.active != 0))
+            {
+                if(circuit_cfg[currentRow].phase_cfg[i].conf_input.module_id >= ui->ioModulesTable->rowCount())
+                {
+                    QMessageBox::critical(this, "Błąd",
+                          QString("Moduł CVM fazy L%1\nNie ma modułu IO o podanym numerze.").arg(i + 1));
+                    return;
+                }
+                else
+                {
+                    cb = (QComboBox*)ui->ioModulesTable->cellWidget(circuit_cfg[currentRow].phase_cfg[i].conf_input.module_id - 1, 0);
+                    if((cb->currentIndex() != 0) &&         /* io10/5 */
+                            (cb->currentIndex() != 1) &&    /* th     */
+                            (cb->currentIndex() != 2) &&    /* i12    */
+                            (cb->currentIndex() != 3) &&    /* i20    */
+                            (cb->currentIndex() != 7) &&    /* io4/7  */
+                            (cb->currentIndex() != 9))      /* gmr io */
+                    {
+                        QMessageBox::critical(this, "Błąd",
+                              QString("Moduł CVM fazy L%1\nModuł o podanym numerze nie ma wejść cyfrowych.").arg(i + 1));
+                        return;
+                    }
+                }
+            }
+
+            if(circuit_cfg[currentRow].phase_cfg[2].cvm_id >= ui->ioModulesTable->rowCount())
+            {
+                QMessageBox::critical(this, "Błąd",
+                      QString("Potwierdzenie zabezpieczenia fazy L%1\nNie ma modułu IO o podanym numerze.").arg(i + 1));
+                return;
+            }
+            else
+            {
+                cb = (QComboBox*)ui->ioModulesTable->cellWidget(circuit_cfg[currentRow].phase_cfg[2].cvm_id - 1, 0);
+                if(cb->currentIndex() != 5)         /* CVM */
+                {
+                    QMessageBox::critical(this, "Błąd",
+                          QString("Potwierdzenie zabezpieczenia fazy L%1\nModuł o podanym numerze nie jest modułem CVM.").arg(i + 1));
+                    return;
+                }
+            }
+        }
 
         ui->editCircuitList->setText("Zmień ustawienia");
         ui->cirNameEdit->setEnabled(false);
@@ -1169,4 +1332,9 @@ void MainWindow::on_editCircuitList_clicked()
         ui->cirRelayFrame->setEnabled(false);
         ui->cirRelayConfFrame->setEnabled(false);
     }
+}
+
+void MainWindow::on_circuitList_currentRowChanged(int currentRow)
+{
+    setCircuitCfg(currentRow);
 }

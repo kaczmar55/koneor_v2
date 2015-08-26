@@ -117,37 +117,29 @@ typedef struct __attribute((packed)){
 } binary_io_t;
 
 typedef struct __attribute((packed)){
-    char name[6];			//nazwa obwodu
+    uint8_t active;
+    uint8_t res1[3];
+    binary_io_t conf_input;
+    uint8_t cvm_id;
+    uint8_t cvm_ch_id;
+    uint8_t res2[2];
+    uint16_t p_nom;
+    uint16_t p_tol;
+    uint8_t res3[8];
+} phase_cfg_t;
+
+typedef struct __attribute((packed)){
+    char name[8];			//nazwa obwodu
     uint8_t active;			//obwód aktywny / rezerwa
     uint8_t type;			//typ obwodu: ogrzewanie rozjazdów lub zamknięć
-    uint8_t l1_active;		//faza L1 - aktywność
-    uint8_t l2_active;		//faza L2 - aktywność
-    uint8_t l3_active;		//faza L3 - aktywność
-    uint8_t res[5];
-    //wejścia:
-    binary_io_t l1_conf;		//potwierdzenie zabezpieczenia fazy L1: obecność,nr modułu, nr wejścia
-    binary_io_t l2_conf;		//potwierdzenie zabezpieczenia fazy L2
-    binary_io_t l3_conf;		//potwierdzenie zabezpieczenia fazy L3
-    binary_io_t rel_conf;		//potwierdzenie stycznika
-    uint8_t cvm_id;			//wejście pomiarowe z CVM'a: nr modułu
-    uint8_t cvm_ch_id;      //nr kanału w cvm
-    uint8_t res2[2];
-    //wyjścia:
-    binary_io_t relay;		//sterowanie stycznikem: nr modułu, nr wyjścia
-    uint8_t res3[8];
-
     uint8_t group_id;		//nr grupy
     uint8_t weather_autom_id;	//nr automatu
     uint8_t reference;		//czy obwód wzorcowy - wzorcowego nie da się tak łatwo wyłączyć
-    uint8_t res4[5];
-    //kontrola mocy:
-    uint16_t p1_nom;		//dla L1: moc nominalna, tolerancja
-    uint16_t p1_tol;
-    uint16_t p2_nom;		//dla L2: moc nominalna, tolerancja
-    uint16_t p2_tol;
-    uint16_t p3_nom;		//dla L3: moc nominalna, tolerancja
-    uint16_t p3_tol;
-    uint8_t res5[16];
+    uint8_t res1[3];
+    phase_cfg_t phase_cfg[3];
+    binary_io_t relay;
+    binary_io_t rel_conf;
+    uint8_t res2[16];
 } circuit_cfg_t;
 
 typedef struct __attribute((packed)){

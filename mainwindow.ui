@@ -1547,7 +1547,7 @@
          <string/>
         </property>
         <property name="maxLength">
-         <number>6</number>
+         <number>7</number>
         </property>
        </widget>
        <widget class="QCheckBox" name="cirActiveChk">
@@ -2116,7 +2116,7 @@
           <number>1</number>
          </property>
         </widget>
-        <widget class="QSpinBox" name="l2ConfBitNo_2">
+        <widget class="QSpinBox" name="l3ConfBitNo">
          <property name="geometry">
           <rect>
            <x>150</x>
