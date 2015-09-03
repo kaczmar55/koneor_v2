@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CGeneralCfgForm</class>
+ <widget class="QWidget" name="CGeneralCfgForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>835</width>
+    <height>415</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QSpinBox" name="paramEditUserLevel">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>190</y>
+     <width>48</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>15</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>270</y>
+     <width>220</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Czas do wyłączenia ekranu [min]:</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="phaseAssymetryCheck">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>270</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sprawdzanie asymetrii faz zasilania</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>304</y>
+     <width>250</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tolerancja asymetrii faz zasilania [%]:</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="ctrlUserLevel">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>160</y>
+     <width>48</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>15</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>75</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Opis konfiguracji:</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="weatherAutomCount">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>190</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="wrapping">
+    <bool>false</bool>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>6</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>164</y>
+     <width>290</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Poziom dostępu umożliwiający sterowanie:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>194</y>
+     <width>350</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Poziom dostępu umożliwiający zmianę parametrów:</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="screenSaverEnable">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>240</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wygaszacz ekranu</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="fileVer">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>330</y>
+     <width>30</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1.0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>164</y>
+     <width>200</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Liczba obwodów sterowania:</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="phaseAssymetryTolerance">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>300</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>100</number>
+   </property>
+   <property name="value">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>45</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nazwa obiektu:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>344</y>
+     <width>200</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Minimalne napięcie fazy [V]:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="objName">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>40</y>
+     <width>500</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maxLength">
+    <number>63</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="fileSize">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>350</y>
+     <width>60</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>5.1kB</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="indOnTime">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>240</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>240</number>
+   </property>
+   <property name="value">
+    <number>60</number>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="objDescription">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>70</y>
+     <width>500</width>
+     <height>80</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="minPhaseVoltage">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>340</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>100</number>
+   </property>
+   <property name="maximum">
+    <number>230</number>
+   </property>
+   <property name="value">
+    <number>190</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="screenSaverTime">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>265</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>30</number>
+   </property>
+   <property name="value">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="cirCount">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>160</y>
+     <width>60</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="wrapping">
+    <bool>false</bool>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>20</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>350</y>
+     <width>100</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Rozmiar pliku:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>194</y>
+     <width>220</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Liczba automatów pogodowych:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>330</y>
+     <width>90</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wersja pliku:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>244</y>
+     <width>260</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Czas indywidualnego załączenia [min]:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>130</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+    </font>
+   </property>
+   <property name="text">
+    <string>Podstawowe</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>35</y>
+     <width>350</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
