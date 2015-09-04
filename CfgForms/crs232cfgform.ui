@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CRs232CfgForm</class>
+ <widget class="QWidget" name="CRs232CfgForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>835</width>
+    <height>415</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>5</y>
+     <width>220</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+    </font>
+   </property>
+   <property name="text">
+    <string>Rs232/485</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>350</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_11">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>230</width>
+     <height>155</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="rsActiveChk">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rs232/485 (RJ45)</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_80">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>35</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Baudrate:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_81">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>65</y>
+      <width>80</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Parzystość:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_82">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>95</y>
+      <width>80</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bity stopu:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_83">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>125</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Protokół:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="rsBaudrateCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>30</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+    <property name="currentIndex">
+     <number>12</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>100</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>110</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>300</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>600</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1200</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2400</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4800</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>9600</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>19200</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>38400</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>57600</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>115200</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="rsParityCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>60</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>brak (n)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>parzysty (e)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>nieparzysty (o)</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="rsStopBitsCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>90</y>
+      <width>85</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="rsProtocolCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>120</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Brak</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Konsola</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modbus master</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Licznik energii</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_14">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>180</y>
+     <width>230</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="virtRs3ActiveChk">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port wirtualny 3</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_90">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>95</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Protokół:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="virtRs3ProtocolCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>90</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Brak</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Konsola</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modbus master</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Licznik energii</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="virtRs3IpAddrEdit">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>30</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string>000.000.000.000</string>
+    </property>
+    <property name="text">
+     <string>10.1.1.183</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_91">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>35</y>
+      <width>60</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adres IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_92">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>65</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="virtRs3Port">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>60</y>
+      <width>80</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+    <property name="value">
+     <number>4001</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_15">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>180</y>
+     <width>230</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="virtRs4ActiveChk">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port wirtualny 4</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_93">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>95</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Protokół:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="virtRs4ProtocolCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>90</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Brak</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Konsola</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modbus master</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Licznik energii</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="virtRs4IpAddrEdit">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>30</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string>000.000.000.000</string>
+    </property>
+    <property name="text">
+     <string>10.1.1.184</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_94">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>35</y>
+      <width>60</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adres IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_95">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>65</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="virtRs4Port">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>60</y>
+      <width>80</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+    <property name="value">
+     <number>4001</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_12">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>40</y>
+     <width>230</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="virtRs1ActiveChk">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port wirtualny 1</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_87">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>95</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Protokół:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="virtRs1ProtocolCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>90</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Brak</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Konsola</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modbus master</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Licznik energii</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="virtRs1IpAddrEdit">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>30</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string>000.000.000.000</string>
+    </property>
+    <property name="text">
+     <string>10.1.1.181</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_84">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>35</y>
+      <width>60</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adres IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_85">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>65</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="virtRs1Port">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>60</y>
+      <width>80</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+    <property name="value">
+     <number>4001</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_13">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>40</y>
+     <width>230</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="virtRs2ActiveChk">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port wirtualny 2</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_88">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>95</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Protokół:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="virtRs2ProtocolCmb">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>90</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Brak</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Konsola</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modbus master</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Licznik energii</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="virtRs2IpAddrEdit">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>30</y>
+      <width>140</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string>000.000.000.000</string>
+    </property>
+    <property name="text">
+     <string>10.1.1.182</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_86">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>35</y>
+      <width>60</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Adres IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_89">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>65</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="virtRs2Port">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>60</y>
+      <width>80</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+    <property name="value">
+     <number>4001</number>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
