@@ -159,7 +159,8 @@ typedef struct __attribute((packed)){
     binary_io_t remote_ctrl;	//jak bedzie nieaktywne oznacza to, że jak nie ma lokalnego ani ręcznego, wtedy automatycznie robi się zdalnie
     binary_io_t local_ctrl;		//sterowanie lokalne (z panelu) - musi być
     binary_io_t hand_ctrl;		//sterowanie ręczne (przyciskami bez cpu) - musi być
-    uint8_t res[20];
+    binary_io_t lock_ctrl;		//blokada sterowania (nie musi być)
+    uint8_t res[16];
 } io_cfg_t;
 
 typedef struct __attribute((packed)){
