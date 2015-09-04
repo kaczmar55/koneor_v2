@@ -7,8 +7,6 @@
 #include "CfgForms/ctemperaturescfgform.h"
 #include "CfgForms/cweatherautomform.h"
 #include "CfgForms/ccircuitcfgform.h"
-<<<<<<< HEAD
-=======
 #include "CfgForms/ciocfgform.h"
 #include "CfgForms/crs232cfgform.h"
 #include "CfgForms/cethrtnetcfgform.h"
@@ -16,9 +14,22 @@
 #include "CfgForms/ccancfgform.h"
 #include "CfgForms/ctgfmcfgform.h"
 #include "CfgForms/cuserscfgform.h"
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
 #include "eor_cfg.hpp"
 #include <QDebug>
+
+#define GENERAL_CFG_FORM_ID     (0)
+#define IO_MODULES_FORM_ID      (1)
+#define GENERAL_WEATHER_MEASURE_FORM_ID (2)
+#define TEMPERATURES_FORM_ID    (3)
+#define WEATHER_AUTOM_FORM_ID   (4)
+#define CIRCUIT_FORM_ID         (5)
+#define IO_FORM_ID              (6)
+#define RS232_FORM_ID           (7)
+#define ETHERNET_FORM_ID        (8)
+#define MODBUS_SLAVE_FORM_ID    (9)
+#define CAN_FORM_ID             (10)
+#define TGFM_FORM_ID            (11)
+#define USERS_FORM_ID           (12)
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,31 +44,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionZapisz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
     ui->actionZako_cz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton));
 
-<<<<<<< HEAD
-    item = addForm("Podstawowe", new CGeneralCfgForm(), 0);
+    item = addForm("Podstawowe", new CGeneralCfgForm(), GENERAL_CFG_FORM_ID, 0, NULL);
     ui->menuTreeWidget->setCurrentItem(item);
     ui->stackedWidget->setCurrentIndex(0);
 
-    addForm("Moduły", new CIoModulesCfgForm(), 1);
-    addForm("Podstawowe pomiary pogody", new CGeneralWeatherMeasureForm(), 2);
-    addForm("Temperatury", new CTemperaturesCfgForm(), 3);
-    item = addForm("Automaty pogodowe", new CWeatherAutomForm(), 4);
-=======
-    item = addForm("Podstawowe", new CGeneralCfgForm(), 0, 0, NULL);
-    ui->menuTreeWidget->setCurrentItem(item);
-    ui->stackedWidget->setCurrentIndex(0);
+    addForm("Moduły", new CIoModulesCfgForm(), IO_MODULES_FORM_ID, 0, NULL);
+    addForm("Podstawowe pomiary pogody", new CGeneralWeatherMeasureForm(), GENERAL_WEATHER_MEASURE_FORM_ID, 0, NULL);
+    addForm("Temperatury", new CTemperaturesCfgForm(), TEMPERATURES_FORM_ID, 0, NULL);
+    item = addForm("Automaty pogodowe", new CWeatherAutomForm(), WEATHER_AUTOM_FORM_ID, 0, NULL);
 
-    addForm("Moduły", new CIoModulesCfgForm(), 1, 0, NULL);
-    addForm("Podstawowe pomiary pogody", new CGeneralWeatherMeasureForm(), 2, 0, NULL);
-    addForm("Temperatury", new CTemperaturesCfgForm(), 3, 0, NULL);
-    item = addForm("Automaty pogodowe", new CWeatherAutomForm(), 4, 0, NULL);
-
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
     for(i = 0; i < WEATHER_AUTOM_COUNT; i++)
     {
         childItem = new QTreeWidgetItem();
         childItem->setText(0, QString("Automat nr %1").arg(i + 1));
-        childItem->setData(0, Qt::UserRole, 4);
+        childItem->setData(0, Qt::UserRole, WEATHER_AUTOM_FORM_ID);
         childItem->setData(0, Qt::UserRole + 1, i);
         item->addChild(childItem);
         if(i == 0)
@@ -66,16 +66,12 @@ MainWindow::MainWindow(QWidget *parent) :
             childItem->setHidden(true);
     }
 
-<<<<<<< HEAD
-    item = addForm("Obwody sterowania", new CCircuitCfgForm(), 5);
-=======
-    item = addForm("Obwody sterowania", new CCircuitCfgForm(), 5, 0, NULL);
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
+    item = addForm("Obwody sterowania", new CCircuitCfgForm(), CIRCUIT_FORM_ID, 0, NULL);
     for(i = 0; i < CIRCUIT_COUNT; i++)
     {
         childItem = new QTreeWidgetItem();
         childItem->setText(0, QString("Obwód nr %1").arg(i + 1));
-        childItem->setData(0, Qt::UserRole, 5);
+        childItem->setData(0, Qt::UserRole, CIRCUIT_FORM_ID);
         childItem->setData(0, Qt::UserRole + 1, i);
         item->addChild(childItem);
         if(i == 0)
@@ -84,21 +80,18 @@ MainWindow::MainWindow(QWidget *parent) :
             childItem->setHidden(true);
     }
 
-<<<<<<< HEAD
-=======
-    addForm("Dodatkowe wejścia", new CIOCfgForm(), 6, 0, NULL);
-    item = addForm("Komunikacja", new CRs232CfgForm(), 7, 0, NULL);
+    addForm("Dodatkowe wejścia", new CIOCfgForm(), IO_FORM_ID, 0, NULL);
+    item = addForm("Komunikacja", new CRs232CfgForm(), RS232_FORM_ID, 0, NULL);
     childItem = new QTreeWidgetItem();
     childItem->setText(0, "Rs232/485");
-    childItem->setData(0, Qt::UserRole, 7);
+    childItem->setData(0, Qt::UserRole, RS232_FORM_ID);
     childItem->setData(0, Qt::UserRole + 1, 0);
     item->addChild(childItem);
-    addForm("Ethernet", new CEthrtnetCfgForm(), 8, 0, item);
-    addForm("Modbus Slave", new CModbusSlaveCfgForm(), 9, 0, item);
-    addForm("CAN", new CCanCfgForm(), 10, 0, item);
-    addForm("TGFM", new CTgfmCfgForm(), 11, 0, item);
-    addForm("Użytkownicy", new CUsersCfgForm(), 12, 0, NULL);
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
+    addForm("Ethernet", new CEthrtnetCfgForm(), ETHERNET_FORM_ID, 0, item);
+    addForm("Modbus Slave", new CModbusSlaveCfgForm(), MODBUS_SLAVE_FORM_ID, 0, item);
+    addForm("CAN", new CCanCfgForm(), CAN_FORM_ID, 0, item);
+    addForm("TGFM", new CTgfmCfgForm(), TGFM_FORM_ID, 0, item);
+    addForm("Użytkownicy", new CUsersCfgForm(), USERS_FORM_ID, 0, NULL);
 
 }
 
@@ -107,11 +100,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-<<<<<<< HEAD
-QTreeWidgetItem *MainWindow::addForm(QString name, QWidget* widget, int id)
-=======
 QTreeWidgetItem *MainWindow::addForm(QString name, QWidget* widget, int id1, int id2, QTreeWidgetItem *parent)
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
 {
     QTreeWidgetItem *item;
 
@@ -119,29 +108,97 @@ QTreeWidgetItem *MainWindow::addForm(QString name, QWidget* widget, int id1, int
 
     item = new QTreeWidgetItem();
     item->setText(0, name);
-<<<<<<< HEAD
-    item->setData(0, Qt::UserRole, id);
-    item->setData(0, Qt::UserRole + 1, 0);
-    ui->menuTreeWidget->addTopLevelItem(item);
-=======
     item->setData(0, Qt::UserRole, id1);
     item->setData(0, Qt::UserRole + 1, id2);
     if(parent == NULL)
         ui->menuTreeWidget->addTopLevelItem(item);
     else
         parent->addChild(item);
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
 
     return item;
 }
 
 void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-    (void)previous;
+    CCircuitCfgForm *circuitCfgForm;
     int newIndex = current->data(0, Qt::UserRole).toInt();
+    int prevIndex;
+    bool ok = true;
 
-    ui->stackedWidget->setCurrentIndex(newIndex);
-    current->setExpanded(true);
+    if(previous == NULL)
+        prevIndex = -1;
+    else
+        prevIndex = previous->data(0, Qt::UserRole).toInt();
+
+    switch(prevIndex)
+    {
+    case GENERAL_CFG_FORM_ID:
+        break;
+    case IO_MODULES_FORM_ID:
+        break;
+    case GENERAL_WEATHER_MEASURE_FORM_ID:
+        break;
+    case TEMPERATURES_FORM_ID:
+        break;
+    case WEATHER_AUTOM_FORM_ID:
+        break;
+    case CIRCUIT_FORM_ID:
+        //do pomyślenia
+        circuitCfgForm = (CCircuitCfgForm*)ui->stackedWidget->widget(prevIndex);
+        ok = circuitCfgForm->getCfg(&circuit_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
+        break;
+    case IO_FORM_ID:
+        break;
+    case RS232_FORM_ID:
+        break;
+    case ETHERNET_FORM_ID:
+        break;
+    case MODBUS_SLAVE_FORM_ID:
+        break;
+    case CAN_FORM_ID:
+        break;
+    case TGFM_FORM_ID:
+        break;
+    case USERS_FORM_ID:
+        break;
+    }
+
+    if(ok)
+    {
+        switch(newIndex)
+        {
+        case GENERAL_CFG_FORM_ID:
+            break;
+        case IO_MODULES_FORM_ID:
+            break;
+        case GENERAL_WEATHER_MEASURE_FORM_ID:
+            break;
+        case TEMPERATURES_FORM_ID:
+            break;
+        case WEATHER_AUTOM_FORM_ID:
+            break;
+        case CIRCUIT_FORM_ID:
+            circuitCfgForm = (CCircuitCfgForm*)ui->stackedWidget->widget(newIndex);
+            circuitCfgForm->setCfg(&circuit_cfg[current->data(0, Qt::UserRole + 1).toInt()]);
+            break;
+        case IO_FORM_ID:
+            break;
+        case RS232_FORM_ID:
+            break;
+        case ETHERNET_FORM_ID:
+            break;
+        case MODBUS_SLAVE_FORM_ID:
+            break;
+        case CAN_FORM_ID:
+            break;
+        case TGFM_FORM_ID:
+            break;
+        case USERS_FORM_ID:
+            break;
+        }
+        ui->stackedWidget->setCurrentIndex(newIndex);
+        current->setExpanded(true);
+    }
     if((current->text(0) == "Automaty pogodowe") &&
             ((previous->parent() == NULL) ||
                 ((previous->parent() != NULL) && (previous->parent()->text(0) != "Automaty pogodowe"))))

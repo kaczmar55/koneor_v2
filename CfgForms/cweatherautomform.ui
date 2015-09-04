@@ -56,8 +56,6 @@
     <enum>Qt::AutoText</enum>
    </property>
   </widget>
-<<<<<<< HEAD
-=======
   <widget class="QLabel" name="label_96">
    <property name="geometry">
     <rect>
@@ -515,7 +513,6 @@
     <string>Czujnik temperatury szyny gorącej</string>
    </property>
   </widget>
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
  </widget>
  <resources/>
  <connections/>

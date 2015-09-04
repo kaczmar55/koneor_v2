@@ -56,8 +56,6 @@
     <enum>Qt::AutoText</enum>
    </property>
   </widget>
-<<<<<<< HEAD
-=======
   <widget class="QFrame" name="cirRelayFrame">
    <property name="geometry">
     <rect>
@@ -1077,7 +1075,6 @@
     </property>
    </widget>
   </widget>
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
  </widget>
  <resources/>
  <connections/>

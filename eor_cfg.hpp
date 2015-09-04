@@ -10,6 +10,7 @@
 #define RS_COUNT		6 /* jeden fizyczny na rj45, 4 wirtualne i jedno miejsce rezerwowe */
 
 #include <stdint.h>
+#include <QString>
 
 typedef struct __attribute((packed)){
     char id_txt[13];	//EOR_KON
@@ -159,12 +160,8 @@ typedef struct __attribute((packed)){
     binary_io_t remote_ctrl;	//jak bedzie nieaktywne oznacza to, że jak nie ma lokalnego ani ręcznego, wtedy automatycznie robi się zdalnie
     binary_io_t local_ctrl;		//sterowanie lokalne (z panelu) - musi być
     binary_io_t hand_ctrl;		//sterowanie ręczne (przyciskami bez cpu) - musi być
-<<<<<<< HEAD
-    uint8_t res[20];
-=======
     binary_io_t lock_ctrl;		//blokada sterowania (nie musi być)
     uint8_t res[16];
->>>>>>> cde5f3bd530c0347019060c8255fafc7521bedd2
 } io_cfg_t;
 
 typedef struct __attribute((packed)){
@@ -234,5 +231,18 @@ extern rs_cfg_t                    rs_cfg[];
 extern eth_cfg_t                   eth_cfg;
 
 extern const int32_t eorkonf_data_size;
+
+#define IO10_5_TYPE (1)
+#define TH_TYPE     (3)
+#define I12_TYPE    (4)
+#define I20_TYPE    (5)
+#define O10_TYPE    (6)
+#define ISC3_TYPE   (10)
+#define IO4_7_TYPE  (11)
+#define O8_TYPE     (12)
+#define CVM_TYPE    (13)
+#define GMR_IO_TYPE (14)
+
+int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text);
 
 #endif // EOR_CFG_H
