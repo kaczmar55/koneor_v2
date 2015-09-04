@@ -143,9 +143,15 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
     case WEATHER_AUTOM_FORM_ID:
         break;
     case CIRCUIT_FORM_ID:
-        //do pomyślenia
-        circuitCfgForm = (CCircuitCfgForm*)ui->stackedWidget->widget(prevIndex);
-        ok = circuitCfgForm->getCfg(&circuit_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
+        if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
+        {
+            circuitCfgForm = (CCircuitCfgForm*)ui->stackedWidget->widget(prevIndex);
+            ok = circuitCfgForm->getCfg(&circuit_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
+        }
+        else
+        {
+            ok = false;
+        }
         break;
     case IO_FORM_ID:
         break;
