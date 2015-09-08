@@ -244,5 +244,6 @@ extern const int32_t eorkonf_data_size;
 #define GMR_IO_TYPE (14)
 
 int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text);
+bool strToIp(uint8_t *ip, QString string);
 
 #endif // EOR_CFG_H

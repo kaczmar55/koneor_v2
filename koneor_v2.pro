@@ -23,11 +23,11 @@ SOURCES += main.cpp\
     CfgForms/ciocfgform.cpp \
     CfgForms/cuserscfgform.cpp \
     CfgForms/crs232cfgform.cpp \
-    CfgForms/cethrtnetcfgform.cpp \
     CfgForms/cmodbusslavecfgform.cpp \
     CfgForms/ccancfgform.cpp \
     CfgForms/ctgfmcfgform.cpp \
-    eor_cfg.cpp
+    eor_cfg.cpp \
+    CfgForms/cethernetcfgform.cpp
 
 HEADERS  += mainwindow.h \
     CfgForms/cgeneralcfgform.h \
@@ -40,10 +40,10 @@ HEADERS  += mainwindow.h \
     CfgForms/ciocfgform.h \
     CfgForms/cuserscfgform.h \
     CfgForms/crs232cfgform.h \
-    CfgForms/cethrtnetcfgform.h \
     CfgForms/cmodbusslavecfgform.h \
     CfgForms/ccancfgform.h \
-    CfgForms/ctgfmcfgform.h
+    CfgForms/ctgfmcfgform.h \
+    CfgForms/cethernetcfgform.h
 
 FORMS    += mainwindow.ui \
     CfgForms/cgeneralcfgform.ui \
@@ -55,7 +55,7 @@ FORMS    += mainwindow.ui \
     CfgForms/ciocfgform.ui \
     CfgForms/cuserscfgform.ui \
     CfgForms/crs232cfgform.ui \
-    CfgForms/cethrtnetcfgform.ui \
     CfgForms/cmodbusslavecfgform.ui \
     CfgForms/ccancfgform.ui \
-    CfgForms/ctgfmcfgform.ui
+    CfgForms/ctgfmcfgform.ui \
+    CfgForms/cethernetcfgform.ui

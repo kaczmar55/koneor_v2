@@ -84,3 +84,35 @@ int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text)
 
     return 0;
 }
+
+bool strToIp(uint8_t *ip, QString string)
+{
+    QStringList list;
+    int i;
+    int val;
+    bool err = false;
+    bool ok;
+
+    list = string.split(".");
+    if(list.size() < 4)
+    {
+        err = true;
+    }
+    else
+    {
+        for(i = 0; i < 4; i++)
+        {
+            val = list[i].toInt(&ok);
+            if((ok == false) || (val < 0) || (val > 255))
+            {
+                err = true;
+                break;
+            }
+            else
+            {
+                ip[i] = val;
+            }
+        }
+    }
+    return err;
+}
