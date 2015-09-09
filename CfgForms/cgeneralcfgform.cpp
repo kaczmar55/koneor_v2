@@ -4,7 +4,7 @@
 #include <QTextCodec>
 
 CGeneralCfgForm::CGeneralCfgForm(QWidget *parent) :
-    QWidget(parent),
+    CMyForm(parent),
     ui(new Ui::CGeneralCfgForm)
 {
     ui->setupUi(this);
@@ -15,9 +15,10 @@ CGeneralCfgForm::~CGeneralCfgForm()
     delete ui;
 }
 
-bool CGeneralCfgForm::getCfg(general_cfg_t *general_cfg)
+bool CGeneralCfgForm::getCfg(void* cfg_struct)
 {
     QTextCodec *codec = QTextCodec::codecForName("ISO 8859-2");
+    general_cfg_t *general_cfg = (general_cfg_t*)cfg_struct;
 
     memset(general_cfg, 0, sizeof(general_cfg_t));
     strcpy(general_cfg->name, codec->fromUnicode(ui->objName->text()).data());
@@ -37,9 +38,10 @@ bool CGeneralCfgForm::getCfg(general_cfg_t *general_cfg)
     return true;
 }
 
-bool CGeneralCfgForm::setCfg(general_cfg_t *general_cfg)
+bool CGeneralCfgForm::setCfg(void* cfg_struct)
 {
     QTextCodec *codec = QTextCodec::codecForName("ISO 8859-2");
+    general_cfg_t *general_cfg = (general_cfg_t*)cfg_struct;
 
     ui->objName->setText(codec->toUnicode(general_cfg->name));
     ui->objDescription->setPlainText(codec->toUnicode(general_cfg->description));

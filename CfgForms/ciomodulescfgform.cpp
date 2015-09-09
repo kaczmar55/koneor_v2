@@ -2,7 +2,7 @@
 #include "ui_ciomodulescfgform.h"
 
 CIoModulesCfgForm::CIoModulesCfgForm(QWidget *parent) :
-    QWidget(parent),
+    CMyForm(parent),
     ui(new Ui::CIoModulesCfgForm)
 {
     ui->setupUi(this);
@@ -11,4 +11,14 @@ CIoModulesCfgForm::CIoModulesCfgForm(QWidget *parent) :
 CIoModulesCfgForm::~CIoModulesCfgForm()
 {
     delete ui;
+}
+
+bool CIoModulesCfgForm::setCfg(void *cfg_struct)
+{
+    (void)cfg_struct;
+}
+
+bool CIoModulesCfgForm::getCfg(void *cfg_struct)
+{
+    (void)cfg_struct;
 }

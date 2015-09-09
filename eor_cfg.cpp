@@ -44,7 +44,8 @@ int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text)
     //      3 - CVM
 
     if(io_module_cfg[module_id - 1].type == 0)
-        return QMessageBox::critical(NULL, "Błąd", text + QString("\nNie ma modułu IO o podanym numerze."), "Ignoruj", "Popraw");
+        QMessageBox::critical(NULL, "Błąd", text + QString("\nNie ma modułu IO o podanym numerze."));
+        //return QMessageBox::critical(NULL, "Błąd", text + QString("\nNie ma modułu IO o podanym numerze."), "Ignoruj", "Popraw");
 
     switch(input_output_type)
     {
@@ -56,7 +57,8 @@ int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text)
                 (io_module_cfg[module_id - 1].type != IO4_7_TYPE) &&    /* io4/7  */
                 (io_module_cfg[module_id - 1].type != GMR_IO_TYPE))      /* gmr io */
         {
-            return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie ma wejść cyfrowych."), "Ignoruj", "Popraw");
+            QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie ma wejść cyfrowych."));
+            //return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie ma wejść cyfrowych."), "Ignoruj", "Popraw");
         }
         break;
     case 1:     //digital output
@@ -65,19 +67,22 @@ int checkIoMod(uint8_t module_id, uint8_t input_output_type, QString text)
                 (io_module_cfg[module_id - 1].type != IO4_7_TYPE) &&    /* io4/7  */
                 (io_module_cfg[module_id - 1].type != GMR_IO_TYPE))      /* gmr io */
         {
-            return QMessageBox::critical(NULL, "Błąd", text +  QString("\nModuł o podanym numerze nie ma wyjść cyfrowych."), "Ignoruj", "Popraw");
+            QMessageBox::critical(NULL, "Błąd", text +  QString("\nModuł o podanym numerze nie ma wyjść cyfrowych."));
+            //return QMessageBox::critical(NULL, "Błąd", text +  QString("\nModuł o podanym numerze nie ma wyjść cyfrowych."), "Ignoruj", "Popraw");
         }
         break;
     case 2:     //TH
         if(io_module_cfg[module_id - 1].type != TH_TYPE)
         {
-            return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem TH."), "Ignoruj", "Popraw");
+            QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem TH."));
+            //return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem TH."), "Ignoruj", "Popraw");
         }
         break;
     case 3:     //CVM
         if(io_module_cfg[module_id - 1].type != CVM_TYPE)         /* CVM */
         {
-            return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem CVM."), "Ignoruj", "Popraw");
+            QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem CVM."));
+            //return QMessageBox::critical(NULL, "Błąd", text + QString("\nModuł o podanym numerze nie jest modułem CVM."), "Ignoruj", "Popraw");
         }
         break;
     }

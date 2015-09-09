@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     CfgForms/ccancfgform.cpp \
     CfgForms/ctgfmcfgform.cpp \
     eor_cfg.cpp \
-    CfgForms/cethernetcfgform.cpp
+    CfgForms/cethernetcfgform.cpp \
+    CfgForms/cmyform.cpp
 
 HEADERS  += mainwindow.h \
     CfgForms/cgeneralcfgform.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     CfgForms/cmodbusslavecfgform.h \
     CfgForms/ccancfgform.h \
     CfgForms/ctgfmcfgform.h \
-    CfgForms/cethernetcfgform.h
+    CfgForms/cethernetcfgform.h \
+    CfgForms/cmyform.h
 
 FORMS    += mainwindow.ui \
     CfgForms/cgeneralcfgform.ui \

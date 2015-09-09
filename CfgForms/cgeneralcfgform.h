@@ -1,14 +1,14 @@
 #ifndef CGENERALCFGFORM_H
 #define CGENERALCFGFORM_H
 
-#include <QWidget>
+#include "cmyform.h"
 #include "eor_cfg.hpp"
 
 namespace Ui {
 class CGeneralCfgForm;
 }
 
-class CGeneralCfgForm : public QWidget
+class CGeneralCfgForm : public CMyForm
 {
     Q_OBJECT
 
@@ -16,8 +16,8 @@ public:
     explicit CGeneralCfgForm(QWidget *parent = 0);
     ~CGeneralCfgForm();
 
-    bool getCfg(general_cfg_t *general_cfg);
-    bool setCfg(general_cfg_t *general_cfg);
+    bool getCfg(void* cfg_struct);
+    bool setCfg(void* cfg_struct);
 
 private:
     Ui::CGeneralCfgForm *ui;

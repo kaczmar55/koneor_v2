@@ -3,7 +3,7 @@
 #include <QTextCodec>
 
 CCircuitCfgForm::CCircuitCfgForm(QWidget *parent) :
-    QWidget(parent),
+    CMyForm(parent),
     ui(new Ui::CCircuitCfgForm)
 {
     ui->setupUi(this);
@@ -14,8 +14,10 @@ CCircuitCfgForm::~CCircuitCfgForm()
     delete ui;
 }
 
-bool CCircuitCfgForm::setCfg(circuit_cfg_t *circuit_cfg)
+bool CCircuitCfgForm::setCfg(void *cfg_struct)
 {
+    circuit_cfg_t *circuit_cfg = (circuit_cfg_t*)cfg_struct;
+
     QTextCodec *codec = QTextCodec::codecForName("ISO 8859-2");
 
     ui->cirNameEdit->setText(codec->toUnicode(circuit_cfg->name));
@@ -90,8 +92,9 @@ bool CCircuitCfgForm::setCfg(circuit_cfg_t *circuit_cfg)
     return true;
 }
 
-bool CCircuitCfgForm::getCfg(circuit_cfg_t *circuit_cfg)
+bool CCircuitCfgForm::getCfg(void *cfg_struct)
 {
+    circuit_cfg_t *circuit_cfg = (circuit_cfg_t*)cfg_struct;
     int i;
     QTextCodec *codec = QTextCodec::codecForName("ISO 8859-2");
 

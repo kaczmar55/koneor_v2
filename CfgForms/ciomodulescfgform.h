@@ -1,19 +1,23 @@
 #ifndef CIOMODULESCFGFORM_H
 #define CIOMODULESCFGFORM_H
 
-#include <QWidget>
+#include "cmyform.h"
+#include "eor_cfg.hpp"
 
 namespace Ui {
 class CIoModulesCfgForm;
 }
 
-class CIoModulesCfgForm : public QWidget
+class CIoModulesCfgForm : public CMyForm
 {
     Q_OBJECT
 
 public:
     explicit CIoModulesCfgForm(QWidget *parent = 0);
     ~CIoModulesCfgForm();
+
+    bool getCfg(void* cfg_struct);
+    bool setCfg(void* cfg_struct);
 
 private:
     Ui::CIoModulesCfgForm *ui;

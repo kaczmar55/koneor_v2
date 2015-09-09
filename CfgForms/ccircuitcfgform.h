@@ -1,14 +1,14 @@
 #ifndef CCIRCUITCFGFORM_H
 #define CCIRCUITCFGFORM_H
 
-#include <QWidget>
 #include "eor_cfg.hpp"
+#include "cmyform.h"
 
 namespace Ui {
 class CCircuitCfgForm;
 }
 
-class CCircuitCfgForm : public QWidget
+class CCircuitCfgForm : public CMyForm
 {
     Q_OBJECT
 
@@ -16,8 +16,8 @@ public:
     explicit CCircuitCfgForm(QWidget *parent = 0);
     ~CCircuitCfgForm();
 
-    bool setCfg(circuit_cfg_t *circuit_cfg);
-    bool getCfg(circuit_cfg_t *circuit_cfg);
+    bool setCfg(void* cfg_struct);
+    bool getCfg(void* cfg_struct);
 
 private:
     Ui::CCircuitCfgForm *ui;

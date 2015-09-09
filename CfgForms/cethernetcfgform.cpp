@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 CEthernetCfgForm::CEthernetCfgForm(QWidget *parent) :
-    QWidget(parent),
+    CMyForm(parent),
     ui(new Ui::CEthernetCfgForm)
 {
     ui->setupUi(this);
@@ -15,11 +15,12 @@ CEthernetCfgForm::~CEthernetCfgForm()
     delete ui;
 }
 
-bool CEthernetCfgForm::getCfg(eth_cfg_t *eth_cfg)
+bool CEthernetCfgForm::getCfg(void* cfg_struct)
 {
     bool ip_err = false;
     bool mask_err = false;
     bool gateway_err = false;
+    eth_cfg_t *eth_cfg = (eth_cfg_t*)cfg_struct;
 
     memset(eth_cfg, 0, sizeof(eth_cfg_t));
     ip_err = strToIp(eth_cfg->ip, ui->ipAddrEdit->text());
@@ -39,8 +40,9 @@ bool CEthernetCfgForm::getCfg(eth_cfg_t *eth_cfg)
     return !(ip_err || mask_err || gateway_err);
 }
 
-bool CEthernetCfgForm::setCfg(eth_cfg_t *eth_cfg)
+bool CEthernetCfgForm::setCfg(void* cfg_struct)
 {
+    eth_cfg_t *eth_cfg = (eth_cfg_t*)cfg_struct;
     ui->ipAddrEdit->setText(QString("%1.%2.%3.%4").arg(eth_cfg->ip[0]).arg(eth_cfg->ip[1]).arg(eth_cfg->ip[2]).arg(eth_cfg->ip[3]));
     ui->maskEdit->setText(QString("%1.%2.%3.%4").arg(eth_cfg->mask[0]).arg(eth_cfg->mask[1]).arg(eth_cfg->mask[2]).arg(eth_cfg->mask[3]));
     ui->gatewayEdit->setText(QString("%1.%2.%3.%4").arg(eth_cfg->gateway[0]).arg(eth_cfg->gateway[1]).arg(eth_cfg->gateway[2]).arg(eth_cfg->gateway[3]));
