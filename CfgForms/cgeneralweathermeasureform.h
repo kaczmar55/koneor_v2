@@ -26,6 +26,9 @@ private slots:
 
 private:
     Ui::CGeneralWeatherMeasureForm *ui;
+
+    analog_sensor_cfg_t generalTemperatureSensor;
+    binary_sensor_cfg_t generalFallSensor;
 };
 
 #endif // CGENERALWEATHERMEASUREFORM_H

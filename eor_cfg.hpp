@@ -31,13 +31,15 @@ typedef struct __attribute((packed)){
 typedef struct __attribute((packed)){
     uint8_t type;
     uint8_t addr;
-    uint8_t res[6];
+    uint8_t com_no;
+    uint8_t res[5];
 } jsn2_module_cfg_t;
 
 typedef struct __attribute((packed)){
     uint8_t type;
     char id[15];
-    uint8_t res[8];
+    uint8_t com_no;
+    uint8_t res[7];
 } meter_cfg_t;
 
 typedef struct __attribute((packed)){
@@ -69,17 +71,24 @@ typedef struct __attribute((packed)){
 
 typedef struct __attribute((packed)){
     uint8_t type;			//typy: io (z modułu TH), modbus (np z jsn-2), can ( z innego urządzenia)
-    uint8_t addr;			//w can i modbus - adres, w io - id modułu
-    uint16_t reg_no;		//numer kanału w TH, rejestru w modbus lub serii can
-    uint8_t res[4];
+//    uint8_t addr;			//w can i modbus - adres, w io - id modułu
+//    uint16_t reg_no;		//numer kanału w TH, rejestru w modbus lub serii can
+//    uint8_t res[4];
+    uint8_t addr[3];
+    uint16_t reg_no[3];
+    uint8_t res[6];
 } analog_sensor_cfg_t;
 
 typedef struct __attribute((packed)){
     uint8_t type;			//typy: io, modbus, can
-    uint8_t addr;			//w can i modbus - adres, w io - id modułu
-    uint16_t reg_no;		//w io nie wykorzystane, nr rejestru w modbus lub nr serii can
-    uint8_t bit_no;			//numer bitu w rejestrze lub numer wejścia w io
-    uint8_t res[3];
+//    uint8_t addr;			//w can i modbus - adres, w io - id modułu
+//    uint16_t reg_no;		//w io nie wykorzystane, nr rejestru w modbus lub nr serii can
+//    uint8_t bit_no;			//numer bitu w rejestrze lub numer wejścia w io
+//    uint8_t res[3];
+    uint8_t addr[3];
+    uint16_t reg_no[3];
+    uint8_t bit_no[3];
+    uint8_t res[7];
 } binary_sensor_cfg_t;
 
 typedef struct __attribute((packed)){
@@ -156,7 +165,7 @@ typedef struct __attribute((packed)){
 
 //Konfiguracja dla dodatkowych wejść sygnalizacyjnych (może w konfiguracji logika wejścia?):
 typedef struct __attribute((packed)){
-    binary_io_t dor;		//kontrola drzwi szafy: obecność, nr modułu IO + numer wejścia
+    binary_io_t door;		//kontrola drzwi szafy: obecność, nr modułu IO + numer wejścia
     binary_io_t break_in;		//kontrola skrzyni transformatora: obecność, nr modułu IO + numer wejścia
     binary_io_t surge_protect;	//zadziałanie zabezpieczenia antyprzepięciowego: obecność, nr modułu IO + numer wejścia
     binary_io_t remote_ctrl;	//jak bedzie nieaktywne oznacza to, że jak nie ma lokalnego ani ręcznego, wtedy automatycznie robi się zdalnie

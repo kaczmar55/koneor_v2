@@ -17,12 +17,12 @@ bool CIOCfgForm::setCfg(void *cfg_struct)
 {
     io_cfg_t *io_cfg = (io_cfg_t*)cfg_struct;
 
-    if(io_cfg->dor.active == 0)
+    if(io_cfg->door.active == 0)
         ui->dorChk->setChecked(false);
     else
         ui->dorChk->setChecked(true);
-    ui->dorIOMod->setValue(io_cfg->dor.module_id);
-    ui->dorBitNo->setValue(io_cfg->dor.bit_no);
+    ui->dorIOMod->setValue(io_cfg->door.module_id);
+    ui->dorBitNo->setValue(io_cfg->door.bit_no);
 
     if(io_cfg->break_in.active == 0)
         ui->breakInChk->setChecked(false);
@@ -62,11 +62,11 @@ bool CIOCfgForm::getCfg(void *cfg_struct)
 
     memset(io_cfg, 0, sizeof(io_cfg_t));
 
-    io_cfg->dor.active = ui->dorChk->isChecked();
-    io_cfg->dor.module_id = ui->dorIOMod->value();
-    io_cfg->dor.bit_no = ui->dorBitNo->value();
-    if(io_cfg->dor.active != 0)
-        checkIoMod(io_cfg->dor.module_id, 0, "Otwarcie drzwi szafy");
+    io_cfg->door.active = ui->dorChk->isChecked();
+    io_cfg->door.module_id = ui->dorIOMod->value();
+    io_cfg->door.bit_no = ui->dorBitNo->value();
+    if(io_cfg->door.active != 0)
+        checkIoMod(io_cfg->door.module_id, 0, "Otwarcie drzwi szafy");
 
     io_cfg->break_in.active = ui->breakInChk->isChecked();
     io_cfg->break_in.module_id = ui->breakInIOMod->value();

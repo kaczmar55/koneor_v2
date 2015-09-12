@@ -17,14 +17,16 @@ bool CGeneralWeatherMeasureForm::setCfg(void *cfg_struct)
 {
     general_weather_measure_cfg_t *general_weather_measure_cfg = (general_weather_measure_cfg_t*)cfg_struct;
 
-    ui->generalTempSensorTypeCmb->setCurrentIndex(general_weather_measure_cfg->temperature_sensor.type);
-    ui->generalTempSensorAddr->setValue(general_weather_measure_cfg->temperature_sensor.addr);
-    ui->generalTempSensorRegNo->setValue(general_weather_measure_cfg->temperature_sensor.reg_no);
+    generalTemperatureSensor = general_weather_measure_cfg->temperature_sensor;
+    ui->generalTempSensorTypeCmb->setCurrentIndex(generalTemperatureSensor.type);
+    ui->generalTempSensorAddr->setValue(generalTemperatureSensor.addr[generalTemperatureSensor.type]);
+    ui->generalTempSensorRegNo->setValue(generalTemperatureSensor.reg_no[generalTemperatureSensor.type]);
 
-    ui->generalFallSensorTypeCmb->setCurrentIndex(general_weather_measure_cfg->snow_fall_sensor.type);
-    ui->generalFallSensorAddr->setValue(general_weather_measure_cfg->snow_fall_sensor.addr);
-    ui->generalFallSensorBitNo->setValue(general_weather_measure_cfg->snow_fall_sensor.bit_no);
-    ui->generalFallSensorRegNo->setValue(general_weather_measure_cfg->snow_fall_sensor.reg_no);
+    generalFallSensor = general_weather_measure_cfg->snow_fall_sensor;
+    ui->generalFallSensorTypeCmb->setCurrentIndex(generalFallSensor.type);
+    ui->generalFallSensorAddr->setValue(generalFallSensor.addr[generalFallSensor.type]);
+    ui->generalFallSensorBitNo->setValue(generalFallSensor.bit_no[generalFallSensor.type]);
+    ui->generalFallSensorRegNo->setValue(generalFallSensor.reg_no[generalFallSensor.type]);
 
     if(general_weather_measure_cfg->sensor_pwr_ctrl.active != 0)
         ui->sensorPwrCtrlChk->setChecked(true);
@@ -46,9 +48,11 @@ bool CGeneralWeatherMeasureForm::getCfg(void *cfg_struct)
     uint8_t bit_no;
 
     memset(general_weather_measure_cfg, 0, sizeof(general_weather_measure_cfg_t));
-    general_weather_measure_cfg->temperature_sensor.type = ui->generalTempSensorTypeCmb->currentIndex();
-    general_weather_measure_cfg->temperature_sensor.addr = addr;
-    general_weather_measure_cfg->temperature_sensor.reg_no = reg_no;
+    generalTemperatureSensor.type = ui->generalTempSensorTypeCmb->currentIndex();
+    generalTemperatureSensor.addr[generalTemperatureSensor.type] = addr;
+    generalTemperatureSensor.reg_no[generalTemperatureSensor.type] = reg_no;
+
+    general_weather_measure_cfg->temperature_sensor = generalTemperatureSensor;
 
     switch(general_weather_measure_cfg->temperature_sensor.type)
     {
@@ -62,12 +66,12 @@ bool CGeneralWeatherMeasureForm::getCfg(void *cfg_struct)
         break;
     }
 
-    general_weather_measure_cfg->snow_fall_sensor.type = ui->generalFallSensorTypeCmb->currentIndex();
+    generalFallSensor.type = ui->generalFallSensorTypeCmb->currentIndex();
     addr = ui->generalFallSensorAddr->value();
     reg_no = ui->generalFallSensorRegNo->value();
     bit_no = ui->generalFallSensorBitNo->value();
 
-    switch(general_weather_measure_cfg->snow_fall_sensor.type)
+    switch(generalFallSensor.type)
     {
     case 0:     //io
         if(checkIoMod(addr, 0, "Ogólne pomiary pogody - czujnik opadu") == 1)
@@ -78,9 +82,11 @@ bool CGeneralWeatherMeasureForm::getCfg(void *cfg_struct)
     case 2:     //modbus
         break;
     }
-    general_weather_measure_cfg->snow_fall_sensor.addr = addr;
-    general_weather_measure_cfg->snow_fall_sensor.reg_no = reg_no;
-    general_weather_measure_cfg->snow_fall_sensor.bit_no = bit_no;
+    generalFallSensor.addr[generalFallSensor.type] = addr;
+    generalFallSensor.reg_no[generalFallSensor.type] = reg_no;
+    generalFallSensor.bit_no[generalFallSensor.type] = bit_no;
+
+    general_weather_measure_cfg->snow_fall_sensor = generalFallSensor;
 
     if(ui->sensorPwrCtrlChk->isChecked())
         general_weather_measure_cfg->sensor_pwr_ctrl.active = 1;
@@ -99,6 +105,13 @@ bool CGeneralWeatherMeasureForm::getCfg(void *cfg_struct)
 
 void CGeneralWeatherMeasureForm::on_generalTempSensorTypeCmb_currentIndexChanged(int index)
 {
+    generalTemperatureSensor.addr[generalTemperatureSensor.type] = ui->generalTempSensorAddr->value();
+    generalTemperatureSensor.reg_no[generalTemperatureSensor.type] = ui->generalTempSensorRegNo->value();
+    generalTemperatureSensor.type = index;
+
+    ui->generalTempSensorAddr->setValue(generalTemperatureSensor.addr[generalTemperatureSensor.type]);
+    ui->generalTempSensorRegNo->setValue(generalTemperatureSensor.reg_no[generalTemperatureSensor.type]);
+
     switch(index)
     {
     case 0:     //TH
@@ -130,6 +143,15 @@ void CGeneralWeatherMeasureForm::on_generalTempSensorTypeCmb_currentIndexChanged
 
 void CGeneralWeatherMeasureForm::on_generalFallSensorTypeCmb_currentIndexChanged(int index)
 {
+    generalFallSensor.addr[generalFallSensor.type] = ui->generalFallSensorAddr->value();
+    generalFallSensor.reg_no[generalFallSensor.type] = ui->generalFallSensorRegNo->value();
+    generalFallSensor.bit_no[generalFallSensor.type] = ui->generalFallSensorBitNo->value();
+    generalFallSensor.type = index;
+
+    ui->generalFallSensorAddr->setValue(generalFallSensor.addr[generalFallSensor.type]);
+    ui->generalFallSensorRegNo->setValue(generalFallSensor.reg_no[generalFallSensor.type]);
+    ui->generalFallSensorBitNo->setValue(generalFallSensor.bit_no[generalFallSensor.type]);
+
     switch(index)
     {
     case 0:     //IO

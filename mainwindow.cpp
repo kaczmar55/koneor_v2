@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     doNotChange = false;
 
+    ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     ui->actionOtw_rz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
     ui->actionZapisz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
     ui->actionZako_cz->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton));
@@ -129,6 +130,7 @@ QTreeWidgetItem *MainWindow::addForm(QString name, QWidget* widget, int id1, int
 void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
     CMyForm *myForm;
+    CIoModulesCfgForm *ioModulesCfgForm;
     int newIndex = current->data(0, Qt::UserRole).toInt();
     int prevIndex;
     bool ok = true;
@@ -153,6 +155,10 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                 ok = myForm->getCfg(&general_cfg);
                 break;
             case IO_MODULES_FORM_ID:
+                ok = myForm->getCfg(io_module_cfg);
+                ioModulesCfgForm = (CIoModulesCfgForm*)myForm;
+                ioModulesCfgForm->getCfgMeter(meter_cfg);
+                ioModulesCfgForm->getCfgJsn2(jsn2_module_cfg);
                 break;
             case GENERAL_WEATHER_MEASURE_FORM_ID:
                 ok = myForm->getCfg(&general_weather_measure_cfg);
@@ -197,6 +203,10 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                     myForm->setCfg(&general_cfg);
                     break;
                 case IO_MODULES_FORM_ID:
+                    myForm->setCfg(io_module_cfg);
+                    ioModulesCfgForm = (CIoModulesCfgForm*)myForm;
+                    ioModulesCfgForm->setCfgMeter(meter_cfg);
+                    ioModulesCfgForm->setCfgJsn2(jsn2_module_cfg);
                     break;
                 case GENERAL_WEATHER_MEASURE_FORM_ID:
                     myForm->setCfg(&general_weather_measure_cfg);
