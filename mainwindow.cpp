@@ -177,11 +177,13 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                 ok = myForm->getCfg(&io_cfg);
                 break;
             case RS232_FORM_ID:
+                ok = myForm->getCfg(rs_cfg);
                 break;
             case ETHERNET_FORM_ID:
                 ok = myForm->getCfg(&eth_cfg);
                 break;
             case MODBUS_SLAVE_FORM_ID:
+                ok = myForm->getCfg(&modbus_slave_cfg);
                 break;
             case CAN_FORM_ID:
                 break;
@@ -222,11 +224,13 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                     myForm->setCfg(&io_cfg);
                     break;
                 case RS232_FORM_ID:
+                    myForm->setCfg(rs_cfg);
                     break;
                 case ETHERNET_FORM_ID:
                     myForm->setCfg(&eth_cfg);
                     break;
                 case MODBUS_SLAVE_FORM_ID:
+                    myForm->setCfg(&modbus_slave_cfg);
                     break;
                 case CAN_FORM_ID:
                     break;

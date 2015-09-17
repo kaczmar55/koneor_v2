@@ -19,6 +19,9 @@ public:
     bool getCfg(void* cfg_struct);
     bool setCfg(void* cfg_struct);
 
+private slots:
+    void on_modbusSlaveMediumCmb_currentIndexChanged(int index);
+
 private:
     Ui::CModbusSlaveCfgForm *ui;
 };
