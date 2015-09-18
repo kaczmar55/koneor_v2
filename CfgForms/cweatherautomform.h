@@ -19,6 +19,13 @@ public:
     bool getCfg(void* cfg_struct);
     bool setCfg(void* cfg_struct);
 
+private slots:
+    void on_sensorColdTypeCmb_currentIndexChanged(int index);
+
+    void on_sensorHotTypeCmb_currentIndexChanged(int index);
+
+    void on_blowSensTypeCmb_currentIndexChanged(int index);
+
 private:
     Ui::CWeatherAutomForm *ui;
 };

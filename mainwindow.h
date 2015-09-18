@@ -22,12 +22,16 @@ private slots:
     void on_cirCountChanged(int new_circuit_count);
     void on_weatherAutomCountChanged(int new_weather_autom_count);
 
+    void on_actionOtw_rz_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTreeWidgetItem* addForm(QString name, QWidget* widget, int id1, int id2, QTreeWidgetItem *parent);
 
     QTreeWidgetItem *weatherAutomItem, *circuitItem;
     bool doNotChange;
+
+    void setCfgStructs(char* buf);
 };
 
 #endif // MAINWINDOW_H

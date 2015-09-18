@@ -16,6 +16,9 @@
 #include "CfgForms/cuserscfgform.h"
 #include "eor_cfg.hpp"
 #include <QDebug>
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
 
 #define GENERAL_CFG_FORM_ID     (0)
 #define IO_MODULES_FORM_ID      (1)
@@ -166,6 +169,10 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
             case TEMPERATURES_FORM_ID:
                 break;
             case WEATHER_AUTOM_FORM_ID:
+                if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
+                    ok = myForm->getCfg(&weather_autom_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
+                else
+                    return;
                 break;
             case CIRCUIT_FORM_ID:
                 if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
@@ -216,6 +223,7 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                 case TEMPERATURES_FORM_ID:
                     break;
                 case WEATHER_AUTOM_FORM_ID:
+                    myForm->setCfg(&weather_autom_cfg[current->data(0, Qt::UserRole + 1).toInt()]);
                     break;
                 case CIRCUIT_FORM_ID:
                     myForm->setCfg(&circuit_cfg[current->data(0, Qt::UserRole + 1).toInt()]);
@@ -286,4 +294,135 @@ void MainWindow::on_weatherAutomCountChanged(int new_weather_autom_count)
                 weatherAutomItem->child(i)->setHidden(true);
         }
     }
+}
+
+void MainWindow::on_actionOtw_rz_triggered()
+{
+    QString fileNameToOpen;
+    QFile file;
+    QByteArray fileBuf;
+    uint16_t crc16;
+    CGeneralCfgForm *myForm;
+
+    fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", "koneor.bin", "koneor.bin");
+
+    if(fileNameToOpen == "")
+    {
+    //anuluj
+    }
+    else
+    {
+        file.setFileName(fileNameToOpen);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            fileBuf = file.readAll();
+            file.close();
+
+            if(fileBuf.size() < (eorkonf_data_size + sizeof(eorkonf_hdr_t)))
+            {
+                QMessageBox::critical(this, "Błąd", QString("Plik jest zbyt mały. Dane nie zostały wczytane\n") +
+                                      QString("Wczytano: ") + QString::number(fileBuf.size()) +
+                                      QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                      QString(" B"));
+                return;
+            }
+            else if(fileBuf.size() > (eorkonf_data_size + sizeof(eorkonf_hdr_t)))
+            {
+                QMessageBox::critical(this, "Błąd", QString("Plik jest za duży. Wczytane dane mogą być błędne\n") +
+                                      QString("Wczytano: ") + QString::number(fileBuf.size()) +
+                                      QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                      QString(" B"));
+            }
+
+            setCfgStructs(fileBuf.data());
+            crc16 = LiczCrc16Buf((uint8_t*)&fileBuf.data()[sizeof(eorkonf_hdr_t)], eorkonf_data_size);
+            if(eorkonf_hdr.crc16 != crc16)
+            {
+                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowe crc pliku. Wczytane dane mogą być błędne\n") +
+                                      QString("Obliczone: 0x") + QString::number(crc16, 16) +
+                                      QString("\nOczekiwano: 0x") + QString::number(eorkonf_hdr.crc16, 16));
+            }
+
+            if(eorkonf_hdr.file_len != eorkonf_data_size)
+            {
+                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowy rozmiar danych w nagłówku\n") +
+                                      QString("Odczytane: ") + QString::number(eorkonf_hdr.file_len) +
+                                      QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size) +
+                                      QString(" B"));
+            }
+
+            if(strncmp(eorkonf_hdr.id_txt, "EOR_KON", 7) != 0)
+            {
+                QMessageBox::critical(this, "Błąd", "Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
+            }
+
+//            ui->fileSize->setText(QString::number(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t)));
+//            ui->fileVer->setText(QString("%1.%2").arg(eorkonf_hdr.ver).arg(eorkonf_hdr.rev));
+            myForm = (CMyForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
+            myForm->setCfg(&general_cfg);
+            myForm->setFileVer(eorkonf_hdr.ver, eorkonf_hdr.rev);
+            myForm->setFileSize(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t));
+            ui->menuTreeWidget->setCurrentItem(ui->menuTreeWidget->topLevelItem(0));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Błąd", "Wystąpił błąd podczas otwierania pliku do odczytu");
+        }
+    }
+}
+
+void MainWindow::setCfgStructs(char* buf)
+{
+    int index = 0;
+
+    memcpy(&eorkonf_hdr, &buf[index], sizeof(eorkonf_hdr_t));
+    index += sizeof(eorkonf_hdr_t);
+
+    memcpy(&general_cfg, &buf[index], sizeof(general_cfg_t));
+    index += sizeof(general_cfg_t);
+
+    memcpy(user_cfg, &buf[index], sizeof(user_cfg_t) * USER_COUNT);
+    index += sizeof(user_cfg_t) * USER_COUNT;
+
+    memcpy(io_module_cfg, &buf[index], sizeof(io_module_cfg_t) * IO_MODULE_COUNT);
+    index += sizeof(io_module_cfg_t) * IO_MODULE_COUNT;
+
+    memcpy(jsn2_module_cfg, &buf[index], sizeof(jsn2_module_cfg_t) * JSN2_MODULE_COUNT);
+    index += sizeof(jsn2_module_cfg_t) * JSN2_MODULE_COUNT;
+
+    memcpy(meter_cfg, &buf[index], sizeof(meter_cfg_t) * METER_COUNT);
+    index += sizeof(meter_cfg_t) * METER_COUNT;
+
+    memcpy(&general_weather_measure_cfg, &buf[index], sizeof(general_weather_measure_cfg_t));
+    index += sizeof(general_weather_measure_cfg_t);
+
+    memcpy(weather_autom_cfg, &buf[index], sizeof(weather_autom_cfg_t) * WEATHER_AUTOM_COUNT);
+    index += sizeof(weather_autom_cfg_t) * WEATHER_AUTOM_COUNT;
+
+    memcpy(&temperatures_cfg, &buf[index], sizeof(temperatures_cfg_t));
+    index += sizeof(temperatures_cfg_t);
+
+    memcpy(circuit_cfg, &buf[index], sizeof(circuit_cfg_t) * CIRCUIT_COUNT);
+    index += sizeof(circuit_cfg_t) * CIRCUIT_COUNT;
+
+    memcpy(&group_cfg, &buf[index], sizeof(group_cfg_t));
+    index += sizeof(group_cfg_t);
+
+    memcpy(&io_cfg, &buf[index], sizeof(io_cfg_t));
+    index += sizeof(io_cfg_t);
+
+    memcpy(&can_cfg, &buf[index], sizeof(can_cfg_t));
+    index += sizeof(can_cfg_t);
+
+    memcpy(&modbus_slave_cfg, &buf[index], sizeof(modbus_slave_cfg_t));
+    index += sizeof(modbus_slave_cfg_t);
+
+    memcpy(&tgfm_cfg, &buf[index], sizeof(tgfm_cfg_t));
+    index += sizeof(tgfm_cfg_t);
+
+    memcpy(rs_cfg, &buf[index], sizeof(rs_cfg_t) * RS_COUNT);
+    index += sizeof(rs_cfg_t) * RS_COUNT;
+
+    memcpy(&eth_cfg, &buf[index], sizeof(eth_cfg_t));
+    index += sizeof(eth_cfg_t);
 }
