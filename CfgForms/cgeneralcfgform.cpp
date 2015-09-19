@@ -74,3 +74,14 @@ void CGeneralCfgForm::on_weatherAutomCount_valueChanged(int arg1)
 {
     emit weatherAutomCountChange(arg1);
 }
+
+void CGeneralCfgForm::setFileVer(uint8_t ver, uint8_t rev)
+{
+    ui->fileVer->setText(QString("%1.%2").arg(ver).arg(rev));
+}
+
+
+void CGeneralCfgForm::setFileSize(uint32_t len)
+{
+    ui->fileSize->setText(QString::number(len));
+}

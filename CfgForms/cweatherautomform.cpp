@@ -6,6 +6,8 @@ CWeatherAutomForm::CWeatherAutomForm(QWidget *parent) :
     ui(new Ui::CWeatherAutomForm)
 {
     ui->setupUi(this);
+    ui->blowSensorRegNoLbl->setHidden(true);
+    ui->blowSensorRegNo->setHidden(true);
 }
 
 CWeatherAutomForm::~CWeatherAutomForm()
@@ -24,6 +26,8 @@ bool CWeatherAutomForm::setCfg(void *cfg_struct)
     ui->sensorColdRegNo->setValue(weather_autom_cfg->t_cold.reg_no[type]);
 
     type = weather_autom_cfg->t_hot.type;
+    if(type == 2)
+        type = 1;
     ui->sensorHotTypeCmb->setCurrentIndex(type);
     ui->sensorHotAddr->setValue(weather_autom_cfg->t_hot.addr[type]);
     ui->sensorHotRegNo->setValue(weather_autom_cfg->t_hot.reg_no[type]);
@@ -59,6 +63,8 @@ bool CWeatherAutomForm::getCfg(void *cfg_struct)
     weather_autom_cfg->t_cold.reg_no[type] = ui->sensorColdRegNo->value();
 
     type = ui->sensorHotTypeCmb->currentIndex();
+    if(type == 1)
+        type = 2;
     weather_autom_cfg->t_hot.type = type;
     weather_autom_cfg->t_hot.addr[type] = ui->sensorHotAddr->value();
     weather_autom_cfg->t_hot.reg_no[type] = ui->sensorHotRegNo->value();

@@ -22,22 +22,41 @@ bool CEthernetCfgForm::getCfg(void* cfg_struct)
     bool gateway_err = false;
     eth_cfg_t *eth_cfg = (eth_cfg_t*)cfg_struct;
 
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Critical, "", "");
+    msgBox->setWindowFlags(msgBox->windowFlags() | Qt::WindowStaysOnTopHint);
+    msgBox->setWindowTitle("Błąd");
+
     memset(eth_cfg, 0, sizeof(eth_cfg_t));
     ip_err = strToIp(eth_cfg->ip, ui->ipAddrEdit->text());
     if(ip_err)
     {
-      ip_err = QMessageBox::critical(this, "Błąd", "Błąd w adresie IP", "Ignoruj", "Popraw");
+        msgBox->setText("Błąd w adresie IP");
+        msgBox->exec();
+        //QMessageBox::critical(this, "Błąd", "Błąd w adresie IP");
+      //ip_err = QMessageBox::critical(this, "Błąd", "Błąd w adresie IP", "Ignoruj", "Popraw");
     }
 
     mask_err = strToIp(eth_cfg->mask, ui->maskEdit->text());
     if(mask_err)
-        mask_err = QMessageBox::critical(this, "Błąd", "Błąd w masce podsieci", "Ignoruj", "Popraw");
+    {
+        msgBox->setText("Błąd w masce podsieci");
+        msgBox->exec();
+        //QMessageBox::critical(this, "Błąd", "Błąd w masce podsieci");
+        //mask_err = QMessageBox::critical(this, "Błąd", "Błąd w masce podsieci", "Ignoruj", "Popraw");
+    }
 
     gateway_err = strToIp(eth_cfg->gateway, ui->gatewayEdit->text());
     if(gateway_err)
-        gateway_err = QMessageBox::critical(this, "Błąd", "Błąd w adresie IP bramy domyślnej", "Ignoruj", "Popraw");
+    {
+        msgBox->setText("Błąd w adresie IP bramy domyślnej");
+        msgBox->exec();
+        //QMessageBox::critical(this, "Błąd", "Błąd w adresie IP bramy domyślnej");
+        //gateway_err = QMessageBox::critical(this, "Błąd", "Błąd w adresie IP bramy domyślnej", "Ignoruj", "Popraw");
+    }
 
-    return !(ip_err || mask_err || gateway_err);
+    delete msgBox;
+    //return !(ip_err || mask_err || gateway_err);
+    return true;
 }
 
 bool CEthernetCfgForm::setCfg(void* cfg_struct)

@@ -18,6 +18,8 @@ public:
 
     bool getCfg(void* cfg_struct);
     bool setCfg(void* cfg_struct);
+    void setFileVer(uint8_t ver, uint8_t rev);
+    void setFileSize(uint32_t len);
 
 private:
     Ui::CGeneralCfgForm *ui;

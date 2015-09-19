@@ -15,6 +15,7 @@
 #include "CfgForms/ctgfmcfgform.h"
 #include "CfgForms/cuserscfgform.h"
 #include "eor_cfg.hpp"
+#include "crc16.hpp"
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
@@ -149,56 +150,18 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
     }
     else
     {
-        myForm = (CMyForm*)ui->stackedWidget->widget(prevIndex);
-        if(myForm)
+        switch(prevIndex)
         {
-            switch(prevIndex)
-            {
-            case GENERAL_CFG_FORM_ID:
-                ok = myForm->getCfg(&general_cfg);
-                break;
-            case IO_MODULES_FORM_ID:
-                ok = myForm->getCfg(io_module_cfg);
-                ioModulesCfgForm = (CIoModulesCfgForm*)myForm;
-                ioModulesCfgForm->getCfgMeter(meter_cfg);
-                ioModulesCfgForm->getCfgJsn2(jsn2_module_cfg);
-                break;
-            case GENERAL_WEATHER_MEASURE_FORM_ID:
-                ok = myForm->getCfg(&general_weather_measure_cfg);
-                break;
-            case TEMPERATURES_FORM_ID:
-                break;
-            case WEATHER_AUTOM_FORM_ID:
-                if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
-                    ok = myForm->getCfg(&weather_autom_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
-                else
-                    return;
-                break;
-            case CIRCUIT_FORM_ID:
-                if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
-                    ok = myForm->getCfg(&circuit_cfg[previous->data(0, Qt::UserRole + 1).toInt()]);
-                else
-                    return;
-                break;
-            case IO_FORM_ID:
-                ok = myForm->getCfg(&io_cfg);
-                break;
-            case RS232_FORM_ID:
-                ok = myForm->getCfg(rs_cfg);
-                break;
-            case ETHERNET_FORM_ID:
-                ok = myForm->getCfg(&eth_cfg);
-                break;
-            case MODBUS_SLAVE_FORM_ID:
-                ok = myForm->getCfg(&modbus_slave_cfg);
-                break;
-            case CAN_FORM_ID:
-                break;
-            case TGFM_FORM_ID:
-                break;
-            case USERS_FORM_ID:
-                break;
-            }
+        case WEATHER_AUTOM_FORM_ID:
+        case CIRCUIT_FORM_ID:
+            if((prevIndex != newIndex) || (previous->data(0, Qt::UserRole + 1) != current->data(0, Qt::UserRole + 1)))
+                getCfgFromForm(prevIndex, previous->data(0, Qt::UserRole + 1).toInt());
+            else
+                return;
+            break;
+        default:
+            ok = getCfgFromForm(prevIndex, 0);
+            break;
         }
 
         if(ok == true)
@@ -241,10 +204,13 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                     myForm->setCfg(&modbus_slave_cfg);
                     break;
                 case CAN_FORM_ID:
+                    myForm->setCfg(&can_cfg);
                     break;
                 case TGFM_FORM_ID:
+                    myForm->setCfg(&tgfm_cfg);
                     break;
                 case USERS_FORM_ID:
+                    myForm->setCfg(user_cfg);
                     break;
                 }
             }
@@ -304,6 +270,10 @@ void MainWindow::on_actionOtw_rz_triggered()
     uint16_t crc16;
     CGeneralCfgForm *myForm;
 
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Critical, "", "");
+    msgBox->setWindowFlags(msgBox->windowFlags() | Qt::WindowStaysOnTopHint);
+    msgBox->setWindowTitle("Błąd");
+
     fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", "koneor.bin", "koneor.bin");
 
     if(fileNameToOpen == "")
@@ -320,45 +290,65 @@ void MainWindow::on_actionOtw_rz_triggered()
 
             if(fileBuf.size() < (eorkonf_data_size + sizeof(eorkonf_hdr_t)))
             {
-                QMessageBox::critical(this, "Błąd", QString("Plik jest zbyt mały. Dane nie zostały wczytane\n") +
+                msgBox->setText(QString("Plik jest zbyt mały. Dane nie zostały wczytane\n") +
+                                QString("Wczytano: ") + QString::number(fileBuf.size()) +
+                                QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                QString(" B"));
+                msgBox->exec();
+/*                QMessageBox::critical(this, "Błąd", QString("Plik jest zbyt mały. Dane nie zostały wczytane\n") +
                                       QString("Wczytano: ") + QString::number(fileBuf.size()) +
                                       QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
-                                      QString(" B"));
+                                      QString(" B"));*/
+                delete msgBox;
                 return;
             }
             else if(fileBuf.size() > (eorkonf_data_size + sizeof(eorkonf_hdr_t)))
             {
-                QMessageBox::critical(this, "Błąd", QString("Plik jest za duży. Wczytane dane mogą być błędne\n") +
+                msgBox->setText(QString("Plik jest za duży. Wczytane dane mogą być błędne\n") +
+                                QString("Wczytano: ") + QString::number(fileBuf.size()) +
+                                QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                QString(" B"));
+                msgBox->exec();
+/*                QMessageBox::critical(this, "Błąd", QString("Plik jest za duży. Wczytane dane mogą być błędne\n") +
                                       QString("Wczytano: ") + QString::number(fileBuf.size()) +
                                       QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
-                                      QString(" B"));
+                                      QString(" B"));*/
             }
 
             setCfgStructs(fileBuf.data());
             crc16 = LiczCrc16Buf((uint8_t*)&fileBuf.data()[sizeof(eorkonf_hdr_t)], eorkonf_data_size);
             if(eorkonf_hdr.crc16 != crc16)
             {
-                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowe crc pliku. Wczytane dane mogą być błędne\n") +
+                msgBox->setText(QString("Nieprawidłowe crc pliku. Wczytane dane mogą być błędne\n") +
+                                QString("Obliczone: 0x") + QString::number(crc16, 16) +
+                                QString("\nOczekiwano: 0x") + QString::number(eorkonf_hdr.crc16, 16));
+                msgBox->exec();
+/*                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowe crc pliku. Wczytane dane mogą być błędne\n") +
                                       QString("Obliczone: 0x") + QString::number(crc16, 16) +
-                                      QString("\nOczekiwano: 0x") + QString::number(eorkonf_hdr.crc16, 16));
+                                      QString("\nOczekiwano: 0x") + QString::number(eorkonf_hdr.crc16, 16));*/
             }
 
             if(eorkonf_hdr.file_len != eorkonf_data_size)
             {
-                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowy rozmiar danych w nagłówku\n") +
+                msgBox->setText(QString("Nieprawidłowy rozmiar danych w nagłówku\n") +
+                                QString("Odczytane: ") + QString::number(eorkonf_hdr.file_len) +
+                                QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size) +
+                                QString(" B"));
+                msgBox->exec();
+/*                QMessageBox::critical(this, "Błąd", QString("Nieprawidłowy rozmiar danych w nagłówku\n") +
                                       QString("Odczytane: ") + QString::number(eorkonf_hdr.file_len) +
                                       QString(" B\nOczekiwano: ") + QString::number(eorkonf_data_size) +
-                                      QString(" B"));
+                                      QString(" B"));*/
             }
 
             if(strncmp(eorkonf_hdr.id_txt, "EOR_KON", 7) != 0)
             {
-                QMessageBox::critical(this, "Błąd", "Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
+                msgBox->setText("Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
+                msgBox->exec();
+                //QMessageBox::critical(this, "Błąd", "Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
             }
 
-//            ui->fileSize->setText(QString::number(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t)));
-//            ui->fileVer->setText(QString("%1.%2").arg(eorkonf_hdr.ver).arg(eorkonf_hdr.rev));
-            myForm = (CMyForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
+            myForm = (CGeneralCfgForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
             myForm->setCfg(&general_cfg);
             myForm->setFileVer(eorkonf_hdr.ver, eorkonf_hdr.rev);
             myForm->setFileSize(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t));
@@ -366,9 +356,13 @@ void MainWindow::on_actionOtw_rz_triggered()
         }
         else
         {
-            QMessageBox::critical(this, "Błąd", "Wystąpił błąd podczas otwierania pliku do odczytu");
+            msgBox->setText("Wystąpił błąd podczas otwierania pliku do odczytu");
+            msgBox->exec();
+            //QMessageBox::critical(this, "Błąd", "Wystąpił błąd podczas otwierania pliku do odczytu");
         }
     }
+
+    delete msgBox;
 }
 
 void MainWindow::setCfgStructs(char* buf)
@@ -425,4 +419,151 @@ void MainWindow::setCfgStructs(char* buf)
 
     memcpy(&eth_cfg, &buf[index], sizeof(eth_cfg_t));
     index += sizeof(eth_cfg_t);
+}
+
+void MainWindow::on_actionZapisz_triggered()
+{
+    QString fileNameToSave;
+    QFile file;
+    QByteArray fileBuf;
+    qint64 ret;
+    char* cBuf;
+    eorkonf_hdr_t *tmp_eorkonf_hdr;
+
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Critical, "", "");
+    msgBox->setWindowFlags(msgBox->windowFlags() | Qt::WindowStaysOnTopHint);
+    msgBox->setWindowTitle("Błąd");
+
+    fileNameToSave = QFileDialog::getSaveFileName(this, "Zapisz plik konfiguracji", "koneor.bin", "koneor.bin");
+
+    if(fileNameToSave == "")
+    {
+    //anuluj
+    }
+    else
+    {
+        file.setFileName(fileNameToSave);
+        if(file.open(QIODevice::WriteOnly))
+        {
+            eorkonf_hdr.ver = 1;
+            eorkonf_hdr.rev = 0;
+            eorkonf_hdr.file_len = eorkonf_data_size;
+            strcpy(eorkonf_hdr.id_txt, "EOR_KON");
+            fileBuf.append((char*)&eorkonf_hdr, sizeof(eorkonf_hdr_t));
+            //todo na koniec crc16
+
+            getCfgFromForm(ui->stackedWidget->currentIndex(), ui->menuTreeWidget->currentItem()->data(0, Qt::UserRole + 1).toInt());
+            fileBuf.append((char*)&general_cfg, sizeof(general_cfg_t));
+            fileBuf.append((char*)user_cfg, sizeof(user_cfg_t) * USER_COUNT);
+            fileBuf.append((char*)io_module_cfg, sizeof(io_module_cfg_t) * IO_MODULE_COUNT);
+            fileBuf.append((char*)jsn2_module_cfg, sizeof(jsn2_module_cfg_t) * JSN2_MODULE_COUNT);
+            fileBuf.append((char*)meter_cfg, sizeof(meter_cfg_t) * METER_COUNT);
+            fileBuf.append((char*)&general_weather_measure_cfg, sizeof(general_weather_measure_cfg_t));
+            fileBuf.append((char*)weather_autom_cfg, sizeof(weather_autom_cfg_t) * WEATHER_AUTOM_COUNT);
+            fileBuf.append((char*)&temperatures_cfg, sizeof(temperatures_cfg_t));
+            fileBuf.append((char*)circuit_cfg, sizeof(circuit_cfg_t) * CIRCUIT_COUNT);
+            fileBuf.append((char*)&group_cfg, sizeof(group_cfg_t));
+            fileBuf.append((char*)&io_cfg, sizeof(io_cfg_t));
+            fileBuf.append((char*)&can_cfg, sizeof(can_cfg_t));
+            fileBuf.append((char*)&modbus_slave_cfg, sizeof(modbus_slave_cfg_t));
+            fileBuf.append((char*)&tgfm_cfg, sizeof(tgfm_cfg_t));
+            fileBuf.append((char*)rs_cfg, sizeof(rs_cfg_t) * RS_COUNT);
+            fileBuf.append((char*)&eth_cfg, sizeof(eth_cfg_t));
+
+            cBuf = fileBuf.data();
+            tmp_eorkonf_hdr = (eorkonf_hdr_t*)cBuf;
+            tmp_eorkonf_hdr->crc16 = LiczCrc16Buf((uint8_t*)&cBuf[sizeof(eorkonf_hdr_t)], eorkonf_data_size);
+
+            ret = file.write(fileBuf);
+            if(ret == -1)
+            {
+                msgBox->setText(QString("Błąd podczas zapisu pliku na dysk."));
+                msgBox->exec();
+                //QMessageBox::critical(this, "Błąd", QString("Błąd podczas zapisu pliku na dysk."));
+            }
+            else if(ret < (eorkonf_data_size + sizeof(eorkonf_hdr_t)))
+            {
+                msgBox->setText(QString("Błąd podczas zapisu danych na dysku\n") +
+                                QString("Zapisano: ") + QString::number(ret) +
+                                QString(" B\nPowinno być: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                QString(" B"));
+                msgBox->exec();
+/*                QMessageBox::critical(this, "Błąd", QString("Błąd podczas zapisu danych na dysku\n") +
+                                      QString("Zapisano: ") + QString::number(ret) +
+                                      QString(" B\nPowinno być: ") + QString::number(eorkonf_data_size + sizeof(eorkonf_hdr_t)) +
+                                      QString(" B"));*/
+            }
+            file.close();
+        }
+        else
+        {
+            msgBox->setText("Wystąpił błąd podczas otwierania pliku do zapisu");
+            msgBox->exec();
+//            QMessageBox::critical(this, "Błąd", "Wystąpił błąd podczas otwierania pliku do zapisu");
+        }
+    }
+}
+
+bool MainWindow::getCfgFromForm(int index, int id)
+{
+    CIoModulesCfgForm *ioModulesCfgForm;
+    CMyForm *myForm = (CMyForm*)ui->stackedWidget->widget(index);
+    bool ok;
+    uint8_t i;
+
+    if(myForm)
+    {
+        switch(index)
+        {
+        case GENERAL_CFG_FORM_ID:
+            ok = myForm->getCfg(&general_cfg);
+            break;
+        case IO_MODULES_FORM_ID:
+            ok = myForm->getCfg(io_module_cfg);
+            ioModulesCfgForm = (CIoModulesCfgForm*)myForm;
+            ioModulesCfgForm->getCfgMeter(meter_cfg);
+            ioModulesCfgForm->getCfgJsn2(jsn2_module_cfg);
+            break;
+        case GENERAL_WEATHER_MEASURE_FORM_ID:
+            ok = myForm->getCfg(&general_weather_measure_cfg);
+            break;
+        case TEMPERATURES_FORM_ID:
+            ok = myForm->getCfg(&temperatures_cfg);
+            break;
+        case WEATHER_AUTOM_FORM_ID:
+            ok = myForm->getCfg(&weather_autom_cfg[id]);
+            for(i = 0; i < CIRCUIT_COUNT; i++)
+                circuit_cfg[i].active = 0;
+            for(i = 0; i < general_cfg.weather_autom_count; i++)
+            {
+                circuit_cfg[weather_autom_cfg[i].referenceCircuitNo - 1].reference = 1;
+            }
+            break;
+        case CIRCUIT_FORM_ID:
+            ok = myForm->getCfg(&circuit_cfg[id]);
+            break;
+        case IO_FORM_ID:
+            ok = myForm->getCfg(&io_cfg);
+            break;
+        case RS232_FORM_ID:
+            ok = myForm->getCfg(rs_cfg);
+            break;
+        case ETHERNET_FORM_ID:
+            ok = myForm->getCfg(&eth_cfg);
+            break;
+        case MODBUS_SLAVE_FORM_ID:
+            ok = myForm->getCfg(&modbus_slave_cfg);
+            break;
+        case CAN_FORM_ID:
+            ok = myForm->getCfg(&can_cfg);
+            break;
+        case TGFM_FORM_ID:
+            ok = myForm->getCfg(&tgfm_cfg);
+            break;
+        case USERS_FORM_ID:
+            ok = myForm->getCfg(user_cfg);
+            break;
+        }
+    }
+    return ok;
 }

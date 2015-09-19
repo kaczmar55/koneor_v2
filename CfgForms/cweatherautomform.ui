@@ -60,7 +60,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>250</y>
+     <y>45</y>
      <width>170</width>
      <height>17</height>
     </rect>
@@ -72,8 +72,8 @@
   <widget class="QFrame" name="sensorHotFrame">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>65</y>
+     <x>260</x>
+     <y>95</y>
      <width>220</width>
      <height>98</height>
     </rect>
@@ -127,10 +127,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="maximum">
-     <number>255</number>
+     <number>24</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="sensorHotRegNo">
@@ -143,10 +143,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="maximum">
-     <number>65536</number>
+     <number>4</number>
     </property>
    </widget>
    <widget class="QLabel" name="sensorHotAddrLbl">
@@ -179,8 +179,8 @@
   <widget class="QLabel" name="label_25">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>190</y>
+     <x>30</x>
+     <y>220</y>
      <width>180</width>
      <height>17</height>
     </rect>
@@ -193,7 +193,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>245</y>
+     <y>40</y>
      <width>50</width>
      <height>27</height>
     </rect>
@@ -205,8 +205,8 @@
   <widget class="QFrame" name="sensorPwrCtrlFrame">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>210</y>
+     <x>260</x>
+     <y>240</y>
      <width>280</width>
      <height>65</height>
     </rect>
@@ -295,8 +295,8 @@
   <widget class="QFrame" name="blowSensorFRame">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>210</y>
+     <x>10</x>
+     <y>240</y>
      <width>220</width>
      <height>137</height>
     </rect>
@@ -380,6 +380,12 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>24</number>
+    </property>
    </widget>
    <widget class="QSpinBox" name="blowSensorBitNo">
     <property name="geometry">
@@ -389,6 +395,12 @@
       <width>85</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>20</number>
     </property>
    </widget>
    <widget class="QLabel" name="blowSensorRegNoLbl">
@@ -418,8 +430,8 @@
   <widget class="QLabel" name="label_21">
    <property name="geometry">
     <rect>
-     <x>257</x>
-     <y>45</y>
+     <x>7</x>
+     <y>75</y>
      <width>230</width>
      <height>17</height>
     </rect>
@@ -431,8 +443,8 @@
   <widget class="QFrame" name="sensorColdFrame">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>65</y>
+     <x>10</x>
+     <y>95</y>
      <width>220</width>
      <height>98</height>
     </rect>
@@ -491,10 +503,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="maximum">
-     <number>255</number>
+     <number>24</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="sensorColdRegNo">
@@ -507,10 +519,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="maximum">
-     <number>65536</number>
+     <number>4</number>
     </property>
    </widget>
    <widget class="QLabel" name="sensorColdAddrLbl">
@@ -543,8 +555,8 @@
   <widget class="QLabel" name="label_22">
    <property name="geometry">
     <rect>
-     <x>505</x>
-     <y>45</y>
+     <x>255</x>
+     <y>75</y>
      <width>234</width>
      <height>17</height>
     </rect>

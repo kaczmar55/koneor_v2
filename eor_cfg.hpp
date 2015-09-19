@@ -143,6 +143,7 @@ typedef struct __attribute((packed)){
 
 typedef struct __attribute((packed)){
     char name[8];			//nazwa obwodu
+    char description[128];  //nazwa długa
     uint8_t active;			//obwód aktywny / rezerwa
     uint8_t type;			//typ obwodu: ogrzewanie rozjazdów lub zamknięć
     uint8_t group_id;		//nr grupy
@@ -208,12 +209,13 @@ typedef struct __attribute((packed)){
     uint8_t active;
     uint8_t type;			//wirtualny czy fizyczny
     uint32_t baud;			//oczywiście tylko dla fizycznego
+    uint8_t data_bits;      //ilość bitów danych 7 lub 8
     uint8_t stop_bits;
     uint8_t parity;
     uint16_t port;			//nr portu dla wirtualnego na moxie
     uint8_t server_ip[4];
     uint8_t protocol;		//np.: brak, konsola, modbus rtu master dla jsn-2, protokół do podłączenia licznika energii itp.
-    uint8_t res[17];
+    uint8_t res[16];
 } rs_cfg_t;
 
 typedef struct __attribute((packed)){

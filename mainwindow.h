@@ -24,6 +24,8 @@ private slots:
 
     void on_actionOtw_rz_triggered();
 
+    void on_actionZapisz_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTreeWidgetItem* addForm(QString name, QWidget* widget, int id1, int id2, QTreeWidgetItem *parent);
@@ -32,6 +34,7 @@ private:
     bool doNotChange;
 
     void setCfgStructs(char* buf);
+    bool getCfgFromForm(int index, int id);
 };
 
 #endif // MAINWINDOW_H

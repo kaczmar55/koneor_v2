@@ -53,6 +53,12 @@ bool CIOCfgForm::setCfg(void *cfg_struct)
     ui->handCtrlIOMod->setValue(io_cfg->hand_ctrl.module_id);
     ui->handCtrlBitNo->setValue(io_cfg->hand_ctrl.bit_no);
 
+    if(io_cfg->lock_ctrl.active != 0)
+        ui->lockCtrlChk->setChecked(true);
+    else
+        ui->lockCtrlChk->setChecked(false);
+    ui->lockCtrlIOMod->setValue(io_cfg->lock_ctrl.module_id);
+    ui->lockCtrlBitNo->setValue(io_cfg->lock_ctrl.bit_no);
     return true;
 }
 

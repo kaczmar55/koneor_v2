@@ -21,6 +21,7 @@ bool CCircuitCfgForm::setCfg(void *cfg_struct)
     QTextCodec *codec = QTextCodec::codecForName("ISO 8859-2");
 
     ui->cirNameEdit->setText(codec->toUnicode(circuit_cfg->name));
+    ui->cirDescriptionEdit->setText(codec->toUnicode(circuit_cfg->description));
     if(circuit_cfg->active == 0)
         ui->cirActiveChk->setChecked(false);
     else
@@ -101,6 +102,7 @@ bool CCircuitCfgForm::getCfg(void *cfg_struct)
     memset(circuit_cfg, 0, sizeof(circuit_cfg_t));
 
     strcpy(circuit_cfg->name, codec->fromUnicode(ui->cirNameEdit->text()).data());
+    strcpy(circuit_cfg->description, codec->fromUnicode(ui->cirDescriptionEdit->text()).data());
     circuit_cfg->active = ui->cirActiveChk->isChecked();
     circuit_cfg->reference = ui->cirReferenceChk->isChecked();
     circuit_cfg->type = ui->cirTypeCmb->currentIndex();

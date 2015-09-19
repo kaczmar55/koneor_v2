@@ -19,6 +19,9 @@ public:
     bool getCfg(void* cfg_struct);
     bool setCfg(void* cfg_struct);
 
+private slots:
+    void on_rsProtocolCmb_currentIndexChanged(int index);
+
 private:
     Ui::CRs232CfgForm *ui;
 };

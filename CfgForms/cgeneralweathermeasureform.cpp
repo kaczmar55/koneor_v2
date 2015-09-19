@@ -6,6 +6,8 @@ CGeneralWeatherMeasureForm::CGeneralWeatherMeasureForm(QWidget *parent) :
     ui(new Ui::CGeneralWeatherMeasureForm)
 {
     ui->setupUi(this);
+    ui->generalFallSensorRegNoLbl->setHidden(true);
+    ui->generalFallSensorRegNo->setHidden(true);
 }
 
 CGeneralWeatherMeasureForm::~CGeneralWeatherMeasureForm()

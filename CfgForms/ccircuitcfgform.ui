@@ -60,7 +60,7 @@
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>80</y>
+     <y>105</y>
      <width>215</width>
      <height>90</height>
     </rect>
@@ -147,7 +147,7 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>80</y>
+     <y>105</y>
      <width>60</width>
      <height>27</height>
     </rect>
@@ -163,7 +163,7 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>110</y>
+     <y>135</y>
      <width>60</width>
      <height>27</height>
     </rect>
@@ -204,7 +204,7 @@
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>175</y>
+     <y>200</y>
      <width>215</width>
      <height>205</height>
     </rect>
@@ -435,7 +435,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>115</y>
+     <y>140</y>
      <width>130</width>
      <height>17</height>
     </rect>
@@ -448,7 +448,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>175</y>
+     <y>200</y>
      <width>215</width>
      <height>205</height>
     </rect>
@@ -679,7 +679,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>85</y>
+     <y>110</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -705,7 +705,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>175</y>
+     <y>200</y>
      <width>215</width>
      <height>205</height>
     </rect>
@@ -933,6 +933,9 @@
    </widget>
   </widget>
   <widget class="QCheckBox" name="cirReferenceChk">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>285</x>
@@ -961,7 +964,7 @@
   <widget class="QComboBox" name="cirTypeCmb">
    <property name="geometry">
     <rect>
-     <x>500</x>
+     <x>505</x>
      <y>40</y>
      <width>180</width>
      <height>27</height>
@@ -1001,7 +1004,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>80</y>
+     <y>105</y>
      <width>215</width>
      <height>90</height>
     </rect>
@@ -1083,6 +1086,32 @@
      <number>20</number>
     </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>75</y>
+     <width>40</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Opis:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cirDescriptionEdit">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>70</y>
+     <width>626</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maxLength">
+    <number>127</number>
+   </property>
   </widget>
  </widget>
  <resources/>
