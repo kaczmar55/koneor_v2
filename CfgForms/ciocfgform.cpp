@@ -105,7 +105,7 @@ bool CIOCfgForm::getCfg(void *cfg_struct)
         checkIoMod(io_cfg->hand_ctrl.module_id, 0, "Sterowanie ręczne");
 
     io_cfg->lock_ctrl.active = ui->lockCtrlChk->isChecked();
-    io_cfg->local_ctrl.module_id = ui->lockCtrlIOMod->value();
+    io_cfg->lock_ctrl.module_id = ui->lockCtrlIOMod->value();
     io_cfg->lock_ctrl.bit_no = ui->lockCtrlBitNo->value();
     if(io_cfg->lock_ctrl.active != 0)
         checkIoMod(io_cfg->lock_ctrl.module_id, 0, "Blokada sterowania");

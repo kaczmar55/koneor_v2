@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = koneor_v2
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -mno-ms-bitfields
 
 SOURCES += main.cpp\
         mainwindow.cpp \

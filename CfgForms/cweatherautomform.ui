@@ -65,6 +65,11 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Nr rozjazdu wzorcowego:</string>
    </property>
@@ -77,6 +82,11 @@
      <width>220</width>
      <height>98</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -93,6 +103,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Typ:</string>
     </property>
@@ -105,6 +120,11 @@
       <width>90</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <item>
      <property name="text">
@@ -126,6 +146,11 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="minimum">
      <number>1</number>
     </property>
@@ -141,6 +166,11 @@
       <width>90</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -158,6 +188,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr modułu TH:</string>
     </property>
@@ -170,6 +205,11 @@
       <width>110</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Nr kanału TH:</string>
@@ -185,6 +225,11 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Czujnik śniegu nawianego:</string>
    </property>
@@ -198,6 +243,11 @@
      <height>27</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="minimum">
     <number>1</number>
    </property>
@@ -210,6 +260,11 @@
      <width>280</width>
      <height>65</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -226,6 +281,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Wejście:</string>
     </property>
@@ -238,6 +298,11 @@
       <width>50</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -258,6 +323,11 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Potw. zasilania czujników</string>
     </property>
@@ -270,6 +340,11 @@
       <width>50</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -287,6 +362,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr modułu IO:</string>
     </property>
@@ -300,6 +380,11 @@
      <width>220</width>
      <height>137</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -316,6 +401,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Typ:</string>
     </property>
@@ -328,6 +418,11 @@
       <width>85</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <item>
      <property name="text">
@@ -354,6 +449,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr modułu IO:</string>
     </property>
@@ -367,6 +467,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr wejścia:</string>
     </property>
@@ -379,6 +484,11 @@
       <width>85</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -396,6 +506,11 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="minimum">
      <number>1</number>
     </property>
@@ -412,6 +527,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr rejestru:</string>
     </property>
@@ -425,6 +545,11 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
    </widget>
   </widget>
   <widget class="QLabel" name="label_21">
@@ -435,6 +560,11 @@
      <width>230</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Czujnik temperatury szyny zimnej</string>
@@ -448,6 +578,11 @@
      <width>220</width>
      <height>98</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -464,6 +599,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Typ:</string>
     </property>
@@ -476,6 +616,11 @@
       <width>90</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <item>
      <property name="text">
@@ -502,6 +647,11 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="minimum">
      <number>1</number>
     </property>
@@ -517,6 +667,11 @@
       <width>90</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -534,6 +689,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Nr modułu TH:</string>
     </property>
@@ -546,6 +706,11 @@
       <width>110</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Nr kanału TH:</string>
@@ -560,6 +725,11 @@
      <width>234</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Czujnik temperatury szyny gorącej</string>

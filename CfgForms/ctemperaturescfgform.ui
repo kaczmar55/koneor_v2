@@ -37,7 +37,7 @@
     <rect>
      <x>20</x>
      <y>5</y>
-     <width>130</width>
+     <width>140</width>
      <height>25</height>
     </rect>
    </property>
@@ -65,6 +65,11 @@
      <height>60</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
@@ -80,6 +85,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Temperatury określające &quot;Duży mróz&quot;</string>
     </property>
@@ -92,6 +102,11 @@
       <width>60</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>wejście:</string>
@@ -106,6 +121,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>wyjście:</string>
     </property>
@@ -118,6 +138,11 @@
       <width>69</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="decimals">
      <number>1</number>
@@ -140,6 +165,11 @@
       <width>69</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="decimals">
      <number>1</number>
@@ -169,7 +199,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="verticalScrollBarPolicy">
@@ -222,6 +252,11 @@
      <height>91</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
@@ -237,6 +272,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Ustawienia dla zamknięć:</string>
     </property>
@@ -249,6 +289,11 @@
       <width>180</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Temp. załączenia grzania:</string>
@@ -263,6 +308,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Temp. wyłączenia grzania:</string>
     </property>
@@ -275,6 +325,11 @@
       <width>69</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="decimals">
      <number>1</number>
@@ -294,6 +349,11 @@
       <width>69</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="decimals">
      <number>1</number>

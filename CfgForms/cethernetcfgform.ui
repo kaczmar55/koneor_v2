@@ -65,6 +65,11 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Adres IP:</string>
    </property>
@@ -78,6 +83,11 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Brama domyślna:</string>
    </property>
@@ -90,6 +100,11 @@
      <width>120</width>
      <height>27</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="inputMask">
     <string>000.000.000.000</string>
@@ -107,6 +122,11 @@
      <height>27</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="inputMask">
     <string>000.000.000.000</string>
    </property>
@@ -123,6 +143,11 @@
      <height>27</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="inputMask">
     <string>000.000.000.000</string>
    </property>
@@ -138,6 +163,11 @@
      <width>110</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Maska podsieci:</string>

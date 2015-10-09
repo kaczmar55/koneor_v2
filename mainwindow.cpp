@@ -106,6 +106,22 @@ MainWindow::MainWindow(QWidget *parent) :
     addForm("TGFM", new CTgfmCfgForm(), TGFM_FORM_ID, 0, item);
     addForm("Użytkownicy", new CUsersCfgForm(), USERS_FORM_ID, 0, NULL);
 
+    qDebug() << "general_cfg_t = " << sizeof(general_cfg_t);
+    qDebug() << "user_cfg_t = " << sizeof(user_cfg_t);
+    qDebug() << "io_module_cfg_t = " << sizeof(io_module_cfg_t);
+    qDebug() << "jsn2_module_cfg_t = " << sizeof(jsn2_module_cfg_t);
+    qDebug() << "meter_cfg_t = " << sizeof(meter_cfg_t);
+    qDebug() << "general_weather_measure_cfg_t = " << sizeof(general_weather_measure_cfg_t);
+    qDebug() << "weather_autom_cfg_t = " << sizeof(weather_autom_cfg_t);
+    qDebug() << "temperatures_cfg_t = " << sizeof(temperatures_cfg_t);
+    qDebug() << "circuit_cfg_t = " << sizeof(circuit_cfg_t);
+    qDebug() << "group_cfg_t = " << sizeof(group_cfg_t);
+    qDebug() << "io_cfg_t = " << sizeof(io_cfg_t);
+    qDebug() << "can_cfg_t = " << sizeof(can_cfg_t);
+    qDebug() << "modbus_slave_cfg_t = " << sizeof(modbus_slave_cfg_t);
+    qDebug() << "tgfm_cfg_t = " << sizeof(tgfm_cfg_t);
+    qDebug() << "rs_cfg_t = " << sizeof(rs_cfg_t);
+    qDebug() << "eth_cfg_t = " << sizeof(eth_cfg_t);
 }
 
 MainWindow::~MainWindow()
@@ -508,7 +524,7 @@ bool MainWindow::getCfgFromForm(int index, int id)
 {
     CIoModulesCfgForm *ioModulesCfgForm;
     CMyForm *myForm = (CMyForm*)ui->stackedWidget->widget(index);
-    bool ok;
+    bool ok = true;
     uint8_t i;
 
     if(myForm)
