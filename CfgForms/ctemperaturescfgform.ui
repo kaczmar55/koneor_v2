@@ -71,10 +71,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_35">
     <property name="geometry">
@@ -193,7 +193,7 @@
     <rect>
      <x>10</x>
      <y>40</y>
-     <width>475</width>
+     <width>490</width>
      <height>101</height>
     </rect>
    </property>
@@ -258,10 +258,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_26">
     <property name="geometry">

@@ -71,10 +71,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_62">
     <property name="geometry">
@@ -191,10 +191,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_64">
     <property name="geometry">
@@ -311,10 +311,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_70">
     <property name="geometry">
@@ -437,10 +437,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_72">
     <property name="geometry">
@@ -563,10 +563,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_68">
     <property name="geometry">
@@ -683,10 +683,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_66">
     <property name="geometry">
@@ -803,10 +803,10 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
+    <enum>QFrame::Sunken</enum>
    </property>
    <widget class="QLabel" name="label_74">
     <property name="geometry">

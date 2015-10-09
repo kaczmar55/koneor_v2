@@ -77,9 +77,9 @@
   <widget class="QSpinBox" name="modbusSlavePort">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>160</x>
      <y>165</y>
-     <width>120</width>
+     <width>140</width>
      <height>27</height>
     </rect>
    </property>
@@ -110,7 +110,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Medium transmisyjne:</string>
+    <string>Typ transmisji:</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="modbusSlaveActiveChk">
@@ -152,9 +152,9 @@
   <widget class="QComboBox" name="modbusSlaveMediumCmb">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>159</x>
      <y>135</y>
-     <width>120</width>
+     <width>141</width>
      <height>27</height>
     </rect>
    </property>
@@ -165,12 +165,12 @@
    </property>
    <item>
     <property name="text">
-     <string>RS232/485</string>
+     <string>RTU (RS232/485)</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Ethernet</string>
+     <string>TCP (Ethernet)</string>
     </property>
    </item>
   </widget>
@@ -195,7 +195,7 @@
   <widget class="QSpinBox" name="modbusSlaveAddr">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>160</x>
      <y>105</y>
      <width>48</width>
      <height>27</height>

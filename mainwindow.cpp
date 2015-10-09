@@ -106,7 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
     addForm("TGFM", new CTgfmCfgForm(), TGFM_FORM_ID, 0, item);
     addForm("Użytkownicy", new CUsersCfgForm(), USERS_FORM_ID, 0, NULL);
 
-    qDebug() << "general_cfg_t = " << sizeof(general_cfg_t);
+/*    qDebug() << "general_cfg_t = " << sizeof(general_cfg_t);
     qDebug() << "user_cfg_t = " << sizeof(user_cfg_t);
     qDebug() << "io_module_cfg_t = " << sizeof(io_module_cfg_t);
     qDebug() << "jsn2_module_cfg_t = " << sizeof(jsn2_module_cfg_t);
@@ -121,7 +121,7 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << "modbus_slave_cfg_t = " << sizeof(modbus_slave_cfg_t);
     qDebug() << "tgfm_cfg_t = " << sizeof(tgfm_cfg_t);
     qDebug() << "rs_cfg_t = " << sizeof(rs_cfg_t);
-    qDebug() << "eth_cfg_t = " << sizeof(eth_cfg_t);
+    qDebug() << "eth_cfg_t = " << sizeof(eth_cfg_t);*/
 }
 
 MainWindow::~MainWindow()
