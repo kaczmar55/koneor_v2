@@ -55,6 +55,9 @@ bool CTemperaturesCfgForm::setCfg(void *cfg_struct)
 
     ui->tLocksOn->setValue(temperatures_cfg->t_frost_on_l / 10.0);
     ui->tLocksOff->setValue(temperatures_cfg->t_frost_off_l / 10.0);
+
+    ui->tWetFreezing->setValue(temperatures_cfg->t_wet_freezing / 10.0);
+    ui->tIsSnowFall->setValue(temperatures_cfg->t_is_snow_fall / 10.0);
     return true;
 }
 
@@ -84,5 +87,8 @@ bool CTemperaturesCfgForm::getCfg(void *cfg_struct)
 
     temperatures_cfg->t_frost_on_l = ui->tLocksOn->value() * 10;
     temperatures_cfg->t_frost_off_l = ui->tLocksOff->value() * 10;
+
+    temperatures_cfg->t_wet_freezing = ui->tWetFreezing->value() * 10;
+    temperatures_cfg->t_is_snow_fall = ui->tIsSnowFall->value() * 10;
     return true;
 }

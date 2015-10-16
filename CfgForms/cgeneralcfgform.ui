@@ -35,7 +35,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>270</y>
+     <y>310</y>
      <width>220</width>
      <height>17</height>
     </rect>
@@ -188,7 +188,7 @@
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>240</y>
+     <y>280</y>
      <width>151</width>
      <height>22</height>
     </rect>
@@ -209,7 +209,7 @@
    <property name="geometry">
     <rect>
      <x>760</x>
-     <y>330</y>
+     <y>370</y>
      <width>30</width>
      <height>17</height>
     </rect>
@@ -320,7 +320,7 @@
    <property name="geometry">
     <rect>
      <x>760</x>
-     <y>350</y>
+     <y>390</y>
      <width>60</width>
      <height>17</height>
     </rect>
@@ -401,7 +401,7 @@
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>265</y>
+     <y>305</y>
      <width>60</width>
      <height>27</height>
     </rect>
@@ -449,7 +449,7 @@
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>350</y>
+     <y>390</y>
      <width>100</width>
      <height>17</height>
     </rect>
@@ -485,7 +485,7 @@
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>330</y>
+     <y>370</y>
      <width>90</width>
      <height>17</height>
     </rect>
@@ -558,6 +558,32 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>244</y>
+     <width>360</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Czas podtrzymania sygnału opadu atmosferycznego:</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="wetSignHoldTime">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>240</y>
+     <width>48</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>20</number>
    </property>
   </widget>
  </widget>

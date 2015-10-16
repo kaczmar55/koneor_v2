@@ -200,6 +200,7 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                     myForm->setCfg(&general_weather_measure_cfg);
                     break;
                 case TEMPERATURES_FORM_ID:
+                    myForm->setCfg(&temperatures_cfg);
                     break;
                 case WEATHER_AUTOM_FORM_ID:
                     myForm->setCfg(&weather_autom_cfg[current->data(0, Qt::UserRole + 1).toInt()]);

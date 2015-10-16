@@ -34,6 +34,7 @@ bool CGeneralCfgForm::getCfg(void* cfg_struct)
     general_cfg->param_edit_user_level = ui->paramEditUserLevel->value();
     general_cfg->screen_saver_enable = ui->screenSaverEnable->isChecked();
     general_cfg->screen_saver_time = ui->screenSaverTime->value();
+    general_cfg->wet_sign_hold_time = ui->wetSignHoldTime->value();
 
     return true;
 }
@@ -61,6 +62,7 @@ bool CGeneralCfgForm::setCfg(void* cfg_struct)
     else
         ui->screenSaverEnable->setChecked(true);
     ui->screenSaverTime->setValue(general_cfg->screen_saver_time);
+    ui->wetSignHoldTime->setValue(general_cfg->wet_sign_hold_time);
 
     return true;
 }

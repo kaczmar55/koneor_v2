@@ -48,7 +48,8 @@ typedef struct __attribute((packed)){
     uint8_t cir_count;		//max 20
     uint8_t weather_autom_count;	//max 6
     uint8_t ctrl_group_cnt;		//chyba ustalimy na stałe 6
-    uint8_t res1[5];
+    uint8_t res1[4];
+    uint8_t wet_sign_hold_time; //czas podtrzymania syganłu wilgoci / śniegu
     uint8_t ind_on_time;		//czas indywidualnego załączenia <1 - 240 min>
     uint8_t phase_asymmetry_check;	//sprawdzania asymetrii faz zasilania dostępne gdy jest licznik energii
     uint8_t phase_assymetry_tolerance; //tolerancja w %
@@ -126,7 +127,9 @@ typedef struct __attribute((packed)){
     int16_t t_frost_off_r;
     int16_t t_frost_on_l;		//progowa temperatura „dużego mrozu” dla zamknięć
     int16_t t_frost_off_l;		//progowa temperatura wyjścia z „dużego mrozu” dla zamknięć
-    uint16_t res[16];
+    int16_t t_wet_freezing;     //temperatura gruntu, kiedy uznajemy deszcz marznący
+    int16_t t_is_snow_fall;     //temperatura powietrza przy której uznajemy wystąpienie sniegu
+    uint16_t res[14];
 } temperatures_cfg_t;
 
 typedef struct __attribute((packed)){
