@@ -12,7 +12,6 @@
 #include "CfgForms/cethernetcfgform.h"
 #include "CfgForms/cmodbusslavecfgform.h"
 #include "CfgForms/ccancfgform.h"
-#include "CfgForms/ctgfmcfgform.h"
 #include "CfgForms/cuserscfgform.h"
 #include "eor_cfg.hpp"
 #include "crc16.hpp"
@@ -32,8 +31,7 @@
 #define ETHERNET_FORM_ID        (8)
 #define MODBUS_SLAVE_FORM_ID    (9)
 #define CAN_FORM_ID             (10)
-#define TGFM_FORM_ID            (11)
-#define USERS_FORM_ID           (12)
+#define USERS_FORM_ID           (11)
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+    open_save_path = "koneor.bin";
     doNotChange = false;
 
     ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -103,7 +102,6 @@ MainWindow::MainWindow(QWidget *parent) :
     addForm("Ethernet", new CEthernetCfgForm(), ETHERNET_FORM_ID, 0, item);
     addForm("Modbus Slave", new CModbusSlaveCfgForm(), MODBUS_SLAVE_FORM_ID, 0, item);
     addForm("CAN", new CCanCfgForm(), CAN_FORM_ID, 0, item);
-    addForm("TGFM", new CTgfmCfgForm(), TGFM_FORM_ID, 0, item);
     addForm("Użytkownicy", new CUsersCfgForm(), USERS_FORM_ID, 0, NULL);
 
 /*    qDebug() << "general_cfg_t = " << sizeof(general_cfg_t);
@@ -223,9 +221,6 @@ void MainWindow::on_menuTreeWidget_currentItemChanged(QTreeWidgetItem *current, 
                 case CAN_FORM_ID:
                     myForm->setCfg(&can_cfg);
                     break;
-                case TGFM_FORM_ID:
-                    myForm->setCfg(&tgfm_cfg);
-                    break;
                 case USERS_FORM_ID:
                     myForm->setCfg(user_cfg);
                     break;
@@ -291,7 +286,7 @@ void MainWindow::on_actionOtw_rz_triggered()
     msgBox->setWindowFlags(msgBox->windowFlags() | Qt::WindowStaysOnTopHint);
     msgBox->setWindowTitle("Błąd");
 
-    fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", "koneor.bin", "koneor.bin");
+    fileNameToOpen = QFileDialog::getOpenFileName(this, "Otwórz plik konfiguracji", open_save_path, "*.bin");
 
     if(fileNameToOpen == "")
     {
@@ -299,6 +294,7 @@ void MainWindow::on_actionOtw_rz_triggered()
     }
     else
     {
+        open_save_path = fileNameToOpen;
         file.setFileName(fileNameToOpen);
         if(file.open(QIODevice::ReadOnly))
         {
@@ -451,7 +447,7 @@ void MainWindow::on_actionZapisz_triggered()
     msgBox->setWindowFlags(msgBox->windowFlags() | Qt::WindowStaysOnTopHint);
     msgBox->setWindowTitle("Błąd");
 
-    fileNameToSave = QFileDialog::getSaveFileName(this, "Zapisz plik konfiguracji", "koneor.bin", "koneor.bin");
+    fileNameToSave = QFileDialog::getSaveFileName(this, "Zapisz plik konfiguracji", open_save_path, "*.bin");
 
     if(fileNameToSave == "")
     {
@@ -459,6 +455,7 @@ void MainWindow::on_actionZapisz_triggered()
     }
     else
     {
+        open_save_path = fileNameToSave;
         file.setFileName(fileNameToSave);
         if(file.open(QIODevice::WriteOnly))
         {
@@ -550,11 +547,9 @@ bool MainWindow::getCfgFromForm(int index, int id)
         case WEATHER_AUTOM_FORM_ID:
             ok = myForm->getCfg(&weather_autom_cfg[id]);
             for(i = 0; i < CIRCUIT_COUNT; i++)
-                circuit_cfg[i].active = 0;
+                circuit_cfg[i].reference = 0;
             for(i = 0; i < general_cfg.weather_autom_count; i++)
-            {
                 circuit_cfg[weather_autom_cfg[i].referenceCircuitNo - 1].reference = 1;
-            }
             break;
         case CIRCUIT_FORM_ID:
             ok = myForm->getCfg(&circuit_cfg[id]);
@@ -573,9 +568,6 @@ bool MainWindow::getCfgFromForm(int index, int id)
             break;
         case CAN_FORM_ID:
             ok = myForm->getCfg(&can_cfg);
-            break;
-        case TGFM_FORM_ID:
-            ok = myForm->getCfg(&tgfm_cfg);
             break;
         case USERS_FORM_ID:
             ok = myForm->getCfg(user_cfg);

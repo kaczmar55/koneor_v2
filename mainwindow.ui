@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1120</width>
-    <height>505</height>
+    <height>535</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,12 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>11</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -26,11 +32,12 @@
       <x>10</x>
       <y>0</y>
       <width>255</width>
-      <height>415</height>
+      <height>445</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -52,11 +59,12 @@
       <x>275</x>
       <y>0</y>
       <width>835</width>
-      <height>415</height>
+      <height>445</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -77,7 +85,7 @@
      <x>0</x>
      <y>0</y>
      <width>1120</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="font">
@@ -99,6 +107,7 @@
   <widget class="QToolBar" name="mainToolBar">
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -121,6 +130,12 @@
   <action name="actionOtw_rz">
    <property name="text">
     <string>Otwórz</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionZapisz">

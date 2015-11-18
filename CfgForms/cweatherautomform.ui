@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>835</width>
-    <height>415</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,6 +43,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -67,11 +68,12 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Nr rozjazdu wzorcowego:</string>
+    <string>Nr obwodu wzorcowego:</string>
    </property>
   </widget>
   <widget class="QFrame" name="sensorHotFrame">
@@ -105,6 +107,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -123,6 +126,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -148,6 +152,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -169,6 +174,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -190,6 +196,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -208,6 +215,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -227,6 +235,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -245,6 +254,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -283,6 +293,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -301,6 +312,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -325,6 +337,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -343,6 +356,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -364,6 +378,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -403,6 +418,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -421,6 +437,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -451,6 +468,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -469,6 +487,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -487,6 +506,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -508,6 +528,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -529,6 +550,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -547,6 +569,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -563,6 +586,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -601,6 +625,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -619,6 +644,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -649,6 +675,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -670,6 +697,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -691,6 +719,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -709,6 +738,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -728,6 +758,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>

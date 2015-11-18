@@ -50,6 +50,7 @@ bool CCircuitCfgForm::setCfg(void *cfg_struct)
 
     ui->p1Nominal->setValue(circuit_cfg->phase_cfg[0].p_nom / 10.0);
     ui->p1Tol->setValue(circuit_cfg->phase_cfg[0].p_tol / 10.0);
+    ui->p1Factor->setCurrentIndex(circuit_cfg->phase_cfg[0].p_factor);
 
     if(circuit_cfg->phase_cfg[1].active == 0)
         ui->l2ActiveChk->setChecked(false);
@@ -67,6 +68,7 @@ bool CCircuitCfgForm::setCfg(void *cfg_struct)
 
     ui->p2Nominal->setValue(circuit_cfg->phase_cfg[1].p_nom / 10.0);
     ui->p2Tol->setValue(circuit_cfg->phase_cfg[1].p_tol / 10.0);
+    ui->p2Factor->setCurrentIndex(circuit_cfg->phase_cfg[1].p_factor);
 
     if(circuit_cfg->phase_cfg[2].active == 0)
         ui->l3ActiveChk->setChecked(false);
@@ -84,6 +86,7 @@ bool CCircuitCfgForm::setCfg(void *cfg_struct)
 
     ui->p3Nominal->setValue(circuit_cfg->phase_cfg[2].p_nom / 10.0);
     ui->p3Tol->setValue(circuit_cfg->phase_cfg[2].p_tol / 10.0);
+    ui->p3Factor->setCurrentIndex(circuit_cfg->phase_cfg[2].p_factor);
 
     ui->cirRelIOMod->setValue(circuit_cfg->relay.module_id);
     ui->cirRelBitNo->setValue(circuit_cfg->relay.bit_no);
@@ -119,6 +122,7 @@ bool CCircuitCfgForm::getCfg(void *cfg_struct)
 
     circuit_cfg->phase_cfg[0].p_nom = ui->p1Nominal->value() * 10;
     circuit_cfg->phase_cfg[0].p_tol = ui->p1Tol->value() * 10;
+    circuit_cfg->phase_cfg[0].p_factor = ui->p1Factor->currentIndex();
 
     circuit_cfg->phase_cfg[1].active = ui->l2ActiveChk->isChecked();
     circuit_cfg->phase_cfg[1].conf_input.active = ui->l2ConfActiveChk->isChecked();
@@ -130,6 +134,7 @@ bool CCircuitCfgForm::getCfg(void *cfg_struct)
 
     circuit_cfg->phase_cfg[1].p_nom = ui->p2Nominal->value() * 10;
     circuit_cfg->phase_cfg[1].p_tol = ui->p2Tol->value() * 10;
+    circuit_cfg->phase_cfg[1].p_factor = ui->p2Factor->currentIndex();
 
     circuit_cfg->phase_cfg[2].active = ui->l3ActiveChk->isChecked();
     circuit_cfg->phase_cfg[2].conf_input.active = ui->l3ConfActiveChk->isChecked();
@@ -141,6 +146,7 @@ bool CCircuitCfgForm::getCfg(void *cfg_struct)
 
     circuit_cfg->phase_cfg[2].p_nom = ui->p3Nominal->value() * 10;
     circuit_cfg->phase_cfg[2].p_tol = ui->p3Tol->value() * 10;
+    circuit_cfg->phase_cfg[2].p_factor = ui->p3Factor->currentIndex();
 
     circuit_cfg->relay.active = 1;
     circuit_cfg->relay.module_id = ui->cirRelIOMod->value();

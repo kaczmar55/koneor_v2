@@ -19,6 +19,13 @@ public:
     bool getCfg(void* cfg_struct);
     bool setCfg(void* cfg_struct);
 
+private slots:
+    void on_ecoBtn_clicked();
+
+    void on_stdBtn_clicked();
+
+    void on_maxBtn_clicked();
+
 private:
     Ui::CTemperaturesCfgForm *ui;
 };

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>835</width>
-    <height>415</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,6 +43,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -87,6 +88,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -105,6 +107,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -123,6 +126,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -141,6 +145,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -162,6 +167,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -184,6 +190,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -205,6 +212,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -235,6 +243,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -251,7 +260,7 @@
      <x>240</x>
      <y>200</y>
      <width>215</width>
-     <height>205</height>
+     <height>235</height>
     </rect>
    </property>
    <property name="font">
@@ -276,6 +285,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -297,6 +307,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -315,6 +326,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -333,6 +345,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -357,6 +370,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -378,6 +392,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -396,6 +411,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -414,6 +430,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -432,6 +449,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -459,6 +477,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -483,6 +502,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -504,6 +524,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -525,6 +546,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -543,11 +565,57 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Kanał:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="p2Factor">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>200</y>
+      <width>60</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1,73</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>205</y>
+      <width>140</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Współczynnik mocy</string>
     </property>
    </widget>
   </widget>
@@ -562,6 +630,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -575,7 +644,7 @@
      <x>10</x>
      <y>200</y>
      <width>215</width>
-     <height>205</height>
+     <height>235</height>
     </rect>
    </property>
    <property name="font">
@@ -600,6 +669,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -621,6 +691,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -639,6 +710,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -657,6 +729,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -681,6 +754,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -702,6 +776,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -720,6 +795,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -738,6 +814,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -756,6 +833,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -783,6 +861,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -807,6 +886,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -828,6 +908,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -846,6 +927,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -867,12 +949,58 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Kanał:</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>205</y>
+      <width>140</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Współczynnik mocy</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="p1Factor">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>200</y>
+      <width>60</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1,73</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QLabel" name="label_58">
@@ -886,6 +1014,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -904,6 +1033,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -917,7 +1047,7 @@
      <x>470</x>
      <y>200</y>
      <width>215</width>
-     <height>205</height>
+     <height>235</height>
     </rect>
    </property>
    <property name="font">
@@ -942,6 +1072,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -963,6 +1094,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -981,6 +1113,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -999,6 +1132,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1023,6 +1157,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1044,6 +1179,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1062,6 +1198,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1080,6 +1217,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1098,6 +1236,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1125,6 +1264,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1149,6 +1289,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1167,6 +1308,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1188,6 +1330,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1206,6 +1349,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1214,6 +1358,51 @@
     </property>
     <property name="maximum">
      <number>3</number>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="p3Factor">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>200</y>
+      <width>60</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1,73</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>205</y>
+      <width>140</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Abyssinica SIL</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Współczynnik mocy</string>
     </property>
    </widget>
   </widget>
@@ -1231,6 +1420,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -1249,6 +1439,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -1267,6 +1458,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -1295,6 +1487,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -1336,6 +1529,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1354,6 +1548,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1372,6 +1567,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1390,6 +1586,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1411,6 +1608,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>11</pointsize>
      </font>
     </property>
@@ -1433,6 +1631,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>
@@ -1451,6 +1650,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial</family>
      <pointsize>11</pointsize>
     </font>
    </property>

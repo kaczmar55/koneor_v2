@@ -141,7 +141,8 @@ typedef struct __attribute((packed)){
     uint8_t res2[2];
     uint16_t p_nom;
     uint16_t p_tol;
-    uint8_t res3[8];
+    uint8_t p_factor;
+    uint8_t res3[7];
 } phase_cfg_t;
 
 typedef struct __attribute((packed)){
@@ -179,13 +180,20 @@ typedef struct __attribute((packed)){
     uint8_t res[16];
 } io_cfg_t;
 
+#define CAN1ID              1
+#define CAN2ID              2
+#define CAN_MON_ENABLE      1
+#define CAN_REPEATER_ENABLE 2
+
 typedef struct __attribute((packed)){
     uint8_t active;			//aktywność kanału komunikacji
     uint8_t no;			//numer logiczny can
     uint8_t baud;			//prędkość can 25kbps lub 125kbps
     uint8_t accept_cmd;		//akceptowanie poleceń
     uint8_t send_reports;		//wysyłanie meldunków
-    uint8_t res[7];
+    uint8_t can_no;		//który can ma być otwarty (CAN1ID | CAN2ID)
+    uint8_t can_functions;	//dodatkowe funkcje can takie jak CAN_MON_ENABLE = 1, CAN_REPEATER_ENABLE = 2
+    uint8_t res[5];
 } can_cfg_t;
 
 typedef struct __attribute((packed)){

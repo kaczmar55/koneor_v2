@@ -26,7 +26,6 @@ SOURCES += main.cpp\
     CfgForms/crs232cfgform.cpp \
     CfgForms/cmodbusslavecfgform.cpp \
     CfgForms/ccancfgform.cpp \
-    CfgForms/ctgfmcfgform.cpp \
     eor_cfg.cpp \
     CfgForms/cethernetcfgform.cpp \
     CfgForms/cmyform.cpp \
@@ -45,7 +44,6 @@ HEADERS  += mainwindow.h \
     CfgForms/crs232cfgform.h \
     CfgForms/cmodbusslavecfgform.h \
     CfgForms/ccancfgform.h \
-    CfgForms/ctgfmcfgform.h \
     CfgForms/cethernetcfgform.h \
     CfgForms/cmyform.h \
     crc16.hpp
@@ -62,5 +60,4 @@ FORMS    += mainwindow.ui \
     CfgForms/crs232cfgform.ui \
     CfgForms/cmodbusslavecfgform.ui \
     CfgForms/ccancfgform.ui \
-    CfgForms/ctgfmcfgform.ui \
     CfgForms/cethernetcfgform.ui

@@ -32,6 +32,7 @@ private:
 
     QTreeWidgetItem *weatherAutomItem, *circuitItem;
     bool doNotChange;
+    QString open_save_path;
 
     void setCfgStructs(char* buf);
     bool getCfgFromForm(int index, int id);
