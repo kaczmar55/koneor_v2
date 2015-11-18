@@ -181,6 +181,11 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>ipAddrEdit</tabstop>
+  <tabstop>maskEdit</tabstop>
+  <tabstop>gatewayEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

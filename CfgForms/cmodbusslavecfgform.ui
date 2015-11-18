@@ -220,6 +220,13 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>modbusSlaveActiveChk</tabstop>
+  <tabstop>modbusSlaveAcceptCmdChk</tabstop>
+  <tabstop>modbusSlaveAddr</tabstop>
+  <tabstop>modbusSlaveMediumCmb</tabstop>
+  <tabstop>modbusSlavePort</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

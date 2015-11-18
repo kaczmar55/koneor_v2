@@ -1659,6 +1659,46 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>cirNameEdit</tabstop>
+  <tabstop>cirDescriptionEdit</tabstop>
+  <tabstop>cirActiveChk</tabstop>
+  <tabstop>cirReferenceChk</tabstop>
+  <tabstop>cirTypeCmb</tabstop>
+  <tabstop>cirGroupNo</tabstop>
+  <tabstop>cirWeatherAutomNo</tabstop>
+  <tabstop>cirRelIOMod</tabstop>
+  <tabstop>cirRelBitNo</tabstop>
+  <tabstop>cirRelConfIOMod</tabstop>
+  <tabstop>cirRelConfBitNo</tabstop>
+  <tabstop>l1ActiveChk</tabstop>
+  <tabstop>l1ConfActiveChk</tabstop>
+  <tabstop>l1ConfIOMod</tabstop>
+  <tabstop>l1ConfBitNo</tabstop>
+  <tabstop>l1CvmId</tabstop>
+  <tabstop>l1CvmCh</tabstop>
+  <tabstop>p1Nominal</tabstop>
+  <tabstop>p1Tol</tabstop>
+  <tabstop>p1Factor</tabstop>
+  <tabstop>l2ActiveChk</tabstop>
+  <tabstop>l2ConfActiveChk</tabstop>
+  <tabstop>l2ConfIOMod</tabstop>
+  <tabstop>l2ConfBitNo</tabstop>
+  <tabstop>l2CvmId</tabstop>
+  <tabstop>l2CvmCh</tabstop>
+  <tabstop>p2Nominal</tabstop>
+  <tabstop>p2Tol</tabstop>
+  <tabstop>p2Factor</tabstop>
+  <tabstop>l3ActiveChk</tabstop>
+  <tabstop>l3ConfActiveChk</tabstop>
+  <tabstop>l3ConfIOMod</tabstop>
+  <tabstop>l3ConfBitNo</tabstop>
+  <tabstop>l3CvmId</tabstop>
+  <tabstop>l3CvmCh</tabstop>
+  <tabstop>p3Nominal</tabstop>
+  <tabstop>p3Tol</tabstop>
+  <tabstop>p3Factor</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

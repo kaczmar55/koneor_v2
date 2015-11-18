@@ -599,6 +599,7 @@
    <property name="font">
     <font>
      <family>Arial</family>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -624,6 +625,21 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>objName</tabstop>
+  <tabstop>objDescription</tabstop>
+  <tabstop>cirCount</tabstop>
+  <tabstop>weatherAutomCount</tabstop>
+  <tabstop>indOnTime</tabstop>
+  <tabstop>wetSignHoldTime</tabstop>
+  <tabstop>phaseAssymetryCheck</tabstop>
+  <tabstop>phaseAssymetryTolerance</tabstop>
+  <tabstop>screenSaverEnable</tabstop>
+  <tabstop>screenSaverTime</tabstop>
+  <tabstop>minPhaseVoltage</tabstop>
+  <tabstop>ctrlUserLevel</tabstop>
+  <tabstop>paramEditUserLevel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

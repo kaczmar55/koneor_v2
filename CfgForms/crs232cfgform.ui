@@ -1143,6 +1143,30 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>rsActiveChk</tabstop>
+  <tabstop>rsBaudrateCmb</tabstop>
+  <tabstop>rsDataBitsCmb</tabstop>
+  <tabstop>rsParityCmb</tabstop>
+  <tabstop>rsStopBitsCmb</tabstop>
+  <tabstop>rsProtocolCmb</tabstop>
+  <tabstop>virtRs1ActiveChk</tabstop>
+  <tabstop>virtRs1IpAddrEdit</tabstop>
+  <tabstop>virtRs1Port</tabstop>
+  <tabstop>virtRs1ProtocolCmb</tabstop>
+  <tabstop>virtRs2ActiveChk</tabstop>
+  <tabstop>virtRs2IpAddrEdit</tabstop>
+  <tabstop>virtRs2Port</tabstop>
+  <tabstop>virtRs2ProtocolCmb</tabstop>
+  <tabstop>virtRs3ActiveChk</tabstop>
+  <tabstop>virtRs3IpAddrEdit</tabstop>
+  <tabstop>virtRs3Port</tabstop>
+  <tabstop>virtRs3ProtocolCmb</tabstop>
+  <tabstop>virtRs4ActiveChk</tabstop>
+  <tabstop>virtRs4IpAddrEdit</tabstop>
+  <tabstop>virtRs4Port</tabstop>
+  <tabstop>virtRs4ProtocolCmb</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -951,6 +951,29 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>dorChk</tabstop>
+  <tabstop>dorIOMod</tabstop>
+  <tabstop>dorBitNo</tabstop>
+  <tabstop>breakInChk</tabstop>
+  <tabstop>breakInIOMod</tabstop>
+  <tabstop>breakInBitNo</tabstop>
+  <tabstop>surgeProtectChk</tabstop>
+  <tabstop>surgeProtectIOMod</tabstop>
+  <tabstop>surgeProtectBitNo</tabstop>
+  <tabstop>remoteCtrlChk</tabstop>
+  <tabstop>remoteCtrlIOMod</tabstop>
+  <tabstop>remoteCtrlBitNo</tabstop>
+  <tabstop>localCtrlChk</tabstop>
+  <tabstop>localCtrlIOMod</tabstop>
+  <tabstop>localCtrlBitNo</tabstop>
+  <tabstop>handCtrlChk</tabstop>
+  <tabstop>handCtrlIOMod</tabstop>
+  <tabstop>handCtrlBitNo</tabstop>
+  <tabstop>lockCtrlChk</tabstop>
+  <tabstop>lockCtrlIOMod</tabstop>
+  <tabstop>lockCtrlBitNo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -767,6 +767,22 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>referenceCirNo</tabstop>
+  <tabstop>sensorColdTypeCmb</tabstop>
+  <tabstop>sensorColdAddr</tabstop>
+  <tabstop>sensorColdRegNo</tabstop>
+  <tabstop>sensorHotTypeCmb</tabstop>
+  <tabstop>sensorHotAddr</tabstop>
+  <tabstop>sensorHotRegNo</tabstop>
+  <tabstop>blowSensTypeCmb</tabstop>
+  <tabstop>blowSensorAddr</tabstop>
+  <tabstop>blowSensorBitNo</tabstop>
+  <tabstop>blowSensorRegNo</tabstop>
+  <tabstop>sensorPwrCtrlChk</tabstop>
+  <tabstop>sensorPwrCtrlIOMod</tabstop>
+  <tabstop>sensorPwrCtrlBitNo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

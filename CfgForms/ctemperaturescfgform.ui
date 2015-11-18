@@ -889,6 +889,23 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>TROnWetSpin</tabstop>
+  <tabstop>TROffWetSpin</tabstop>
+  <tabstop>TROnSnSpin</tabstop>
+  <tabstop>TROffSnSpin</tabstop>
+  <tabstop>TFrostOnRSpin</tabstop>
+  <tabstop>TFrostOffRSpin</tabstop>
+  <tabstop>TROnFrSpin</tabstop>
+  <tabstop>TROffFrSpin</tabstop>
+  <tabstop>tLocksOn</tabstop>
+  <tabstop>tLocksOff</tabstop>
+  <tabstop>tWetFreezing</tabstop>
+  <tabstop>tIsSnowFall</tabstop>
+  <tabstop>ecoBtn</tabstop>
+  <tabstop>stdBtn</tabstop>
+  <tabstop>maxBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

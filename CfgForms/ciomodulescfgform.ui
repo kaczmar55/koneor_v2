@@ -37,7 +37,7 @@
     <rect>
      <x>510</x>
      <y>45</y>
-     <width>110</width>
+     <width>200</width>
      <height>17</height>
     </rect>
    </property>
@@ -48,7 +48,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Liczniki energii:</string>
+    <string>Liczniki energii Pozyton sEA:</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="jsn2ModulesTable">
