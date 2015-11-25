@@ -328,6 +328,9 @@ void MainWindow::on_actionOtw_rz_triggered()
                                       QString(" B"));*/
             }
 
+            myForm = (CGeneralCfgForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
+            ui->menuTreeWidget->setCurrentItem(ui->menuTreeWidget->topLevelItem(0));
+
             setCfgStructs(fileBuf.data());
             crc16 = LiczCrc16Buf((uint8_t*)&fileBuf.data()[sizeof(eorkonf_hdr_t)], eorkonf_data_size);
             if(eorkonf_hdr.crc16 != crc16)
@@ -361,11 +364,11 @@ void MainWindow::on_actionOtw_rz_triggered()
                 //QMessageBox::critical(this, "Błąd", "Brak w nagłówku znacznika EOR_KON. Wczytane dane mogą być nieprawidłowe\n");
             }
 
-            myForm = (CGeneralCfgForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
+            //myForm = (CGeneralCfgForm*)ui->stackedWidget->widget(GENERAL_CFG_FORM_ID);
             myForm->setCfg(&general_cfg);
             myForm->setFileVer(eorkonf_hdr.ver, eorkonf_hdr.rev);
             myForm->setFileSize(eorkonf_hdr.file_len + sizeof(eorkonf_hdr_t));
-            ui->menuTreeWidget->setCurrentItem(ui->menuTreeWidget->topLevelItem(0));
+            //ui->menuTreeWidget->setCurrentItem(ui->menuTreeWidget->topLevelItem(0));
         }
         else
         {

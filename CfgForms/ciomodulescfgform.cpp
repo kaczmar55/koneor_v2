@@ -25,15 +25,18 @@ CIoModulesCfgForm::~CIoModulesCfgForm()
 bool CIoModulesCfgForm::setCfg(void *cfg_struct)
 {
     QTableWidget *ioModuleTable = ui->ioModulesTable;
+    QTableWidgetItem *tableWidgetItem;
     int i, row;
     QComboBox *cb;
     io_module_cfg_t *io_module_cfg = (io_module_cfg_t*)cfg_struct;
 
     while(ioModuleTable->rowCount() > 0)
         ioModuleTable->removeRow(ioModuleTable->rowCount() - 1);
+    while(ui->cvmModulesTable->rowCount() > 0)
+        ui->cvmModulesTable->removeRow(ui->cvmModulesTable->rowCount() - 1);
     for(i = 0; i < IO_MODULE_COUNT; i++)
     {
-        if(io_module_cfg[i].type != 0)
+        if((io_module_cfg[i].type != 0) && (io_module_cfg[i].type != CVM_TYPE))
         {
             cb = new QComboBox();
             cb->addItem(QString("IO10/5"), IO10_5_TYPE);
@@ -41,7 +44,7 @@ bool CIoModulesCfgForm::setCfg(void *cfg_struct)
             cb->addItem(QString("I12"), I12_TYPE);
             cb->addItem(QString("I20"), I20_TYPE);
             cb->addItem(QString("O10"), O10_TYPE);
-            cb->addItem(QString("CVM"), CVM_TYPE);
+            //cb->addItem(QString("CVM"), CVM_TYPE);
             cb->addItem(QString("ISC3"), ISC3_TYPE);
             cb->addItem(QString("IO4/7"), IO4_7_TYPE);
             cb->addItem(QString("O8"), O8_TYPE);
@@ -55,24 +58,45 @@ bool CIoModulesCfgForm::setCfg(void *cfg_struct)
             ioModuleTable->setItem(row, 1, new QTableWidgetItem());
             ioModuleTable->item(row, 1)->setText(QString("0x%1").arg(io_module_cfg[i].addr, 0, 16));
         }
+        else if(io_module_cfg[i].type == CVM_TYPE)
+        {
+            row = ui->cvmModulesTable->rowCount();
+            ui->cvmModulesTable->insertRow(row);
+
+            tableWidgetItem = new QTableWidgetItem();
+            tableWidgetItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            ui->cvmModulesTable->setItem(row, 0, tableWidgetItem);
+            ui->cvmModulesTable->item(row, 0)->setText("CVM");
+            ui->cvmModulesTable->setItem(row, 1, new QTableWidgetItem());
+            ui->cvmModulesTable->item(row, 1)->setText(QString("0x%1").arg(io_module_cfg[i].addr, 0, 16));
+        }
     }
     return true;
 }
 
 bool CIoModulesCfgForm::getCfg(void *cfg_struct)
 {    
-    int count = ui->ioModulesTable->rowCount();
+    int ioCount = ui->ioModulesTable->rowCount();
+    int cvmCount = ui->cvmModulesTable->rowCount();
     int i;
     QComboBox* cmb;
     bool ok = true;
     io_module_cfg_t *io_module_cfg = (io_module_cfg_t*)cfg_struct;
 
     memset(io_module_cfg, 0, sizeof(io_module_cfg_t) * IO_MODULE_COUNT);
-    for(i = 0; i < count; i++)
+    for(i = 0; i < ioCount; i++)
     {
         cmb = (QComboBox*)ui->ioModulesTable->cellWidget(i, 0);
         io_module_cfg[i].type = cmb->currentData().toInt();
         io_module_cfg[i].addr = ui->ioModulesTable->item(i, 1)->text().toInt(&ok, 0);
+        if(ok == false)
+            break;
+    }
+    cvmCount = ui->cvmModulesTable->rowCount();
+    for(i = 0; i < cvmCount; i++)
+    {
+        io_module_cfg[i + ioCount].type = CVM_TYPE;
+        io_module_cfg[i + ioCount].addr = ui->cvmModulesTable->item(i, 1)->text().toInt(&ok, 0);
         if(ok == false)
             break;
     }
@@ -84,6 +108,7 @@ void CIoModulesCfgForm::on_addIoModuleBtn_clicked()
 {
     QComboBox* cb;
     QComboBox* prev_cb;
+    int i;
 
     int rows = ui->ioModulesTable->rowCount();
     if(rows < IO_MODULE_COUNT)
@@ -96,7 +121,7 @@ void CIoModulesCfgForm::on_addIoModuleBtn_clicked()
         cb->addItem(QString("I12"), I12_TYPE);
         cb->addItem(QString("I20"), I20_TYPE);
         cb->addItem(QString("O10"), O10_TYPE);
-        cb->addItem(QString("CVM"), CVM_TYPE);
+//        cb->addItem(QString("CVM"), CVM_TYPE);
         cb->addItem(QString("ISC3"), ISC3_TYPE);
         cb->addItem(QString("IO4/7"), IO4_7_TYPE);
         cb->addItem(QString("O8"), O8_TYPE);
@@ -114,17 +139,34 @@ void CIoModulesCfgForm::on_addIoModuleBtn_clicked()
             cb->setCurrentIndex(prev_cb->currentIndex());
             ui->ioModulesTable->item(rows, 1)->setText(QString("0x") + QString::number(ui->ioModulesTable->item(rows - 1, 1)->text().toInt(NULL, 0) + 1, 16));
         }
+
+        for(i = 0; i < CIRCUIT_COUNT; i++)
+        {
+            circuit_cfg[i].phase_cfg[0].cvm_id++;
+            circuit_cfg[i].phase_cfg[1].cvm_id++;
+            circuit_cfg[i].phase_cfg[2].cvm_id++;
+        }
     }
 }
 
 void CIoModulesCfgForm::on_delIoModuleBtn_clicked()
 {
     int row;
+    int i, j;
 
     if(ui->ioModulesTable->rowCount() > 0)
     {
         row = ui->ioModulesTable->currentRow();
         ui->ioModulesTable->removeRow(row);
+
+        for(i = 0; i < CIRCUIT_COUNT; i++)
+        {
+            for(j = 0; j < 3; j++)
+            {
+                if(circuit_cfg[i].phase_cfg[j].cvm_id > 1)
+                    circuit_cfg[i].phase_cfg[j].cvm_id--;
+            }
+        }
     }
 }
 
@@ -277,5 +319,53 @@ void CIoModulesCfgForm::on_delMeterBtn_clicked()
     {
         row = ui->energyMetersTab->currentRow();
         ui->energyMetersTab->removeRow(row);
+    }
+}
+
+void CIoModulesCfgForm::on_addCvmModuleBtn_clicked()
+{
+    int rows = ui->cvmModulesTable->rowCount();
+    int modAddr;
+    QTableWidgetItem *tableWidgetItem;
+
+    if(rows < IO_MODULE_COUNT)
+    {
+        ui->cvmModulesTable->insertRow(rows);
+
+        tableWidgetItem = new QTableWidgetItem();
+        tableWidgetItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        ui->cvmModulesTable->setItem(rows, 0, tableWidgetItem);
+        ui->cvmModulesTable->item(rows, 0)->setText("CVM");
+
+        ui->cvmModulesTable->setItem(rows, 1, new QTableWidgetItem());
+        if(rows == 0)
+        {
+            ui->cvmModulesTable->item(0, 1)->setText("0xb1");
+        }
+        else
+        {
+            modAddr = ui->cvmModulesTable->item(rows - 1, 1)->text().toInt(NULL, 0);
+            if((modAddr & 0xF) == 5)
+            {
+                modAddr &= 0xF0;
+                modAddr += 0x11;
+            }
+            else
+            {
+                modAddr += 1;
+            }
+            ui->cvmModulesTable->item(rows, 1)->setText(QString("0x") + QString::number(modAddr, 16));
+        }
+    }
+}
+
+void CIoModulesCfgForm::on_delCvmModuleBtn_clicked()
+{
+    int row;
+
+    if(ui->cvmModulesTable->rowCount() > 0)
+    {
+        row = ui->cvmModulesTable->currentRow();
+        ui->cvmModulesTable->removeRow(row);
     }
 }

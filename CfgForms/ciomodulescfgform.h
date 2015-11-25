@@ -38,6 +38,10 @@ private slots:
 
     void on_delMeterBtn_clicked();
 
+    void on_addCvmModuleBtn_clicked();
+
+    void on_delCvmModuleBtn_clicked();
+
 private:
     Ui::CIoModulesCfgForm *ui;
 };

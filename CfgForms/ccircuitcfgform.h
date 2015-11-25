@@ -19,6 +19,13 @@ public:
     bool setCfg(void* cfg_struct);
     bool getCfg(void* cfg_struct);
 
+private slots:
+    void on_l1ActiveChk_toggled(bool checked);
+
+    void on_l2ActiveChk_toggled(bool checked);
+
+    void on_l3ActiveChk_toggled(bool checked);
+
 private:
     Ui::CCircuitCfgForm *ui;
 };
